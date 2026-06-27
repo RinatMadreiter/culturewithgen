@@ -1,0 +1,66 @@
+---
+import { storyblokEditable } from "@storyblok/astro";
+
+const { blok } = Astro.props;
+---
+
+<section
+  {...storyblokEditable(blok)}
+  class="relative pt-20 pb-32 px-6 lg:px-12 overflow-hidden bg-surface"
+>
+  <div
+    class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center"
+  >
+    <div
+      class="lg:col-span-7 z-10 flex flex-col justify-center items-start lg:pr-12"
+    >
+      {
+        blok.eyebrow && (
+          <span class="inline-block px-4 py-1.5 rounded-full bg-surface-container-high text-primary text-xs font-bold uppercase tracking-widest mb-8 font-label">
+            {blok.eyebrow}
+          </span>
+        )
+      }
+      <h1
+        class="text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.1] font-headline font-extrabold text-primary-container tracking-[-0.02em] mb-8"
+      >
+        {blok.title}
+      </h1>
+      <p
+        class="text-xl md:text-2xl font-body font-medium text-on-surface-variant mb-6 leading-relaxed"
+      >
+        {blok.subtitle}
+      </p>
+      <p
+        class="text-base font-body text-on-surface-variant mb-12 leading-relaxed max-w-2xl"
+      >
+        {blok.description}
+      </p>
+      <div class="flex flex-col sm:flex-row items-center gap-6">
+        <a
+          href="#contact"
+          class="w-full sm:w-auto bg-secondary text-on-primary px-8 py-4 rounded-lg font-label font-bold tracking-wider hover:underline hover:text-secondary-fixed-dim transition-all duration-200 shadow-[0_12px_40px_rgba(30,57,50,0.06)] text-center"
+        >
+          {blok.cta_label}
+        </a>
+      </div>
+    </div>
+    <div class="lg:col-span-5 relative">
+      <div
+        class="absolute inset-0 bg-primary-container rounded-[2rem] transform translate-x-4 translate-y-4 -z-10 opacity-10"
+      >
+      </div>
+      {
+        blok.image?.filename && (
+          <img
+            alt={blok.image.alt ||
+              "Professional portrait of intercultural trainer"}
+            class="w-full h-auto object-cover rounded-[2rem] shadow-[0_12px_40px_rgba(30,57,50,0.06)] bg-gray-200 min-h-[400px]"
+            loading="eager"
+            src={blok.image.filename}
+          />
+        )
+      }
+    </div>
+  </div>
+</section>

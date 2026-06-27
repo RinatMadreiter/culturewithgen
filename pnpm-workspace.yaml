@@ -1,3 +1,17 @@
 allowBuilds:
   esbuild: true
 minimumReleaseAge: 10080
+# Astro v7 toolchain ships frequent releases; exempt it from the 7-day age guard
+# so the rest of the dependency tree stays protected.
+minimumReleaseAgeExclude:
+  - astro
+  - vite
+  - rolldown
+  - satteri
+  - '@astrojs/*'
+  - '@bruits/*'
+  - '@rolldown/*'
+  - '@napi-rs/*'
+  - '@tybys/*'
+  # transitive build-chain dep of vite/rolldown
+  - nanoid

@@ -1,0 +1,76 @@
+---
+import { storyblokEditable } from "@storyblok/astro";
+
+const { blok } = Astro.props;
+
+// "paragraphs" is a Textarea field: one paragraph per line.
+const paragraphs = (blok.paragraphs ?? "")
+  .split("\n")
+  .map((p) => p.trim())
+  .filter(Boolean);
+
+const credentials = blok.credentials ?? [];
+---
+
+<section
+  {...storyblokEditable(blok)}
+  class="py-24 px-6 lg:px-12 bg-surface-container-low"
+  id="about"
+>
+  <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
+    <div class="w-full lg:w-5/12 flex justify-center">
+      <div class="relative w-72 h-72 lg:w-96 lg:h-96">
+        {
+          blok.image?.filename && (
+            <img
+              alt={blok.image.alt || "Trainer facilitating a workshop"}
+              class="w-full h-full object-cover rounded-full shadow-[0_12px_40px_rgba(30,57,50,0.06)] bg-gray-200"
+              src={blok.image.filename}
+            />
+          )
+        }
+      </div>
+    </div>
+    <div class="w-full lg:w-7/12">
+      <h2
+        class="text-3xl lg:text-[2.75rem] font-headline font-bold text-primary-container mb-8 tracking-tight"
+      >
+        {blok.title}
+      </h2>
+
+      {
+        paragraphs.map((paragraph) => (
+          <p class="text-lg font-body text-on-surface-variant leading-[1.6] mb-6">
+            {paragraph}
+          </p>
+        ))
+      }
+
+      {
+        credentials.length > 0 && (
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+            {credentials.map((item, i) => (
+              <div
+                {...storyblokEditable(item)}
+                class:list={[
+                  "bg-surface-container-lowest p-6 rounded-xl flex items-center gap-4",
+                  // last odd card spans both columns, matching the original layout
+                  i === credentials.length - 1 && credentials.length % 2 === 1
+                    ? "md:col-span-2"
+                    : "",
+                ]}
+              >
+                <span class="material-symbols-outlined text-secondary text-3xl">
+                  {item.icon}
+                </span>
+                <span class="font-body font-medium text-primary-container">
+                  {item.text}
+                </span>
+              </div>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>

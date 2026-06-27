@@ -1,29 +1,33 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { useStoryblokApi, StoryblokComponent } from "@storyblok/astro";
 
-// 1. Tell Astro which URLs to generate based on our markdown files
+// Generate /privacy and /imprint from the legal_page stories in the
+// "legal/" folder of the Storyblok space.
 export async function getStaticPaths() {
-  const allLegalDocs = await getCollection('legal');
-  
-  // Keep only the English documents (the ones that DO NOT start with 'de-')
-  const englishDocs = allLegalDocs.filter(doc => !doc.id.startsWith('de-'));
+  const storyblokApi = useStoryblokApi();
+  const version = import.meta.env.DEV ? "draft" : "published";
 
-  return englishDocs.map(doc => ({
-    params: { slug: doc.id }, // Generates /impressum and /datenschutz
-    props: { doc },
+  const { data } = await storyblokApi.get("cdn/stories", {
+    version,
+    starts_with: "legal/",
+    language: "default",
+  });
+
+  return data.stories.map((story) => ({
+    params: { slug: story.slug },
+    props: { story },
   }));
 }
 
-// 2. Prepare the markdown content to be rendered into HTML
-const { doc } = Astro.props;
-const { Content } = await render(doc);
+const { story } = Astro.props;
+const content = story.content;
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>{doc.data.title}</title>
+    <title>{content.title}</title>
     <style>
       body {
         font-family: system-ui, -apple-system, sans-serif;
@@ -47,7 +51,7 @@ const { Content } = await render(doc);
       a:hover {
         text-decoration: underline;
       }
-      h1 {
+      .legal-prose h1 {
         color: #0f172a;
       }
     </style>
@@ -57,8 +61,7 @@ const { Content } = await render(doc);
       <a href="/">← Back to Home</a>
     </nav>
     <main>
-      <h1>{doc.data.title}</h1>
-      <Content /> 
+      <StoryblokComponent blok={content} />
     </main>
   </body>
 </html>

@@ -1,0 +1,39 @@
+---
+import { storyblokEditable } from "@storyblok/astro";
+
+const { blok } = Astro.props;
+const items = blok.items ?? [];
+---
+
+<section
+  {...storyblokEditable(blok)}
+  class="py-24 px-6 lg:px-12 bg-surface-container-low"
+  id="who-this-is-for"
+>
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <h2
+        class="text-3xl lg:text-[2.75rem] font-headline font-bold text-primary-container tracking-tight mb-4"
+      >
+        {blok.title}
+      </h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {
+        items.map((item) => (
+          <div
+            {...storyblokEditable(item)}
+            class="flex items-center gap-4 p-6 bg-surface-container-lowest rounded-2xl shadow-sm"
+          >
+            <span class="material-symbols-outlined text-secondary text-3xl">
+              {item.icon}
+            </span>
+            <p class="text-lg font-headline font-bold text-primary-container m-0">
+              {item.text}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

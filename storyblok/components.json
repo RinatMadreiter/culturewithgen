@@ -1,0 +1,174 @@
+{
+  "components": [
+    {
+      "name": "page",
+      "display_name": "Page",
+      "is_root": true,
+      "is_nestable": false,
+      "schema": {
+        "seo_title": { "type": "text", "translatable": true, "pos": 0 },
+        "body": {
+          "type": "bloks",
+          "pos": 1,
+          "restrict_components": true,
+          "component_whitelist": [
+            "hero",
+            "about",
+            "offer",
+            "who_for",
+            "situations",
+            "formats",
+            "contact"
+          ]
+        }
+      }
+    },
+    {
+      "name": "hero",
+      "display_name": "Hero",
+      "is_root": false,
+      "is_nestable": true,
+      "schema": {
+        "eyebrow": { "type": "text", "translatable": true, "pos": 0 },
+        "title": { "type": "text", "translatable": true, "pos": 1 },
+        "subtitle": { "type": "text", "translatable": true, "pos": 2 },
+        "description": { "type": "textarea", "translatable": true, "pos": 3 },
+        "cta_label": { "type": "text", "translatable": true, "pos": 4 },
+        "image": { "type": "asset", "filetypes": ["images"], "pos": 5 }
+      }
+    },
+    {
+      "name": "about",
+      "display_name": "About",
+      "is_root": false,
+      "is_nestable": true,
+      "schema": {
+        "title": { "type": "text", "translatable": true, "pos": 0 },
+        "image": { "type": "asset", "filetypes": ["images"], "pos": 1 },
+        "paragraphs": {
+          "type": "textarea",
+          "translatable": true,
+          "pos": 2,
+          "description": "One paragraph per line."
+        },
+        "credentials": {
+          "type": "bloks",
+          "pos": 3,
+          "restrict_components": true,
+          "component_whitelist": ["credential"]
+        }
+      }
+    },
+    {
+      "name": "offer",
+      "display_name": "Offer",
+      "is_root": false,
+      "is_nestable": true,
+      "schema": {
+        "title": { "type": "text", "translatable": true, "pos": 0 },
+        "subtitle": { "type": "text", "translatable": true, "pos": 1 },
+        "items": {
+          "type": "bloks",
+          "pos": 2,
+          "restrict_components": true,
+          "component_whitelist": ["feature_item"]
+        }
+      }
+    },
+    {
+      "name": "who_for",
+      "display_name": "Who For",
+      "is_root": false,
+      "is_nestable": true,
+      "schema": {
+        "title": { "type": "text", "translatable": true, "pos": 0 },
+        "items": {
+          "type": "bloks",
+          "pos": 1,
+          "restrict_components": true,
+          "component_whitelist": ["feature_item"]
+        }
+      }
+    },
+    {
+      "name": "situations",
+      "display_name": "Situations",
+      "is_root": false,
+      "is_nestable": true,
+      "schema": {
+        "title": { "type": "text", "translatable": true, "pos": 0 },
+        "items": {
+          "type": "bloks",
+          "pos": 1,
+          "restrict_components": true,
+          "component_whitelist": ["feature_item"]
+        }
+      }
+    },
+    {
+      "name": "formats",
+      "display_name": "Formats",
+      "is_root": false,
+      "is_nestable": true,
+      "schema": {
+        "title": { "type": "text", "translatable": true, "pos": 0 },
+        "items": {
+          "type": "bloks",
+          "pos": 1,
+          "restrict_components": true,
+          "component_whitelist": ["feature_item"]
+        }
+      }
+    },
+    {
+      "name": "contact",
+      "display_name": "Contact",
+      "is_root": false,
+      "is_nestable": true,
+      "schema": {
+        "title": { "type": "text", "translatable": true, "pos": 0 },
+        "text": { "type": "textarea", "translatable": true, "pos": 1 },
+        "email": { "type": "text", "pos": 2 },
+        "location": { "type": "text", "translatable": true, "pos": 3 }
+      }
+    },
+    {
+      "name": "feature_item",
+      "display_name": "Feature Item",
+      "is_root": false,
+      "is_nestable": true,
+      "schema": {
+        "icon": {
+          "type": "text",
+          "pos": 0,
+          "description": "Material Symbols name, e.g. forum, handshake, groups."
+        },
+        "text": { "type": "text", "translatable": true, "pos": 1 }
+      }
+    },
+    {
+      "name": "credential",
+      "display_name": "Credential",
+      "is_root": false,
+      "is_nestable": true,
+      "schema": {
+        "icon": {
+          "type": "text",
+          "pos": 0,
+          "description": "Material Symbols name, e.g. school, workspace_premium, public."
+        },
+        "text": { "type": "text", "translatable": true, "pos": 1 }
+      }
+    },
+    {
+      "name": "legal_page",
+      "display_name": "Legal Page",
+      "is_root": true,
+      "is_nestable": false,
+      "schema": {
+        "title": { "type": "text", "translatable": true, "pos": 0 },
+        "body": { "type": "richtext", "translatable": true, "pos": 1 }
+      }
+    }
+  ]
+}
