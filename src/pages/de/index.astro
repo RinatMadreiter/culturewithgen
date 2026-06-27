@@ -1,0 +1,175 @@
+---
+import { getEntry } from 'astro:content';
+
+// Fetch the German landing page data ("de" matches "de.json")
+const landingData = await getEntry('landing', 'de');
+const content = landingData.data;
+---
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{content.header.title}</title>
+    <style>
+      :root {
+        --primary: #0284c7; /* Professional blue */
+        --text-main: #334155;
+        --bg-color: #f8fafc;
+        --card-bg: #ffffff;
+      }
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        line-height: 1.6;
+        color: var(--text-main);
+        background-color: var(--bg-color);
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+      nav {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #cbd5e1;
+        margin-bottom: 3rem;
+      }
+      nav a {
+        color: var(--text-main);
+        text-decoration: none;
+        font-weight: 600;
+      }
+      nav a:hover {
+        color: var(--primary);
+      }
+      header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+      h1 {
+        font-size: 2.5rem;
+        color: #0f172a;
+        margin-bottom: 0.5rem;
+        line-height: 1.2;
+      }
+      h2 {
+        font-size: 1.25rem;
+        color: var(--primary);
+        font-weight: 500;
+        margin-bottom: 1.5rem;
+      }
+      .hero-desc {
+        font-size: 1.1rem;
+        max-width: 650px;
+        margin: 0 auto;
+      }
+      section {
+        background: var(--card-bg);
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+        margin-bottom: 2rem;
+      }
+      h3 {
+        color: #0f172a;
+        margin-top: 0;
+        border-bottom: 2px solid #e2e8f0;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      ul {
+        padding-left: 1.5rem;
+      }
+      li {
+        margin-bottom: 0.5rem;
+      }
+      footer {
+        text-align: center;
+        margin-top: 4rem;
+        padding-top: 2rem;
+        border-top: 1px solid #cbd5e1;
+        font-size: 0.9rem;
+      }
+      footer a {
+        color: var(--primary);
+        text-decoration: none;
+        margin: 0 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <a href="/">EN</a>
+        <a href="/de/" style="color: var(--primary);">DE</a>
+      </nav>
+
+      <header>
+        <h1>{content.header.title}</h1>
+        <h2>{content.header.subtitle}</h2>
+        <p class="hero-desc">{content.header.description}</p>
+      </header>
+
+      <section>
+        <h3>{content.about.title}</h3>
+        {content.about.paragraphs.map(paragraph => (
+          <p>{paragraph}</p>
+        ))}
+      </section>
+
+      <section>
+        <h3>Was ich anbiete</h3>
+        <ul>
+          {content.offer.map(item => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section>
+        <h3>Für wen das Angebot ist</h3>
+        <ul>
+          {content.whoFor.map(item => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section>
+        <h3>Typische Situationen</h3>
+        <ul>
+          {content.situations.map(item => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section>
+        <h3>Format</h3>
+        <ul>
+          {content.format.map(item => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section>
+        <h3>Kontakt</h3>
+        <p>{content.contact.text}</p>
+        <p><strong>E-Mail:</strong> <a href={`mailto:${content.contact.email}`} style="color: var(--primary);">{content.contact.email}</a></p>
+        <p><strong>Standort:</strong> {content.contact.location}</p>
+      </section>
+
+      <footer>
+        <a href="/de/impressum">Impressum</a>
+        <a href="/de/datenschutz">Datenschutz</a>
+      </footer>
+    </div>
+  </body>
+</html>

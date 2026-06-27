@@ -1,0 +1,37 @@
+---
+import '../styles/global.css';
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.webp';
+---
+
+<nav class="fixed top-0 w-full z-50 bg-surface backdrop-blur-md shadow-md font-label tracking-tight text-on-surface">
+    <div class="flex justify-between items-center px-4 md:px-8 py-4 max-w-7xl mx-auto">
+
+        <a href="/" class="text-xl rounded-xl font-bold transition-transform hover:scale-105 shrink-0">
+            <Image alt="CultureWithGen Logo" class="h-10 rounded-full md:h-20 w-auto object-contain" src={logo} loading="eager" />
+            <span class="sr-only">CultureWithGen</span>
+        </a>
+
+        <div class="hidden md:flex items-center space-x-8">
+            {['Services', 'About', 'Workshops'].map((item) => (
+            <a class="hover:text-primary hover:underline transition-all duration-200" href={`#${item.toLowerCase()}`}>
+                {item}
+            </a>
+            ))}
+        </div>
+
+        <div class="flex items-center space-x-4 md:space-x-6 shrink-0">
+            <div class="text-sm font-semibold tracking-wider flex gap-2">
+                <a href="/" class="hover:text-primary hover:underline transition-all duration-200">EN</a>
+                <span class="text-outline">|</span>
+                <a href="/de/" class="hover:text-primary hover:underline transition-all duration-200">DE</a>
+            </div>
+
+            <a href="#contact"
+                class="bg-secondary text-on-secondary px-4 py-2 md:px-6 rounded-lg font-bold hover:scale-105 hover:bg-secondary/90 transition-all duration-200">
+                Book Consultation
+            </a>
+        </div>
+
+    </div>
+</nav>

@@ -1,0 +1,44 @@
+{
+  "header": {
+    "title": "Bessere Kommunikation in internationalen Arbeitsumgebungen",
+    "subtitle": "Internationale Teams und lokale Mitarbeitende dabei unterstützen, effektiv über kulturelle Unterschiede hinweg zu kommunizieren",
+    "description": "Praxisorientierte, interaktive Workshops zur Förderung von Kommunikation und Zusammenarbeit im internationalen Arbeitsalltag. Ich unterstütze Teams dabei, effektiv über Kulturen hinweg zusammenzuarbeiten, unterschiedliche Kommunikationsstile zu verstehen sowie Missverständnisse frühzeitig zu erkennen und angemessen darauf zu reagieren."
+  },
+  "about": {
+    "title": "Über mich",
+    "paragraphs": [
+      "Ich bin Interkulturelle Trainerin mit Schwerpunkt auf Kommunikation und Zusammenarbeit in multikulturellen Arbeitsumgebungen.",
+      "Ich arbeite in der Hochschulbildung sowie mit Unternehmen und bringe internationale Erfahrung aus dem Leben und Arbeiten in verschiedenen Ländern mit.",
+      "Meine Workshops sind interaktiv und diskussionsbasiert und unterstützen die Teilnehmenden dabei, praxisnahe Kommunikations- und Soft Skills für die Zusammenarbeit über Kulturen hinweg zu entwickeln.",
+      "Mein Hintergrund umfasst ein Studium der Psychologie und Soziologie, ein Diplom in interkultureller Kompetenz sowie einen Master in Adult Learning in Global Change."
+    ]
+  },
+  "offer": [
+    "Kommunikation in multikulturellen Teams",
+    "Zusammenarbeit mit internationalen Kolleg:innen und Kund:innen",
+    "Unterschiedliche Kommunikationsstile verstehen",
+    "Interkulturelle Missverständnisse erkennen und angemessen darauf reagieren"
+  ],
+  "whoFor": [
+    "Teams aus unterschiedlichen nationalen Hintergründen",
+    "Unternehmen in einem internationalen Geschäftsumfeld",
+    "Mitarbeitende mit internationalen Kund:innen oder Kolleg:innen",
+    "Teams, die ihre Zusammenarbeit verbessern und Missverständnisse vermeiden möchten"
+  ],
+  "situations": [
+    "Unterschiedliche Kommunikationsstile führen zu Missverständnissen im Team",
+    "Missverständnisse in internationalen Meetings",
+    "Unterschiedliche Erwartungen an Feedback und Beteiligung",
+    "Zusammenarbeit wird durch unklare Kommunikation über Kulturen hinweg erschwert"
+  ],
+  "format": [
+    "Inhouse-Trainings im Unternehmen",
+    "Online-Workshops",
+    "Halbtägige oder ganztägige Workshops"
+  ],
+  "contact": {
+    "text": "Kontaktieren Sie mich gerne, um die Bedürfnisse Ihres Teams zu besprechen:",
+    "email": "hello@genevieve-navi.com",
+    "location": "Standort: Österreich – Workshops vor Ort und online möglich"
+  }
+}
