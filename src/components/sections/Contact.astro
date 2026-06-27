@@ -1,0 +1,40 @@
+---
+import ObfuscatedEmail from "../ObfuscatedEmail.astro";
+
+interface Props {
+  title: string;
+  text: string;
+  email: string;
+  location: string;
+}
+
+const { title, text, email, location } = Astro.props;
+---
+
+<section
+  class="py-12 lg:py-24 px-6 lg:px-12 bg-[#1E3932] text-[#FAF9F6]"
+  id="contact"
+>
+  <div class="max-w-3xl mx-auto text-center">
+    <h2 class="text-3xl lg:text-[2.75rem] font-headline font-bold mb-6">
+      {title}
+    </h2>
+    <p class="text-xl font-body mb-12 text-[#FAF9F6]/85">
+      {text}
+    </p>
+    <div class="flex flex-col items-center gap-8">
+      <ObfuscatedEmail
+        email={email}
+        showIcon={true}
+        iconClass="email-cta__icon text-2xl"
+        class="email-cta inline-flex items-center gap-3 bg-[#9A442D] text-white text-lg md:text-2xl font-headline font-bold px-8 py-4 rounded-full shadow-[0_12px_36px_rgba(154,68,45,0.45)] hover:bg-[#7D3522] hover:-translate-y-0.5 hover:shadow-[0_16px_44px_rgba(154,68,45,0.55)] transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FAF9F6]"
+      />
+      <div
+        class="flex items-center gap-2 text-base font-body text-[#FAF9F6]/70"
+      >
+        <span class="material-symbols-outlined text-sm">location_on</span>
+        <span>{location}</span>
+      </div>
+    </div>
+  </div>
+</section>

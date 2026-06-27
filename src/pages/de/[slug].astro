@@ -1,72 +1,130 @@
 ---
-import { useStoryblokApi, StoryblokComponent } from "@storyblok/astro";
+import { getCollection, render } from "astro:content";
+import { Image } from "astro:assets";
+import logo from "../../assets/logo.webp";
 
-// The German legal URLs use localized slugs but read the same Storyblok
-// stories (field-level translation) in the "de" language dimension.
-const slugMap = {
-  privacy: "datenschutz",
-  imprint: "impressum",
-};
-
+// Generate /de/datenschutz and /de/impressum from the German legal markdown
+// files in src/content/legal (prefixed with "de-"). The "de-" prefix is
+// stripped from the URL slug.
 export async function getStaticPaths() {
-  const storyblokApi = useStoryblokApi();
-  const version = import.meta.env.DEV ? "draft" : "published";
-
-  const { data } = await storyblokApi.get("cdn/stories", {
-    version,
-    starts_with: "legal/",
-    language: "de",
-  });
-
-  return data.stories.map((story) => ({
-    params: { slug: slugMap[story.slug] ?? story.slug },
-    props: { story },
-  }));
+  const entries = await getCollection("legal");
+  return entries
+    .filter((entry) => entry.id.startsWith("de-"))
+    .map((entry) => ({
+      params: { slug: entry.id.replace(/^de-/, "") },
+      props: { entry },
+    }));
 }
 
-const { story } = Astro.props;
-const content = story.content;
+const { entry } = Astro.props;
+const { Content } = await render(entry);
 ---
 
 <html lang="de">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>{content.title}</title>
+    <title>{entry.data.title}</title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <style>
+      :root {
+        --ink: #1e3932;
+        --muted: #475650;
+        --accent: #9a442d;
+        --page: #f4f7f5;
+        --card: #ffffff;
+        --line: rgba(30, 57, 50, 0.1);
+      }
+      * {
+        box-sizing: border-box;
+      }
       body {
-        font-family: system-ui, -apple-system, sans-serif;
-        line-height: 1.6;
-        color: #334155;
-        background-color: #f8fafc;
-        max-width: 800px;
+        font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+        line-height: 1.65;
+        color: var(--muted);
+        background-color: var(--page);
+        margin: 0;
+        padding: 0;
+      }
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .site-header__inner {
+        max-width: 880px;
         margin: 0 auto;
-        padding: 2rem;
+        padding: 0.75rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
       }
-      nav {
-        margin-bottom: 2rem;
-        padding-bottom: 1rem;
-        border-bottom: 1px solid #cbd5e1;
+      .logo-link {
+        display: inline-flex;
+        align-items: center;
+        border-radius: 9999px;
+        transition: transform 0.2s ease;
       }
-      a {
-        color: #0284c7;
+      .logo-link:hover {
+        transform: scale(1.04);
+      }
+      .logo-link img {
+        height: 44px;
+        width: auto;
+        object-fit: contain;
+      }
+      .back-link {
+        color: var(--accent);
         text-decoration: none;
         font-weight: 600;
+        font-size: 0.95rem;
+        white-space: nowrap;
       }
-      a:hover {
+      .back-link:hover {
         text-decoration: underline;
       }
+      main {
+        max-width: 880px;
+        margin: 2.5rem auto;
+        padding: 0 1.5rem;
+      }
+      .legal-prose {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 1rem;
+        padding: 2.5rem;
+        box-shadow: 0 12px 40px rgba(30, 57, 50, 0.06);
+      }
       .legal-prose h1 {
-        color: #0f172a;
+        color: var(--ink);
+        font-size: 2rem;
+        margin: 0 0 1.5rem;
+        letter-spacing: -0.01em;
+      }
+      .legal-prose a {
+        color: var(--accent);
+        font-weight: 600;
       }
     </style>
   </head>
   <body>
-    <nav>
-      <a href="/de/">← Zurück zur Startseite</a>
-    </nav>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="logo-link" href="/de/" aria-label="CultureWithGen - Startseite">
+          <Image src={logo} alt="CultureWithGen" height={44} loading="eager" />
+        </a>
+        <a class="back-link" href="/de/">← Zurück zur Startseite</a>
+      </div>
+    </header>
     <main>
-      <StoryblokComponent blok={content} />
+      <article class="legal-prose">
+        <h1>{entry.data.title}</h1>
+        <Content />
+      </article>
     </main>
   </body>
 </html>

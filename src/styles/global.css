@@ -1,1 +1,82 @@
 @import "tailwindcss";
+
+/* Smooth in-page scrolling, offset so anchored sections clear the fixed nav. */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Eyebrow globe: spins once slowly on page load, then idles. */
+.eyebrow-globe {
+  animation: globe-spin-in 2.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  display: inline-block;
+}
+
+@keyframes globe-spin-in {
+  from {
+    transform: rotate(-180deg) scale(0.6);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eyebrow-globe {
+    animation: none;
+  }
+}
+
+/* Email CTA: gentle idle float to draw the eye, a slicker "send" nudge on hover. */
+.email-cta__icon {
+  animation: email-float 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+.email-cta:hover .email-cta__icon,
+.email-cta:focus-visible .email-cta__icon {
+  animation: email-send 0.6s ease;
+}
+
+@keyframes email-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes email-send {
+  0% {
+    transform: translate(0, 0) rotate(0);
+  }
+  35% {
+    transform: translate(-2px, -3px) rotate(-12deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(8deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .email-cta__icon {
+    animation: none;
+  }
+  .email-cta:hover .email-cta__icon,
+  .email-cta:focus-visible .email-cta__icon {
+    animation: none;
+  }
+}

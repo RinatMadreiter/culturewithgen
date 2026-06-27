@@ -23,4 +23,8 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 .lavish/
-storyblok/SETUP.md
+
+# playwright
+test-results/
+playwright-report/
+playwright/.cache/

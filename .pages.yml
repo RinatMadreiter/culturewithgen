@@ -1,0 +1,160 @@
+media:
+  folder: public/images
+  public: /images
+
+content:
+  - name: landing
+    label: Landing Pages
+    type: file
+    files:
+      - label: English Landing Page
+        path: src/content/landing/en.json
+      - label: German Landing Page
+        path: src/content/landing/de.json
+    fields:
+      - name: header
+        label: Header / First Impression
+        type: object
+        fields:
+          - name: eyebrow
+            label: Eyebrow (small label above the title)
+            type: string
+            required: false
+          - name: title
+            type: string
+          - name: subtitle
+            type: string
+          - name: description
+            type: text
+          - name: ctaLabel
+            label: Call-to-action button label
+            type: string
+          - name: image
+            label: Hero image
+            type: object
+            required: false
+            fields:
+              - name: src
+                label: Image
+                type: image
+              - name: alt
+                label: Alt text
+                type: string
+                required: false
+      - name: about
+        label: About
+        type: object
+        fields:
+          - name: title
+            type: string
+          - name: paragraphs
+            type: string
+            list: true
+          - name: image
+            label: Portrait image
+            type: object
+            required: false
+            fields:
+              - name: src
+                label: Image
+                type: image
+              - name: alt
+                label: Alt text
+                type: string
+                required: false
+          - name: credentials
+            label: Credentials
+            type: object
+            list: true
+            fields:
+              - name: icon
+                label: Material Symbols icon name
+                type: string
+              - name: text
+                type: string
+      - name: offer
+        label: What I Offer
+        type: object
+        fields:
+          - name: title
+            type: string
+          - name: subtitle
+            type: string
+            required: false
+          - name: items
+            type: object
+            list: true
+            fields:
+              - name: icon
+                label: Material Symbols icon name
+                type: string
+              - name: text
+                type: string
+      - name: whoFor
+        label: Who This Is For
+        type: object
+        fields:
+          - name: title
+            type: string
+          - name: items
+            type: object
+            list: true
+            fields:
+              - name: icon
+                label: Material Symbols icon name
+                type: string
+              - name: text
+                type: string
+      - name: situations
+        label: Typical Situations
+        type: object
+        fields:
+          - name: title
+            type: string
+          - name: items
+            type: object
+            list: true
+            fields:
+              - name: icon
+                label: Material Symbols icon name
+                type: string
+              - name: text
+                type: string
+      - name: format
+        label: Formats
+        type: object
+        fields:
+          - name: title
+            type: string
+          - name: items
+            type: object
+            list: true
+            fields:
+              - name: icon
+                label: Material Symbols icon name
+                type: string
+              - name: text
+                type: string
+      - name: contact
+        label: Contact
+        type: object
+        fields:
+          - name: title
+            type: string
+          - name: text
+            type: string
+          - name: email
+            type: string
+          - name: location
+            type: string
+
+  - name: legal
+    label: Legal Pages
+    type: collection
+    folder: src/content/legal
+    fields:
+      - name: title
+        type: string
+        required: true
+      - name: body
+        type: rich-text
