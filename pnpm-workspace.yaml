@@ -1,6 +1,6 @@
 allowBuilds:
   esbuild: true
-  sharp: set this to true or false
+  sharp: true
 minimumReleaseAge: 10080
 # Astro v7 toolchain ships frequent releases; exempt it from the 7-day age guard
 # so the rest of the dependency tree stays protected.
