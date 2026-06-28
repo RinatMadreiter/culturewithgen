@@ -24,6 +24,14 @@ One-time setup:
 
 Saved edits are committed back to the repo; rebuild/redeploy to publish them.
 
+## Technical notes
+
+- **Email obfuscation** - The `contact.email` content field is never written as plain text to the HTML.
+`ObfuscatedEmail.astro` splits the address into parts and reassembles it client-side so scrapers cannot harvest it; visitors with JavaScript disabled see a readable `[at] / [dot]` fallback.
+- **Language-toggle scroll preservation** - The EN/DE links in the navigation track the most-visible page section via a scroll listener and rewrite their `href` to `/#section` / `/de/#section`, so switching language lands the user on the same section they were viewing.
+- **Tailwind colors** - All design colors are written as explicit hex values (e.g. `bg-[#9A442D]`) rather than Tailwind theme tokens.
+This is intentional: the Astro v4 + `@import tailwindcss` setup does not load `tailwind.config.mjs`, so theme-token aliases are unavailable at build time.
+
 ## 🧞 Commands
 
 All commands are run from the root of the project (this repo uses **pnpm**):

@@ -145,6 +145,7 @@ content:
             type: string
           - name: email
             type: string
+            description: "Plain email address (e.g. hello@example.com). It is automatically split and reassembled client-side so scrapers cannot harvest it from the HTML."
           - name: location
             type: string
 
