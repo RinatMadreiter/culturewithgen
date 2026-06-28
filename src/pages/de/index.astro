@@ -34,7 +34,15 @@ const content = entry.data;
   <body
     class="bg-surface text-on-surface antialiased overflow-x-hidden font-body flex flex-col min-h-screen"
   >
-    <Navigation />
+    <Navigation
+      homeHref="/de/"
+      links={[
+        { label: 'Leistungen', href: '#services' },
+        { label: 'Über mich', href: '#about' },
+        { label: 'Workshops', href: '#formats' },
+      ]}
+      ctaLabel="Beratung buchen"
+    />
 
     <main class="pt-24 flex-1">
       <Hero {...content.header} />

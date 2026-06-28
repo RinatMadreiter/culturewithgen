@@ -12,15 +12,16 @@ interface Props {
 
 const { eyebrow, title, subtitle, description, ctaLabel, image } = Astro.props;
 
-// Resolve the content image path to a bundled asset so it can be optimised by
-// the Image component. Images authored later via Pages CMS land in
-// public/images and fall back to a plain <img>.
+// CMS uploads land in public/images/ and take precedence; src/assets/images/
+// holds the committed originals and is used only when no public copy exists.
+const publicImages = import.meta.glob("/public/images/*.{webp,jpg,jpeg,png,avif}");
 const assets = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/images/*.{webp,jpg,jpeg,png,avif}",
   { eager: true },
 );
 const filename = image?.src?.split("/").pop();
-const asset = filename ? assets[`/src/assets/images/${filename}`]?.default : undefined;
+const inPublic = filename ? (`/public/images/${filename}` in publicImages) : false;
+const asset = (!inPublic && filename) ? assets[`/src/assets/images/${filename}`]?.default : undefined;
 const alt = image?.alt || "Professional portrait of intercultural trainer";
 ---
 

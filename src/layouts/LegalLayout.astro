@@ -1,0 +1,123 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/logo.webp";
+
+interface Props {
+  lang: string;
+  title: string;
+  homeHref: string;
+  backLabel: string;
+  homeAriaLabel: string;
+}
+
+const { lang, title, homeHref, backLabel, homeAriaLabel } = Astro.props;
+---
+
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <style>
+      :root {
+        --ink: #1e3932;
+        --muted: #475650;
+        --accent: #9a442d;
+        --page: #f4f7f5;
+        --card: #ffffff;
+        --line: rgba(30, 57, 50, 0.1);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+        line-height: 1.65;
+        color: var(--muted);
+        background-color: var(--page);
+        margin: 0;
+        padding: 0;
+      }
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      .site-header__inner {
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 0.75rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+      .logo-link {
+        display: inline-flex;
+        align-items: center;
+        border-radius: 9999px;
+        transition: transform 0.2s ease;
+      }
+      .logo-link:hover {
+        transform: scale(1.04);
+      }
+      .logo-link img {
+        height: 44px;
+        width: auto;
+        object-fit: contain;
+      }
+      .back-link {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        white-space: nowrap;
+      }
+      .back-link:hover {
+        text-decoration: underline;
+      }
+      main {
+        max-width: 880px;
+        margin: 2.5rem auto;
+        padding: 0 1.5rem;
+      }
+      .legal-prose {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 1rem;
+        padding: 2.5rem;
+        box-shadow: 0 12px 40px rgba(30, 57, 50, 0.06);
+      }
+      .legal-prose h1 {
+        color: var(--ink);
+        font-size: 2rem;
+        margin: 0 0 1.5rem;
+        letter-spacing: -0.01em;
+      }
+      .legal-prose a {
+        color: var(--accent);
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="logo-link" href={homeHref} aria-label={homeAriaLabel}>
+          <Image src={logo} alt="CultureWithGen" height={44} loading="eager" />
+        </a>
+        <a class="back-link" href={homeHref}>← {backLabel}</a>
+      </div>
+    </header>
+    <main>
+      <article class="legal-prose">
+        <h1>{title}</h1>
+        <slot />
+      </article>
+    </main>
+  </body>
+</html>

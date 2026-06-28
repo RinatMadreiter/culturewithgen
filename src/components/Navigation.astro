@@ -3,17 +3,24 @@ import '../styles/global.css';
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.webp';
 
-const links = [
-    { label: 'Services', href: '#services' },
-    { label: 'About', href: '#about' },
-    { label: 'Workshops', href: '#formats' },
-];
+interface NavLink {
+    label: string;
+    href: string;
+}
+
+interface Props {
+    homeHref: string;
+    links: NavLink[];
+    ctaLabel: string;
+}
+
+const { homeHref, links, ctaLabel } = Astro.props;
 ---
 
 <nav class="fixed top-0 w-full z-50 bg-surface backdrop-blur-md shadow-md font-label tracking-tight text-on-surface">
     <div class="flex justify-between items-center px-4 md:px-8 py-4 max-w-7xl mx-auto">
 
-        <a href="/" class="text-xl rounded-xl font-bold transition-transform hover:scale-105 shrink-0">
+        <a href={homeHref} class="text-xl rounded-xl font-bold transition-transform hover:scale-105 shrink-0">
             <Image alt="CultureWithGen Logo" class="h-14 rounded-full md:h-20 w-auto object-contain" src={logo} loading="eager" />
             <span class="sr-only">CultureWithGen</span>
         </a>
@@ -35,7 +42,7 @@ const links = [
 
             <a href="#contact"
                 class="bg-[#9A442D] text-white px-4 py-2 md:px-6 rounded-lg font-bold shadow-[0_6px_20px_rgba(154,68,45,0.35)] hover:bg-[#7D3522] hover:shadow-[0_8px_24px_rgba(154,68,45,0.45)] hover:-translate-y-0.5 transition-all duration-200">
-                Book Consultation
+                {ctaLabel}
             </a>
         </div>
 
