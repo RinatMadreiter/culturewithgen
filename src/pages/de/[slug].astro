@@ -1,66 +1,30 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection, render } from "astro:content";
+import LegalLayout from "../../layouts/LegalLayout.astro";
 
+// Generate /de/datenschutz and /de/impressum from the German legal markdown
+// files in src/content/legal (prefixed with "de-"). The "de-" prefix is
+// stripped from the URL slug.
 export async function getStaticPaths() {
-  const allLegalDocs = await getCollection('legal');
-  
-  // Keep ONLY the German documents (the ones that DO start with 'de-')
-  const germanDocs = allLegalDocs.filter(doc => doc.id.startsWith('de-'));
-
-  return germanDocs.map(doc => {
-    // Strip 'de-' from the URL so it becomes /de/impressum cleanly
-    const cleanSlug = doc.id.replace('de-', ''); 
-    return {
-      params: { slug: cleanSlug }, 
-      props: { doc },
-    };
-  });
+  const entries = await getCollection("legal");
+  return entries
+    .filter((entry) => entry.id.startsWith("de-"))
+    .map((entry) => ({
+      params: { slug: entry.id.replace(/^de-/, "") },
+      props: { entry },
+    }));
 }
 
-const { doc } = Astro.props;
-const { Content } = await render(doc);
+const { entry } = Astro.props;
+const { Content } = await render(entry);
 ---
 
-<html lang="de">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>{doc.data.title}</title>
-    <style>
-      body {
-        font-family: system-ui, -apple-system, sans-serif;
-        line-height: 1.6;
-        color: #334155;
-        background-color: #f8fafc;
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 2rem;
-      }
-      nav {
-        margin-bottom: 2rem;
-        padding-bottom: 1rem;
-        border-bottom: 1px solid #cbd5e1;
-      }
-      a {
-        color: #0284c7;
-        text-decoration: none;
-        font-weight: 600;
-      }
-      a:hover {
-        text-decoration: underline;
-      }
-      h1 {
-        color: #0f172a;
-      }
-    </style>
-  </head>
-  <body>
-    <nav>
-      <a href="/de/">← Zurück zur Startseite</a>
-    </nav>
-    <main>
-      <h1>{doc.data.title}</h1>
-      <Content />
-    </main>
-  </body>
-</html>
+<LegalLayout
+  lang="de"
+  title={entry.data.title}
+  homeHref="/de/"
+  backLabel="Zurück zur Startseite"
+  homeAriaLabel="CultureWithGen - Startseite"
+>
+  <Content />
+</LegalLayout>

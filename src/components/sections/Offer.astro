@@ -1,0 +1,48 @@
+---
+interface Item {
+  icon: string;
+  text: string;
+}
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  items: Item[];
+}
+
+const { title, subtitle, items = [] } = Astro.props;
+---
+
+<section class="py-12 lg:py-24 px-6 lg:px-12 bg-surface" id="services">
+  <div class="max-w-7xl mx-auto">
+    <div class="mb-16">
+      <h2
+        class="text-3xl lg:text-[2.75rem] font-headline font-bold text-primary-container tracking-tight mb-4"
+      >
+        {title}
+      </h2>
+      {
+        subtitle && (
+          <p class="text-lg font-body text-on-surface-variant">
+            {subtitle}
+          </p>
+        )
+      }
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {
+        items.map((item) => (
+          <div class="bg-[#F4F7F5] border border-[#1E3932]/10 p-10 rounded-[1.5rem] shadow-sm hover:scale-[1.02] hover:shadow-md transition-all duration-300 relative overflow-hidden group">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-[#1E3932]/5 rounded-bl-[100px] -z-10 group-hover:bg-[#1E3932]/10 transition-colors" />
+            <span class="material-symbols-outlined text-4xl text-[#9A442D] mb-6">
+              {item.icon}
+            </span>
+            <h3 class="text-xl font-headline font-bold text-[#1E3932] mb-4">
+              {item.text}
+            </h3>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

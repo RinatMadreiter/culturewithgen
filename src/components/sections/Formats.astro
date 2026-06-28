@@ -1,0 +1,37 @@
+---
+interface Item {
+  icon: string;
+  text: string;
+}
+
+interface Props {
+  title: string;
+  items: Item[];
+}
+
+const { title, items = [] } = Astro.props;
+---
+
+<section class="py-12 lg:py-24 px-6 lg:px-12 bg-surface-container-low" id="formats">
+  <div class="max-w-7xl mx-auto text-center">
+    <h2
+      class="text-3xl lg:text-[2.75rem] font-headline font-bold text-primary-container tracking-tight mb-12"
+    >
+      {title}
+    </h2>
+    <div class="flex flex-wrap justify-center gap-6">
+      {
+        items.map((item) => (
+          <div class="bg-[#F4F7F5] border border-[#1E3932]/10 px-8 py-6 rounded-full shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-3">
+            <span class="material-symbols-outlined text-[#9A442D]">
+              {item.icon}
+            </span>
+            <span class="text-lg font-headline font-bold text-[#1E3932]">
+              {item.text}
+            </span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,48 @@
+---
+// Spam-resistant email link. The real address is never present as a complete
+// string in the HTML: it is split into parts and reassembled client-side, so
+// scrapers that do not run JavaScript cannot harvest it. Humans get a normal
+// clickable mailto link. A readable "[at] / [dot]" fallback shows if JS is off.
+interface Props {
+  email: string;
+  class?: string;
+  iconClass?: string;
+  showIcon?: boolean;
+}
+
+const { email, class: className = "", iconClass = "", showIcon = false } =
+  Astro.props;
+
+const [user = "", domain = ""] = email.split("@");
+const fallback = `${user} [at] ${domain.replace(/\./g, " [dot] ")}`;
+---
+
+<a
+  class:list={["js-email", className]}
+  href="#"
+  data-user={user}
+  data-domain={domain}
+  rel="nofollow noopener"
+  aria-label="Send an email"
+>
+  {
+    showIcon && (
+      <span class:list={["material-symbols-outlined", iconClass]} aria-hidden="true">
+        mail
+      </span>
+    )
+  }
+  <span class="js-email-text">{fallback}</span>
+</a>
+
+<script>
+  // Reassemble every obfuscated email link once the page has loaded.
+  document.querySelectorAll<HTMLAnchorElement>("a.js-email").forEach((a) => {
+    const { user, domain } = a.dataset;
+    if (!user || !domain) return;
+    const address = `${user}@${domain}`;
+    a.href = `mailto:${address}`;
+    const label = a.querySelector(".js-email-text");
+    if (label) label.textContent = address;
+  });
+</script>

@@ -1,0 +1,101 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  ctaLabel: string;
+  image?: { src: string; alt?: string };
+}
+
+const { eyebrow, title, subtitle, description, ctaLabel, image } = Astro.props;
+
+// CMS uploads land in public/images/ and take precedence; src/assets/images/
+// holds the committed originals and is used only when no public copy exists.
+const publicImages = import.meta.glob("/public/images/*.{webp,jpg,jpeg,png,avif}");
+const assets = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/images/*.{webp,jpg,jpeg,png,avif}",
+  { eager: true },
+);
+const filename = image?.src?.split("/").pop();
+const inPublic = filename ? (`/public/images/${filename}` in publicImages) : false;
+const asset = (!inPublic && filename) ? assets[`/src/assets/images/${filename}`]?.default : undefined;
+const alt = image?.alt || "Professional portrait of intercultural trainer";
+---
+
+<section
+  class="relative pt-20 pb-10 lg:pb-32 px-6 lg:px-12 overflow-hidden bg-surface"
+>
+  <div
+    class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center"
+  >
+    <div
+      class="lg:col-span-7 z-10 flex flex-col justify-center items-start lg:pr-12"
+    >
+      {
+        eyebrow && (
+          <div class="flex items-center gap-2 mb-6 -mt-2">
+            <span class="eyebrow-globe material-symbols-outlined text-[#9A442D] text-xl leading-none">
+              language
+            </span>
+            <span class="text-sm font-semibold text-[#1E3932]/70 tracking-wide font-label">
+              {eyebrow}
+            </span>
+          </div>
+        )
+      }
+      <h1
+        class="text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.1] font-headline font-extrabold text-primary-container tracking-[-0.02em] mb-8"
+      >
+        {title}
+      </h1>
+      <p
+        class="text-xl md:text-2xl font-body font-medium text-on-surface-variant mb-6 leading-relaxed"
+      >
+        {subtitle}
+      </p>
+      <p
+        class="text-base font-body text-on-surface-variant mb-12 leading-relaxed max-w-2xl"
+      >
+        {description}
+      </p>
+      <div class="flex flex-col sm:flex-row items-center gap-6">
+        <a
+          href="#contact"
+          class="w-full sm:w-auto bg-[#9A442D] text-white px-8 py-4 rounded-lg font-label font-bold tracking-wider hover:bg-[#7D3522] transition-all duration-200 shadow-[0_10px_30px_rgba(154,68,45,0.35)] hover:shadow-[0_12px_36px_rgba(154,68,45,0.45)] hover:-translate-y-0.5 text-center"
+        >
+          {ctaLabel}
+        </a>
+      </div>
+    </div>
+    <div class="lg:col-span-5 relative">
+      <div
+        class="absolute inset-0 bg-primary-container rounded-[2rem] transform translate-x-4 translate-y-4 -z-10 opacity-10"
+      >
+      </div>
+      {
+        asset ? (
+          <Image
+            src={asset}
+            alt={alt}
+            widths={[400, 600, 800]}
+            sizes="(min-width: 1024px) 40vw, 100vw"
+            loading="eager"
+            class="w-full h-auto object-cover rounded-[2rem] shadow-[0_12px_40px_rgba(30,57,50,0.12)] bg-gray-200 lg:min-h-[400px]"
+          />
+        ) : (
+          image?.src && (
+            <img
+              alt={alt}
+              class="w-full h-auto object-cover rounded-[2rem] shadow-[0_12px_40px_rgba(30,57,50,0.12)] bg-gray-200 lg:min-h-[400px]"
+              loading="eager"
+              src={image.src}
+            />
+          )
+        )
+      }
+    </div>
+  </div>
+</section>

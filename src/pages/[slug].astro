@@ -1,64 +1,29 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection, render } from "astro:content";
+import LegalLayout from "../layouts/LegalLayout.astro";
 
-// 1. Tell Astro which URLs to generate based on our markdown files
+// Generate /privacy and /imprint from the English legal markdown files
+// in src/content/legal (German files are prefixed with "de-").
 export async function getStaticPaths() {
-  const allLegalDocs = await getCollection('legal');
-  
-  // Keep only the English documents (the ones that DO NOT start with 'de-')
-  const englishDocs = allLegalDocs.filter(doc => !doc.id.startsWith('de-'));
-
-  return englishDocs.map(doc => ({
-    params: { slug: doc.id }, // Generates /impressum and /datenschutz
-    props: { doc },
-  }));
+  const entries = await getCollection("legal");
+  return entries
+    .filter((entry) => !entry.id.startsWith("de-"))
+    .map((entry) => ({
+      params: { slug: entry.id },
+      props: { entry },
+    }));
 }
 
-// 2. Prepare the markdown content to be rendered into HTML
-const { doc } = Astro.props;
-const { Content } = await render(doc);
+const { entry } = Astro.props;
+const { Content } = await render(entry);
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>{doc.data.title}</title>
-    <style>
-      body {
-        font-family: system-ui, -apple-system, sans-serif;
-        line-height: 1.6;
-        color: #334155;
-        background-color: #f8fafc;
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 2rem;
-      }
-      nav {
-        margin-bottom: 2rem;
-        padding-bottom: 1rem;
-        border-bottom: 1px solid #cbd5e1;
-      }
-      a {
-        color: #0284c7;
-        text-decoration: none;
-        font-weight: 600;
-      }
-      a:hover {
-        text-decoration: underline;
-      }
-      h1 {
-        color: #0f172a;
-      }
-    </style>
-  </head>
-  <body>
-    <nav>
-      <a href="/">← Back to Home</a>
-    </nav>
-    <main>
-      <h1>{doc.data.title}</h1>
-      <Content /> 
-    </main>
-  </body>
-</html>
+<LegalLayout
+  lang="en"
+  title={entry.data.title}
+  homeHref="/"
+  backLabel="Back to Home"
+  homeAriaLabel="CultureWithGen - home"
+>
+  <Content />
+</LegalLayout>
