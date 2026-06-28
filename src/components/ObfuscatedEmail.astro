@@ -1,8 +1,8 @@
 ---
-// Spam-resistant email link. The real address is never present as a complete
-// string in the HTML: it is split into parts and reassembled client-side, so
-// scrapers that do not run JavaScript cannot harvest it. Humans get a normal
-// clickable mailto link. A readable "[at] / [dot]" fallback shows if JS is off.
+// Spam-resistant email link. The address is encoded into ONE opaque token
+// (no plaintext, no user/domain split) and only decoded on real user intent,
+// so DOM-snapshot scrapers never see it. A readable "[at] / [dot]" fallback
+// shows if JS is off; humans get a normal clickable mailto link on interaction.
 interface Props {
   email: string;
   class?: string;
@@ -13,6 +13,18 @@ interface Props {
 const { email, class: className = "", iconClass = "", showIcon = false } =
   Astro.props;
 
+// Build-time encode: XOR each char with a rolling key, then base64. The static
+// HTML carries only the opaque token, never the address or its parts.
+const KEY = 0x2a;
+const encode = (s: string) =>
+  Buffer.from(
+    Array.from(s)
+      .map((c, i) => String.fromCharCode(c.charCodeAt(0) ^ (KEY + (i % 7))))
+      .join(""),
+    "binary",
+  ).toString("base64");
+
+const token = encode(email);
 const [user = "", domain = ""] = email.split("@");
 const fallback = `${user} [at] ${domain.replace(/\./g, " [dot] ")}`;
 ---
@@ -20,10 +32,9 @@ const fallback = `${user} [at] ${domain.replace(/\./g, " [dot] ")}`;
 <a
   class:list={["js-email", className]}
   href="#"
-  data-user={user}
-  data-domain={domain}
+  data-cfe={token}
   rel="nofollow noopener"
-  aria-label="Send an email"
+  aria-label="Reveal email address"
 >
   {
     showIcon && (
@@ -36,13 +47,34 @@ const fallback = `${user} [at] ${domain.replace(/\./g, " [dot] ")}`;
 </a>
 
 <script>
-  // Reassemble every obfuscated email link once the page has loaded.
+  // Mirror of the build-time encoder. Reverses XOR-rolling-key + base64.
+  const KEY = 0x2a;
+  const decode = (token: string) => {
+    const bin = atob(token);
+    let out = "";
+    for (let i = 0; i < bin.length; i++)
+      out += String.fromCharCode(bin.charCodeAt(i) ^ (KEY + (i % 7)));
+    return out;
+  };
+
   document.querySelectorAll<HTMLAnchorElement>("a.js-email").forEach((a) => {
-    const { user, domain } = a.dataset;
-    if (!user || !domain) return;
-    const address = `${user}@${domain}`;
-    a.href = `mailto:${address}`;
-    const label = a.querySelector(".js-email-text");
-    if (label) label.textContent = address;
+    const token = a.dataset.cfe;
+    if (!token) return;
+    let done = false;
+    const reveal = () => {
+      if (done) return;
+      done = true;
+      const address = decode(token);
+      a.href = `mailto:${address}`;
+      const label = a.querySelector(".js-email-text");
+      if (label) label.textContent = address;
+    };
+    // Decode only on genuine user intent. pointerdown, focus, touchstart and
+    // contextmenu all fire before navigation/copy, so the first click, keyboard
+    // activation or right-click still lands on the real address. A scraper that
+    // only snapshots the DOM never triggers any of these.
+    ["pointerdown", "focus", "touchstart", "contextmenu"].forEach((evt) =>
+      a.addEventListener(evt, reveal),
+    );
   });
 </script>
