@@ -22,7 +22,7 @@ test.describe("Language switching", () => {
       .locator("nav")
       .getByRole("link", { name: "EN", exact: true })
       .click();
-    await expect(page).toHaveURL(/\//);  // accepts / or /#section
+    await expect(page).toHaveURL(/^http:\/\/[^/]+\/?(?:#[\w-]+)?$/);
     await expect(
       page.getByRole("heading", {
         name: "Better Communication Across Cultures at Work",
