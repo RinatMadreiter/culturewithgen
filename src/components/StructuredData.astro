@@ -58,14 +58,14 @@ const jsonLd = {
       name: "Genevieve",
       jobTitle,
       image: abs(image),
-      url: canonical,
+      url: site.href,
       knowsLanguage: ["en", "de"],
     },
     {
       "@type": "ProfessionalService",
       "@id": `${site.href}#business`,
       name: SITE_NAME,
-      url: canonical,
+      url: site.href,
       image: abs(image),
       description,
       serviceType,
@@ -94,4 +94,4 @@ const jsonLd = {
 };
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd).replace(/</g, "<")} />
