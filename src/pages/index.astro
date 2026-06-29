@@ -8,6 +8,8 @@ import "material-symbols/outlined.css";
 
 import Navigation from "../components/Navigation.astro";
 import ObfuscatedEmail from "../components/ObfuscatedEmail.astro";
+import Seo from "../components/Seo.astro";
+import StructuredData from "../components/StructuredData.astro";
 import logo from "../assets/logo.webp";
 import Hero from "../components/sections/Hero.astro";
 import Offer from "../components/sections/Offer.astro";
@@ -20,15 +22,29 @@ import Contact from "../components/sections/Contact.astro";
 const entry = await getEntry("landing", "en");
 if (!entry) throw new Error("Missing landing content: src/content/landing/en.json");
 const content = entry.data;
+
+// SEO: keyword-rich title (primary service + brand) and a benefit-led,
+// CTA-oriented description, both grounded in the page content.
+const seoTitle = `${content.header.eyebrow} | CultureWithGen`;
+const seoDescription =
+  "Practical intercultural communication workshops for international teams - in-company and online. Get in touch to improve collaboration across cultures.";
 ---
 
 <html class="light" lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>{content.header.title}</title>
-    <meta name="description" content={content.header.subtitle} />
-    <link rel="icon" type="image/png" href="/favicon.png" />
+    <Seo
+      title={seoTitle}
+      description={seoDescription}
+      locale="en"
+      path="/"
+      alternates={{ en: "/", de: "/de/" }}
+    />
+    <StructuredData
+      locale="en"
+      path="/"
+      offerItems={content.offer.items}
+      description={seoDescription}
+    />
   </head>
 
   <body

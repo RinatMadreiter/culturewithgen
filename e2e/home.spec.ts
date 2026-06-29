@@ -45,10 +45,13 @@ test.describe("English home page", () => {
       page.getByAltText("Portrait of Genevieve, intercultural communication trainer"),
     ).toBeVisible();
 
-    // Contact email as mailto link (appears in contact section + footer)
-    await expect(
-      page.locator('a[href="mailto:hello@example.com"]').first(),
-    ).toBeVisible();
+    // Contact email link reveals its mailto only on user intent (gated).
+    const emailLink = page.locator("a.js-email").first();
+    await emailLink.focus();
+    await expect(emailLink).toHaveAttribute(
+      "href",
+      "mailto:hello@example.com",
+    );
 
     // Footer
     await expect(page.locator("footer")).toContainText("CultureWithGen");
@@ -69,8 +72,11 @@ test.describe("German home page", () => {
       }),
     ).toBeVisible();
 
-    await expect(
-      page.locator('a[href="mailto:hello@example.com"]').first(),
-    ).toBeVisible();
+    const emailLink = page.locator("a.js-email").first();
+    await emailLink.focus();
+    await expect(emailLink).toHaveAttribute(
+      "href",
+      "mailto:hello@example.com",
+    );
   });
 });

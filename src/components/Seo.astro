@@ -1,0 +1,101 @@
+---
+// Central SEO head component. Renders title, description, canonical, hreflang
+// alternates, Open Graph, Twitter Card, favicons and robots directives from a
+// small set of typed props. All URLs are resolved to absolute against the
+// configured `site` so they are valid for crawlers and social scrapers.
+type Locale = "en" | "de";
+
+interface Props {
+  title: string;
+  description: string;
+  locale: Locale;
+  /** Path of the current page, e.g. "/", "/de/", "/privacy". */
+  path: string;
+  /** Translated paths keyed by locale, used for hreflang alternates. */
+  alternates?: Partial<Record<Locale, string>>;
+  /** Root-relative or absolute path to the social share image. */
+  image?: string;
+  type?: "website" | "article";
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  locale,
+  path,
+  alternates,
+  image = "/og-image.jpg",
+  type = "website",
+  noindex = false,
+} = Astro.props;
+
+// Astro.site comes from `site` in astro.config.mjs.
+const site = Astro.site ?? new URL("https://culturewithgen.com");
+const abs = (p: string) =>
+  p.startsWith("http") ? p : new URL(p, site).href;
+
+const canonical = abs(path);
+const ogImage = abs(image);
+
+const SITE_NAME = "CultureWithGen";
+const OG_LOCALE: Record<Locale, string> = { en: "en_GB", de: "de_AT" };
+const altLocale: Locale = locale === "en" ? "de" : "en";
+
+// Build the hreflang set (only when translated paths are provided). x-default
+// points crawlers without a language preference at the English page.
+const hreflangs = alternates
+  ? [
+      ...Object.entries(alternates).map(([loc, p]) => ({
+        hreflang: loc,
+        href: abs(p as string),
+      })),
+      alternates.en ? { hreflang: "x-default", href: abs(alternates.en) } : null,
+    ].filter(Boolean as unknown as <T>(v: T | null) => v is T)
+  : [];
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta
+  name="robots"
+  content={noindex
+    ? "noindex, nofollow"
+    : "index, follow, max-image-preview:large"}
+/>
+
+{
+  hreflangs.map((l) => (
+    <link rel="alternate" hreflang={l.hreflang} href={l.href} />
+  ))
+}
+
+<!-- Icons & theme -->
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" href="/favicon.png" />
+<link rel="apple-touch-icon" href="/favicon.png" />
+<meta name="theme-color" content="#1E3932" />
+
+<!-- Open Graph -->
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content={SITE_NAME} />
+<meta property="og:locale" content={OG_LOCALE[locale]} />
+<meta property="og:locale:alternate" content={OG_LOCALE[altLocale]} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={title} />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />

@@ -1,0 +1,97 @@
+---
+// Schema.org JSON-LD for the home page. Models the business as a
+// ProfessionalService provided by a Person, so search engines understand what
+// is offered, where, and in which languages - improving relevance for
+// intercultural-training queries and enabling rich results. The contact email
+// is intentionally omitted to preserve the on-page obfuscation; lead capture is
+// pointed at the in-page contact section instead.
+type Locale = "en" | "de";
+
+interface IconItem {
+  icon: string;
+  text: string;
+}
+
+interface Props {
+  locale: Locale;
+  path: string;
+  image?: string;
+  offerItems: IconItem[];
+  description: string;
+}
+
+const { locale, path, image = "/og-image.jpg", offerItems, description } =
+  Astro.props;
+
+const site = Astro.site ?? new URL("https://culturewithgen.com");
+const abs = (p: string) => (p.startsWith("http") ? p : new URL(p, site).href);
+
+const canonical = abs(path);
+const SITE_NAME = "CultureWithGen";
+
+const jobTitle =
+  locale === "de"
+    ? "Interkulturelle Kommunikationstrainerin"
+    : "Intercultural Communication Trainer";
+
+const serviceType =
+  locale === "de"
+    ? "Interkulturelles Kommunikationstraining"
+    : "Intercultural communication training";
+
+const areaServedName = locale === "de" ? "Österreich" : "Austria";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${site.href}#website`,
+      url: site.href,
+      name: SITE_NAME,
+      inLanguage: locale,
+      description,
+    },
+    {
+      "@type": "Person",
+      "@id": `${site.href}#person`,
+      name: "Genevieve",
+      jobTitle,
+      image: abs(image),
+      url: site.href,
+      knowsLanguage: ["en", "de"],
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": `${site.href}#business`,
+      name: SITE_NAME,
+      url: site.href,
+      image: abs(image),
+      description,
+      serviceType,
+      inLanguage: locale,
+      availableLanguage: ["en", "de"],
+      areaServed: { "@type": "Country", name: areaServedName },
+      provider: { "@id": `${site.href}#person` },
+      founder: { "@id": `${site.href}#person` },
+      knowsAbout: offerItems.map((i) => i.text),
+      makesOffer: {
+        "@type": "OfferCatalog",
+        name: serviceType,
+        itemListElement: offerItems.map((i) => ({
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name: i.text },
+        })),
+      },
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "sales",
+        url: `${canonical}#contact`,
+        availableLanguage: ["en", "de"],
+      },
+    },
+  ],
+};
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd).replace(/</g, '\\u003c')} />

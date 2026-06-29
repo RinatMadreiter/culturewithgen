@@ -1,24 +1,43 @@
 ---
 import { Image } from "astro:assets";
 import logo from "../assets/logo.webp";
+import Seo from "../components/Seo.astro";
+
+type Locale = "en" | "de";
 
 interface Props {
-  lang: string;
+  lang: Locale;
   title: string;
+  description: string;
+  path: string;
+  alternates?: Partial<Record<Locale, string>>;
   homeHref: string;
   backLabel: string;
   homeAriaLabel: string;
 }
 
-const { lang, title, homeHref, backLabel, homeAriaLabel } = Astro.props;
+const {
+  lang,
+  title,
+  description,
+  path,
+  alternates,
+  homeHref,
+  backLabel,
+  homeAriaLabel,
+} = Astro.props;
 ---
 
 <html lang={lang}>
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>{title}</title>
-    <link rel="icon" type="image/png" href="/favicon.png" />
+    <Seo
+      title={`${title} | CultureWithGen`}
+      description={description}
+      locale={lang}
+      path={path}
+      alternates={alternates}
+      type="article"
+    />
     <style>
       :root {
         --ink: #1e3932;

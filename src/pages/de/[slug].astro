@@ -17,11 +17,30 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
+const slug = entry.id.replace(/^de-/, "");
+
+// Per-page SEO description and the English counterpart for hreflang.
+const meta: Record<string, { description: string; en: string }> = {
+  datenschutz: {
+    description:
+      "Datenschutzerklärung von CultureWithGen - wie Ihre Daten beim Besuch der Website und bei der Kontaktaufnahme behandelt werden.",
+    en: "/privacy",
+  },
+  impressum: {
+    description:
+      "Impressum und rechtliche Angaben zu CultureWithGen - interkulturelles Kommunikationstraining.",
+    en: "/imprint",
+  },
+};
+const m = meta[slug] ?? { description: entry.data.title, en: "/" };
 ---
 
 <LegalLayout
   lang="de"
   title={entry.data.title}
+  description={m.description}
+  path={`/de/${slug}`}
+  alternates={{ de: `/de/${slug}`, en: m.en }}
   homeHref="/de/"
   backLabel="Zurück zur Startseite"
   homeAriaLabel="CultureWithGen - Startseite"
