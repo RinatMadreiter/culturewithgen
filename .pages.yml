@@ -1,16 +1,13 @@
 media:
-  folder: public/images
-  public: /images
+  input: public/images
+  output: /images
 
 content:
   - name: landing
     label: Landing Pages
-    type: file
-    files:
-      - label: English Landing Page
-        path: src/content/landing/en.json
-      - label: German Landing Page
-        path: src/content/landing/de.json
+    type: collection
+    folder: src/content/landing
+    format: json
     fields:
       - name: header
         label: Header / First Impression
