@@ -1,6 +1,12 @@
 media:
-  input: public/images
-  output: /images
+  - name: default
+    label: Images
+    input: public/images
+    output: /images
+  - name: landing-images
+    label: Landing Images
+    input: src/assets/images
+    output: /images
 
 content:
   - name: landing
@@ -40,6 +46,8 @@ content:
               - name: src
                 label: Image
                 type: image
+                options:
+                  media: landing-images
               - name: alt
                 label: Alt text
                 type: string
@@ -61,6 +69,8 @@ content:
               - name: src
                 label: Image
                 type: image
+                options:
+                  media: landing-images
               - name: alt
                 label: Alt text
                 type: string
