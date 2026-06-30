@@ -6,7 +6,7 @@ content:
   - name: landing
     label: Landing Pages
     type: collection
-    folder: src/content/landing
+    path: src/content/landing
     format: json
     fields:
       - name: header
@@ -149,7 +149,8 @@ content:
   - name: legal
     label: Legal Pages
     type: collection
-    folder: src/content/legal
+    path: src/content/legal
+    format: yaml-frontmatter
     fields:
       - name: title
         type: string
