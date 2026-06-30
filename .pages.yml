@@ -8,6 +8,11 @@ content:
     type: collection
     path: src/content/landing
     format: json
+    view:
+      primary: header.title
+      fields:
+        - header.title
+        - header.subtitle
     fields:
       - name: header
         label: Header / First Impression
