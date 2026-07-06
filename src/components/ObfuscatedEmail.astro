@@ -4,10 +4,16 @@ interface Props {
   class?: string;
   iconClass?: string;
   showIcon?: boolean;
+  copyOnClick?: boolean;
 }
 
-const { email, class: className = "", iconClass = "", showIcon = false } =
-  Astro.props;
+const {
+  email,
+  class: className = "",
+  iconClass = "",
+  showIcon = false,
+  copyOnClick = false,
+} = Astro.props;
 
 // Build-time encode: XOR each char with a rolling key, then base64. The static
 // HTML carries only the opaque token, never the address or its parts.
@@ -29,6 +35,7 @@ const fallback = `${user} [at] ${domain.replace(/\./g, " [dot] ")}`;
   class:list={["js-email", className]}
   href="#"
   data-cfe={token}
+  data-copy={copyOnClick ? "" : undefined}
   rel="nofollow noopener"
   aria-label="Reveal email address"
 >
@@ -53,6 +60,58 @@ const fallback = `${user} [at] ${domain.replace(/\./g, " [dot] ")}`;
     return out;
   };
 
+  // Localized "copied" confirmation, chosen from the page's <html lang>.
+  const copiedMessage = () =>
+    document.documentElement.lang.startsWith("de")
+      ? "E-Mail in die Zwischenablage kopiert"
+      : "Email copied to clipboard";
+
+  // A single reusable toast, created on first use and reappended as needed.
+  let toastEl: HTMLDivElement | null = null;
+  let toastTimer = 0;
+  const showToast = (message: string) => {
+    if (!toastEl) {
+      toastEl = document.createElement("div");
+      toastEl.className = "email-toast";
+      toastEl.setAttribute("role", "status");
+      toastEl.setAttribute("aria-live", "polite");
+    }
+    toastEl.textContent = message;
+    if (!toastEl.isConnected) document.body.appendChild(toastEl);
+    // Force reflow so re-triggering restarts the transition reliably.
+    void toastEl.offsetWidth;
+    toastEl.classList.add("is-visible");
+    window.clearTimeout(toastTimer);
+    toastTimer = window.setTimeout(() => {
+      toastEl?.classList.remove("is-visible");
+    }, 2200);
+  };
+
+  const copyText = async (text: string) => {
+    if (navigator.clipboard?.writeText) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch {
+        /* fall through to legacy path */
+      }
+    }
+    try {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "absolute";
+      ta.style.left = "-9999px";
+      document.body.appendChild(ta);
+      ta.select();
+      const ok = document.execCommand("copy");
+      ta.remove();
+      return ok;
+    } catch {
+      return false;
+    }
+  };
+
   document.querySelectorAll<HTMLAnchorElement>("a.js-email").forEach((a) => {
     const token = a.dataset.cfe;
     if (!token) return;
@@ -69,5 +128,18 @@ const fallback = `${user} [at] ${domain.replace(/\./g, " [dot] ")}`;
     ["pointerdown", "focus", "touchstart", "contextmenu"].forEach((evt) =>
       a.addEventListener(evt, reveal),
     );
+
+    // Opt-in links copy the address (and confirm via toast) instead of
+    // launching the mail client on left-click. preventDefault runs
+    // synchronously so the mailto: navigation is reliably suppressed; the
+    // async copy resolves afterwards and only then shows the toast.
+    if (a.dataset.copy !== undefined) {
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        void copyText(decode(token)).then((copied) => {
+          if (copied) showToast(copiedMessage());
+        });
+      });
+    }
   });
 </script>

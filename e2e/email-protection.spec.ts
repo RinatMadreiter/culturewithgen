@@ -34,3 +34,51 @@ test.describe("Email spam protection", () => {
     await expect(link).toContainText(EMAIL);
   });
 });
+
+test.describe("Email copy-to-clipboard toast", () => {
+  test.use({ permissions: ["clipboard-read", "clipboard-write"] });
+
+  test("footer link copies the address and shows the English toast", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    const footerLink = page.locator("footer a.js-email");
+    await footerLink.click();
+
+    const toast = page.locator(".email-toast");
+    await expect(toast).toBeVisible();
+    await expect(toast).toHaveText("Email copied to clipboard");
+
+    const clipboard = await page.evaluate(() => navigator.clipboard.readText());
+    expect(clipboard).toBe(EMAIL);
+  });
+
+  test("footer link shows the German toast on /de/", async ({ page }) => {
+    await page.goto("/de/");
+    const footerLink = page.locator("footer a.js-email");
+    await footerLink.click();
+
+    const toast = page.locator(".email-toast");
+    await expect(toast).toBeVisible();
+    await expect(toast).toHaveText("E-Mail in die Zwischenablage kopiert");
+
+    const clipboard = await page.evaluate(() => navigator.clipboard.readText());
+    expect(clipboard).toBe(EMAIL);
+  });
+
+  test("only the footer link opts into copy; the Contact CTA keeps mailto", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    // The footer link opts into copy-on-click.
+    await expect(page.locator("footer a.js-email")).toHaveAttribute(
+      "data-copy",
+      "",
+    );
+    // The Contact CTA (in <main>) does not, so it still opens the mail client.
+    const cta = page.locator("main a.js-email");
+    await expect(cta).not.toHaveAttribute("data-copy", /.*/);
+    await cta.focus();
+    await expect(cta).toHaveAttribute("href", `mailto:${EMAIL}`);
+  });
+});

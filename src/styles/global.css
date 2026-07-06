@@ -80,3 +80,39 @@ html {
     animation: none;
   }
 }
+
+/* "Copied to clipboard" toast: hidden until triggered, then slides up from the
+   bottom-center and fades out on its own. */
+.email-toast {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  z-index: 50;
+  max-width: calc(100vw - 2rem);
+  padding: 0.75rem 1.25rem;
+  border-radius: 9999px;
+  background: #1e3932;
+  color: #faf9f6;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 36px rgba(30, 57, 50, 0.35);
+  opacity: 0;
+  transform: translate(-50%, 0.75rem);
+  pointer-events: none;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.email-toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .email-toast {
+    transform: translate(-50%, 0);
+    transition: opacity 0.25s ease;
+  }
+}
