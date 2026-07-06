@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-const EMAIL = "hello@example.com";
+const EMAIL = "culturewithgen@gmail.com";
 const [, DOMAIN = ""] = EMAIL.split("@");
 
 test.describe("Email spam protection", () => {

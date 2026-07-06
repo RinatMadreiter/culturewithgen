@@ -49,9 +49,9 @@ test.describe("English home page", () => {
     const emailLink = page.locator("a.js-email").first();
     await emailLink.focus();
     await expect(emailLink).toHaveAttribute(
-      "href",
-      "mailto:hello@example.com",
-    );
+			"href",
+			"mailto:culturewithgen@gmail.com",
+		);
 
     // Footer
     await expect(page.locator("footer")).toContainText("CultureWithGen");
@@ -75,8 +75,8 @@ test.describe("German home page", () => {
     const emailLink = page.locator("a.js-email").first();
     await emailLink.focus();
     await expect(emailLink).toHaveAttribute(
-      "href",
-      "mailto:hello@example.com",
-    );
+			"href",
+			"mailto:culturewithgen@gmail.com",
+		);
   });
 });

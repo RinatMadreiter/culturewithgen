@@ -1,8 +1,4 @@
 ---
-// Spam-resistant email link. The address is encoded into ONE opaque token
-// (no plaintext, no user/domain split) and only decoded on real user intent,
-// so DOM-snapshot scrapers never see it. A readable "[at] / [dot]" fallback
-// shows if JS is off; humans get a normal clickable mailto link on interaction.
 interface Props {
   email: string;
   class?: string;
@@ -69,10 +65,7 @@ const fallback = `${user} [at] ${domain.replace(/\./g, " [dot] ")}`;
       const label = a.querySelector(".js-email-text");
       if (label) label.textContent = address;
     };
-    // Decode only on genuine user intent. pointerdown, focus, touchstart and
-    // contextmenu all fire before navigation/copy, so the first click, keyboard
-    // activation or right-click still lands on the real address. A scraper that
-    // only snapshots the DOM never triggers any of these.
+    // Decode only on genuine user intent.
     ["pointerdown", "focus", "touchstart", "contextmenu"].forEach((evt) =>
       a.addEventListener(evt, reveal),
     );

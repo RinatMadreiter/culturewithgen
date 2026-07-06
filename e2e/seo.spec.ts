@@ -71,7 +71,7 @@ test.describe("SEO - home pages", () => {
     const types = data["@graph"].map((n: { "@type": string }) => n["@type"]);
     expect(types).toContain("ProfessionalService");
     expect(types).toContain("Person");
-    expect(ld).not.toContain("hello@example.com");
+    expect(ld).not.toContain("culturewithgen@gmail.com");
   });
 
   test("German home is correctly localized", async ({ page }) => {
