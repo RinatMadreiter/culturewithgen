@@ -1,7 +1,7 @@
 {
   "header": {
     "eyebrow": "Interkulturelle Kommunikation & Skills-Training",
-    "title": "Bessere Kommunikation in internationalen Arbeitsumgebungen",
+    "title": "Bessere Kommunikation in internationalen Arbeitsumgebungen test",
     "subtitle": "Internationale Teams und lokale Mitarbeitende dabei unterstützen, effektiv über kulturelle Unterschiede hinweg zu kommunizieren",
     "description": "Praxisorientierte, interaktive Workshops zur Förderung von Kommunikation und Zusammenarbeit im internationalen Arbeitsalltag. Ich unterstütze Teams dabei, effektiv über Kulturen hinweg zusammenzuarbeiten, unterschiedliche Kommunikationsstile zu verstehen sowie Missverständnisse frühzeitig zu erkennen und angemessen darauf zu reagieren.",
     "ctaLabel": "Beratung buchen",
@@ -22,44 +22,98 @@
       "alt": "Porträt von Genevieve, interkulturelle Kommunikationstrainerin"
     },
     "credentials": [
-      { "icon": "school", "text": "Studium der Psychologie & Soziologie" },
-      { "icon": "workspace_premium", "text": "Diplom in interkultureller Kompetenz" },
-      { "icon": "military_tech", "text": "Master in Adult Learning in Global Change" }
+      {
+        "icon": "school",
+        "text": "Studium der Psychologie & Soziologie"
+      },
+      {
+        "icon": "workspace_premium",
+        "text": "Diplom in interkultureller Kompetenz"
+      },
+      {
+        "icon": "military_tech",
+        "text": "Master in Adult Learning in Global Change"
+      }
     ]
   },
   "offer": {
     "title": "Was ich anbiete",
     "items": [
-      { "icon": "groups", "text": "Kommunikation in multikulturellen Teams" },
-      { "icon": "handshake", "text": "Zusammenarbeit mit internationalen Kolleg:innen und Kund:innen" },
-      { "icon": "forum", "text": "Unterschiedliche Kommunikationsstile verstehen" },
-      { "icon": "psychology", "text": "Interkulturelle Missverständnisse erkennen und angemessen darauf reagieren" }
+      {
+        "icon": "groups",
+        "text": "Kommunikation in multikulturellen Teams"
+      },
+      {
+        "icon": "handshake",
+        "text": "Zusammenarbeit mit internationalen Kolleg:innen und Kund:innen"
+      },
+      {
+        "icon": "forum",
+        "text": "Unterschiedliche Kommunikationsstile verstehen"
+      },
+      {
+        "icon": "psychology",
+        "text": "Interkulturelle Missverständnisse erkennen und angemessen darauf reagieren"
+      }
     ]
   },
   "whoFor": {
     "title": "Für wen das Angebot ist",
     "items": [
-      { "icon": "diversity_3", "text": "Teams aus unterschiedlichen nationalen Hintergründen" },
-      { "icon": "business_center", "text": "Unternehmen in einem internationalen Geschäftsumfeld" },
-      { "icon": "support_agent", "text": "Mitarbeitende mit internationalen Kund:innen oder Kolleg:innen" },
-      { "icon": "communication", "text": "Teams, die ihre Zusammenarbeit verbessern und Missverständnisse vermeiden möchten" }
+      {
+        "icon": "diversity_3",
+        "text": "Teams aus unterschiedlichen nationalen Hintergründen"
+      },
+      {
+        "icon": "business_center",
+        "text": "Unternehmen in einem internationalen Geschäftsumfeld"
+      },
+      {
+        "icon": "support_agent",
+        "text": "Mitarbeitende mit internationalen Kund:innen oder Kolleg:innen"
+      },
+      {
+        "icon": "communication",
+        "text": "Teams, die ihre Zusammenarbeit verbessern und Missverständnisse vermeiden möchten"
+      }
     ]
   },
   "situations": {
     "title": "Typische Situationen",
     "items": [
-      { "icon": "record_voice_over", "text": "Unterschiedliche Kommunikationsstile führen zu Missverständnissen im Team" },
-      { "icon": "groups", "text": "Missverständnisse in internationalen Meetings" },
-      { "icon": "feedback", "text": "Unterschiedliche Erwartungen an Feedback und Beteiligung" },
-      { "icon": "connect_without_contact", "text": "Zusammenarbeit wird durch unklare Kommunikation über Kulturen hinweg erschwert" }
+      {
+        "icon": "record_voice_over",
+        "text": "Unterschiedliche Kommunikationsstile führen zu Missverständnissen im Team"
+      },
+      {
+        "icon": "groups",
+        "text": "Missverständnisse in internationalen Meetings"
+      },
+      {
+        "icon": "feedback",
+        "text": "Unterschiedliche Erwartungen an Feedback und Beteiligung"
+      },
+      {
+        "icon": "connect_without_contact",
+        "text": "Zusammenarbeit wird durch unklare Kommunikation über Kulturen hinweg erschwert"
+      }
     ]
   },
   "format": {
     "title": "Format",
     "items": [
-      { "icon": "corporate_fare", "text": "Inhouse-Trainings im Unternehmen" },
-      { "icon": "videocam", "text": "Online-Workshops" },
-      { "icon": "schedule", "text": "Halbtägige oder ganztägige Workshops" }
+      {
+        "icon": "corporate_fare",
+        "text": "Inhouse-Trainings im Unternehmen"
+      },
+      {
+        "icon": "videocam",
+        "text": "Online-Workshops"
+      },
+      {
+        "icon": "schedule",
+        "text": "Halbtägige oder ganztägige Workshops"
+      }
     ]
   },
   "contact": {
