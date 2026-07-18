@@ -1,0 +1,44 @@
+name: Deploy to GitHub Pages
+
+# Fires on every commit to main - direct pushes, merged PRs, and Pages CMS
+# edits alike (the CMS commits via its own GitHub App token, so its commits
+# trigger push events like any other).
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # manual "deploy now" button as fallback
+
+# Least privilege: read code, write the Pages artifact, mint the OIDC token
+# that actions/deploy-pages uses. Nothing else. No secrets involved.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Rapid successive CMS edits: newest push wins, stale builds are cancelled.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      # SHA-pinned v3 so a compromised upstream tag can't inject code.
+      - uses: withastro/action@56781b97402ce0487b7e61ce2cb960c0e2cc5289 # v3
+        with:
+          node-version: 22 # package.json engines requires >=22.12.0
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
