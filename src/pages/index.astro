@@ -4,7 +4,6 @@ import { Image } from "astro:assets";
 
 import "../styles/global.css";
 import "@fontsource-variable/manrope";
-import "material-symbols/outlined.css";
 
 import Navigation from "../components/Navigation.astro";
 import ObfuscatedEmail from "../components/ObfuscatedEmail.astro";
@@ -75,11 +74,11 @@ const seoDescription =
 
         <!-- Logo -->
         <a href="/" class="hover:opacity-80 transition-opacity" aria-label="CultureWithGen home">
-          <Image src={logo} alt="CultureWithGen" height={64} class="rounded-full" />
+          <Image src={logo} alt="CultureWithGen" height={64} densities={[1, 2]} class="rounded-full" />
         </a>
 
         <!-- Tagline -->
-        <p class="text-xs uppercase tracking-widest text-[#FAF9F6]/50 font-semibold">
+        <p class="text-xs uppercase tracking-widest text-[#FAF9F6]/70 font-semibold">
           Intercultural Communication & Skills Training
         </p>
 
@@ -94,11 +93,11 @@ const seoDescription =
         <div class="w-16 border-t border-white/10 mt-2"></div>
 
         <!-- Legal links + copyright -->
-        <div class="flex flex-wrap justify-center gap-6 text-xs uppercase tracking-widest text-[#FAF9F6]/50">
+        <div class="flex flex-wrap justify-center gap-6 text-xs uppercase tracking-widest text-[#FAF9F6]/70">
           <a href="/privacy" class="hover:text-[#E07A5F] transition-colors">Privacy Policy</a>
           <a href="/imprint" class="hover:text-[#E07A5F] transition-colors">Imprint</a>
         </div>
-        <p class="text-xs text-[#FAF9F6]/30">
+        <p class="text-xs text-[#FAF9F6]/60">
           © {new Date().getFullYear()} CultureWithGen
         </p>
 

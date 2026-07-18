@@ -26,9 +26,6 @@ importers:
       astro:
         specifier: ^7.0.0
         version: 7.0.0(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@24.12.2)(jiti@2.6.1)(rollup@4.60.2)(yaml@2.9.0)
-      material-symbols:
-        specifier: 0.44.2
-        version: 0.44.2
       sharp:
         specifier: ^0.35.2
         version: 0.35.2
@@ -1638,9 +1635,6 @@ packages:
 
   magicast@0.5.2:
     resolution: {integrity: sha512-E3ZJh4J3S9KfwdjZhe2afj6R9lGIN5Pher1pF39UGrXRqq/VDaGVIGN13BjHd2u8B61hArAGOnso7nBOouW3TQ==}
-
-  material-symbols@0.44.2:
-    resolution: {integrity: sha512-FAOO8/VB+zMUA84jDJnRc/BPNLr3PPaZAXUUnsd/zkBcPZQyyMl8ECb68xWiYSn7w9OZbhUmyEwLIcfNgkakAg==}
 
   mdast-util-to-hast@13.2.1:
     resolution: {integrity: sha512-cctsq2wp5vTsLIcaymblUriiTcZd0CwWtCbLvrOzYCDZoWyMNV8sZ7krj09FSnsiJi3WVsHLM4k6Dq/yaPyCXA==}
@@ -3649,8 +3643,6 @@ snapshots:
       '@babel/parser': 7.29.2
       '@babel/types': 7.29.0
       source-map-js: 1.2.1
-
-  material-symbols@0.44.2: {}
 
   mdast-util-to-hast@13.2.1:
     dependencies:

@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import Icon from "../Icon.astro";
 
 interface Credential {
   icon: string;
@@ -37,6 +38,7 @@ const alt = image?.alt || "Trainer facilitating a workshop";
               alt={alt}
               widths={[288, 384, 768]}
               sizes="(min-width: 1024px) 24rem, 18rem"
+              quality={70}
               class="w-full h-full object-cover rounded-full shadow-[0_12px_40px_rgba(30,57,50,0.18)] bg-gray-200"
             />
           ) : (
@@ -78,9 +80,7 @@ const alt = image?.alt || "Trainer facilitating a workshop";
                     : "",
                 ]}
               >
-                <span class="material-symbols-outlined text-[#9A442D] text-3xl">
-                  {item.icon}
-                </span>
+                <Icon name={item.icon} class="text-[#9A442D] text-3xl" />
                 <span class="font-body font-medium text-[#1E3932]">
                   {item.text}
                 </span>

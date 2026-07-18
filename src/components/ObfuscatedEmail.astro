@@ -1,4 +1,6 @@
 ---
+import Icon from "./Icon.astro";
+
 interface Props {
   email: string;
   class?: string;
@@ -37,15 +39,8 @@ const fallback = `${user} [at] ${domain.replace(/\./g, " [dot] ")}`;
   data-cfe={token}
   data-copy={copyOnClick ? "" : undefined}
   rel="nofollow noopener"
-  aria-label="Reveal email address"
 >
-  {
-    showIcon && (
-      <span class:list={["material-symbols-outlined", iconClass]} aria-hidden="true">
-        mail
-      </span>
-    )
-  }
+  {showIcon && <Icon name="mail" class={iconClass} />}
   <span class="js-email-text">{fallback}</span>
 </a>
 

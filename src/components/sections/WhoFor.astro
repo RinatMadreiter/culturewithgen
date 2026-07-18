@@ -1,4 +1,6 @@
 ---
+import Icon from "../Icon.astro";
+
 interface Item {
   icon: string;
   text: string;
@@ -28,9 +30,7 @@ const { title, items = [] } = Astro.props;
       {
         items.map((item) => (
           <div class="flex items-center gap-4 p-6 bg-[#F4F7F5] border border-[#1E3932]/10 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300">
-            <span class="material-symbols-outlined text-[#9A442D] text-3xl">
-              {item.icon}
-            </span>
+            <Icon name={item.icon} class="text-[#9A442D] text-3xl" />
             <p class="text-lg font-headline font-bold text-[#1E3932] m-0">
               {item.text}
             </p>

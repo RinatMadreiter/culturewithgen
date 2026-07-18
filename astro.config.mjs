@@ -30,6 +30,12 @@ export default defineConfig({
     }
   },
 
+  build: {
+    // The site's CSS is small; inlining removes the render-blocking
+    // stylesheet request flagged by Lighthouse.
+    inlineStylesheets: 'always'
+  },
+
   vite: {
     plugins: [tailwindcss()]
   }

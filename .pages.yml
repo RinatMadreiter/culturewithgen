@@ -81,8 +81,9 @@ content:
             list: true
             fields:
               - name: icon
-                label: Material Symbols icon name
+                label: Icon name
                 type: string
+                description: "Supported: business_center, communication, connect_without_contact, corporate_fare, diversity_3, feedback, forum, groups, handshake, language, location_on, mail, military_tech, psychology, record_voice_over, schedule, school, support_agent, videocam, workspace_premium. Other names break the site build - ask a developer to add new icons."
               - name: text
                 type: string
       - name: offer
@@ -99,8 +100,9 @@ content:
             list: true
             fields:
               - name: icon
-                label: Material Symbols icon name
+                label: Icon name
                 type: string
+                description: "Supported: business_center, communication, connect_without_contact, corporate_fare, diversity_3, feedback, forum, groups, handshake, language, location_on, mail, military_tech, psychology, record_voice_over, schedule, school, support_agent, videocam, workspace_premium. Other names break the site build - ask a developer to add new icons."
               - name: text
                 type: string
       - name: whoFor
@@ -114,8 +116,9 @@ content:
             list: true
             fields:
               - name: icon
-                label: Material Symbols icon name
+                label: Icon name
                 type: string
+                description: "Supported: business_center, communication, connect_without_contact, corporate_fare, diversity_3, feedback, forum, groups, handshake, language, location_on, mail, military_tech, psychology, record_voice_over, schedule, school, support_agent, videocam, workspace_premium. Other names break the site build - ask a developer to add new icons."
               - name: text
                 type: string
       - name: situations
@@ -129,8 +132,9 @@ content:
             list: true
             fields:
               - name: icon
-                label: Material Symbols icon name
+                label: Icon name
                 type: string
+                description: "Supported: business_center, communication, connect_without_contact, corporate_fare, diversity_3, feedback, forum, groups, handshake, language, location_on, mail, military_tech, psychology, record_voice_over, schedule, school, support_agent, videocam, workspace_premium. Other names break the site build - ask a developer to add new icons."
               - name: text
                 type: string
       - name: format
@@ -144,8 +148,9 @@ content:
             list: true
             fields:
               - name: icon
-                label: Material Symbols icon name
+                label: Icon name
                 type: string
+                description: "Supported: business_center, communication, connect_without_contact, corporate_fare, diversity_3, feedback, forum, groups, handshake, language, location_on, mail, military_tech, psychology, record_voice_over, schedule, school, support_agent, videocam, workspace_premium. Other names break the site build - ask a developer to add new icons."
               - name: text
                 type: string
       - name: contact

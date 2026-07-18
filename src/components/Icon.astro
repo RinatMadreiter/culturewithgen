@@ -1,0 +1,40 @@
+---
+import { ICON_PATHS } from "./icons";
+
+interface Props {
+  name: string;
+  class?: string;
+}
+
+const { name, class: className = "" } = Astro.props;
+
+const path = ICON_PATHS[name];
+// Fail the build loudly on unknown names (e.g. a typo entered via Pages CMS)
+// instead of silently rendering nothing in production.
+if (!path) {
+  throw new Error(
+    `Unknown icon "${name}". Add its SVG path to src/components/icons.ts ` +
+      `(supported: ${Object.keys(ICON_PATHS).sort().join(", ")})`,
+  );
+}
+---
+
+<svg
+  class:list={["svg-icon", className]}
+  viewBox="0 -960 960 960"
+  fill="currentColor"
+  aria-hidden="true"
+  set:html={`<path d="${path}"/>`}
+/>
+
+<style>
+  /* Size like the icon font did: 1em square, scaling with font-size, so the
+     existing text-3xl / text-4xl utility classes keep working unchanged. */
+  .svg-icon {
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    flex-shrink: 0;
+    vertical-align: middle;
+  }
+</style>

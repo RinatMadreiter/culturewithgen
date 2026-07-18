@@ -34,16 +34,16 @@ test.describe("English home page", () => {
       ).toBeVisible();
     }
 
-    // Material Symbols icons rendered for list items
-    await expect(page.locator(".material-symbols-outlined").first()).toBeVisible();
+    // Inline SVG icons rendered for list items
+    await expect(page.locator("svg.svg-icon").first()).toBeVisible();
 
-    // Hero and about images render (optimised by the Image component)
-    await expect(
-      page.getByAltText(/smiling outdoors among spring blossoms/i),
-    ).toBeVisible();
-    await expect(
-      page.getByAltText("Portrait of Genevieve, intercultural communication trainer"),
-    ).toBeVisible();
+    // Hero and about images render (optimised by the Image component).
+    // Asserted structurally (section + non-empty alt) rather than by exact
+    // alt text, because the copy is CMS-owned and drifts with content edits.
+    await expect(page.locator("main img").first()).toBeVisible();
+    const aboutImg = page.locator("#about img");
+    await expect(aboutImg).toBeVisible();
+    await expect(aboutImg).toHaveAttribute("alt", /.+/);
 
     // Contact email link reveals its mailto only on user intent (gated).
     const emailLink = page.locator("a.js-email").first();
