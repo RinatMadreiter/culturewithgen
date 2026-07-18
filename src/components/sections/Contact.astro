@@ -1,4 +1,5 @@
 ---
+import Icon from "../Icon.astro";
 import ObfuscatedEmail from "../ObfuscatedEmail.astro";
 
 interface Props {
@@ -32,7 +33,7 @@ const { title, text, email, location } = Astro.props;
       <div
         class="flex items-center gap-2 text-base font-body text-[#FAF9F6]/70"
       >
-        <span class="material-symbols-outlined text-sm">location_on</span>
+        <Icon name="location_on" class="text-sm" />
         <span>{location}</span>
       </div>
     </div>

@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import Icon from "../Icon.astro";
 
 interface Props {
   eyebrow?: string;
@@ -37,9 +38,10 @@ const alt = image?.alt || "Professional portrait of intercultural trainer";
       {
         eyebrow && (
           <div class="flex items-center gap-2 mb-6 -mt-2">
-            <span class="eyebrow-globe material-symbols-outlined text-[#9A442D] text-xl leading-none">
-              language
-            </span>
+            <Icon
+              name="language"
+              class="eyebrow-globe text-[#9A442D] text-xl leading-none"
+            />
             <span class="text-sm font-semibold text-[#1E3932]/70 tracking-wide font-label">
               {eyebrow}
             </span>
@@ -82,7 +84,9 @@ const alt = image?.alt || "Professional portrait of intercultural trainer";
             alt={alt}
             widths={[400, 600, 800]}
             sizes="(min-width: 1024px) 40vw, 100vw"
+            quality={70}
             loading="eager"
+            fetchpriority="high"
             class="w-full h-auto object-cover rounded-[2rem] shadow-[0_12px_40px_rgba(30,57,50,0.12)] bg-gray-200 lg:min-h-[400px]"
           />
         ) : (

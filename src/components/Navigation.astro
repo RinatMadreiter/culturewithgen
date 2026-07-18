@@ -21,7 +21,7 @@ const { homeHref, links, ctaLabel } = Astro.props;
     <div class="flex justify-between items-center px-4 md:px-8 py-4 max-w-7xl mx-auto">
 
         <a href={homeHref} class="text-xl rounded-xl font-bold transition-transform hover:scale-105 shrink-0">
-            <Image alt="CultureWithGen Logo" class="h-14 rounded-full md:h-20 w-auto object-contain" src={logo} loading="eager" />
+            <Image alt="CultureWithGen Logo" class="h-14 rounded-full md:h-20 w-auto object-contain" src={logo} height={80} densities={[1, 2]} loading="eager" />
             <span class="sr-only">CultureWithGen</span>
         </a>
 
