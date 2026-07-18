@@ -1,107 +1,125 @@
 {
-	"header": {
-		"eyebrow": "Intercultural Communication & Skills Training",
-		"title": "Better Communication Across Cultures at Work",
-		"subtitle": "Helping international teams and local staff communicate effectively across cultures",
-		"description": "Practical, discussion-based workshops that support communication and collaboration in international workplaces. I help teams work effectively across cultures, understand different communication styles, and recognise and respond to misunderstandings when they arise.",
-		"ctaLabel": "Book a Consultation",
-		"image": {
-			"src": "/images/hero.webp",
-			"alt": "Genevieve, intercultural communication trainer, smiling outdoors among spring blossoms"
-		}
-	},
-	"about": {
-		"title": "About",
-		"paragraphs": [
-			"I am an intercultural trainer specialising in communication and collaboration in multicultural workplaces. I work in higher education and with companies and bring international experience from living and working in different countries.",
-			"My workshops are interactive and discussion-based and support participants in developing practical communication and soft skills for working across cultures.",
-			"My background includes a degree in psychology and sociology, a diploma in intercultural competence, and a Master's degree in Adult Learning in Global Change."
-		],
-		"image": {
-			"src": "/images/about.webp",
-			"alt": "Portrait of Genevieve, intercultural communication trainer"
-		},
-		"credentials": [
-			{ "icon": "school", "text": "Degree in Psychology & Sociology" },
-			{
-				"icon": "workspace_premium",
-				"text": "Diploma in Intercultural Competence"
-			},
-			{ "icon": "military_tech", "text": "MA Adult Learning in Global Change" }
-		]
-	},
-	"offer": {
-		"title": "What I offer",
-		"items": [
-			{ "icon": "groups", "text": "Communication in multicultural teams" },
-			{
-				"icon": "handshake",
-				"text": "Working with international colleagues and clients"
-			},
-			{
-				"icon": "forum",
-				"text": "Understanding different communication styles across cultures"
-			},
-			{
-				"icon": "psychology",
-				"text": "Recognising and responding to cross-cultural misunderstandings"
-			}
-		]
-	},
-	"whoFor": {
-		"title": "Who this is for",
-		"items": [
-			{
-				"icon": "diversity_3",
-				"text": "Teams made up of different nationalities"
-			},
-			{
-				"icon": "business_center",
-				"text": "Companies working in an international business environment"
-			},
-			{
-				"icon": "support_agent",
-				"text": "Staff working with international clients or colleagues"
-			},
-			{
-				"icon": "communication",
-				"text": "Teams that want to improve collaboration and avoid misunderstandings"
-			}
-		]
-	},
-	"situations": {
-		"title": "Typical situations",
-		"items": [
-			{
-				"icon": "record_voice_over",
-				"text": "Team members interpret communication styles differently"
-			},
-			{
-				"icon": "groups",
-				"text": "Misunderstandings arise in international meetings"
-			},
-			{
-				"icon": "feedback",
-				"text": "Different expectations around feedback and participation"
-			},
-			{
-				"icon": "connect_without_contact",
-				"text": "Collaboration is affected by unclear communication across cultures"
-			}
-		]
-	},
-	"format": {
-		"title": "Format",
-		"items": [
-			{ "icon": "corporate_fare", "text": "In-company training" },
-			{ "icon": "videocam", "text": "Online workshops" },
-			{ "icon": "schedule", "text": "Half-day or full-day sessions" }
-		]
-	},
-	"contact": {
-		"title": "Contact",
-		"text": "Get in touch to discuss your team's needs:",
-		"email": "culturewithgen@gmail.com",
-		"location": "Based in Austria - workshops available in-company and online"
-	}
+  "header": {
+    "eyebrow": "Intercultural Communication & Skills Training",
+    "title": "Better Communication Across Cultures at Work",
+    "subtitle": "Helping international teams and local staff communicate effectively across cultures",
+    "description": "Practical, discussion-based workshops that support communication and collaboration in international workplaces. I help teams work effectively across cultures, understand different communication styles, and recognise and respond to misunderstandings when they arise.",
+    "ctaLabel": "Book a Consultation",
+    "image": {
+      "src": "/images/hero.webp",
+      "alt": "Genevieve, intercultural communication trainer, smiling outdoors among spring blossoms"
+    }
+  },
+  "about": {
+    "title": "About",
+    "paragraphs": [
+      "I am an intercultural trainer specialising in communication and collaboration in multicultural workplaces. I work in higher education and with companies and bring international experience from living and working in different countries.",
+      "My workshops are interactive and discussion-based and support participants in developing practical communication and soft skills for working across cultures.",
+      "My background includes a degree in psychology and sociology, a diploma in intercultural competence, and a Master's degree in Adult Learning in Global Change."
+    ],
+    "image": {
+      "src": "/images/office.jpeg",
+      "alt": "Genevieve collaborating during a cross-cultural communication workshop in a modern office."
+    },
+    "credentials": [
+      {
+        "icon": "school",
+        "text": "Degree in Psychology & Sociology"
+      },
+      {
+        "icon": "workspace_premium",
+        "text": "Diploma in Intercultural Competence"
+      },
+      {
+        "icon": "military_tech",
+        "text": "MA Adult Learning in Global Change"
+      }
+    ]
+  },
+  "offer": {
+    "title": "What I offer",
+    "items": [
+      {
+        "icon": "groups",
+        "text": "Communication in multicultural teams"
+      },
+      {
+        "icon": "handshake",
+        "text": "Working with international colleagues and clients"
+      },
+      {
+        "icon": "forum",
+        "text": "Understanding different communication styles across cultures"
+      },
+      {
+        "icon": "psychology",
+        "text": "Recognising and responding to cross-cultural misunderstandings"
+      }
+    ]
+  },
+  "whoFor": {
+    "title": "Who this is for",
+    "items": [
+      {
+        "icon": "diversity_3",
+        "text": "Teams made up of different nationalities"
+      },
+      {
+        "icon": "business_center",
+        "text": "Companies working in an international business environment"
+      },
+      {
+        "icon": "support_agent",
+        "text": "Staff working with international clients or colleagues"
+      },
+      {
+        "icon": "communication",
+        "text": "Teams that want to improve collaboration and avoid misunderstandings"
+      }
+    ]
+  },
+  "situations": {
+    "title": "Typical situations",
+    "items": [
+      {
+        "icon": "record_voice_over",
+        "text": "Team members interpret communication styles differently"
+      },
+      {
+        "icon": "groups",
+        "text": "Misunderstandings arise in international meetings"
+      },
+      {
+        "icon": "feedback",
+        "text": "Different expectations around feedback and participation"
+      },
+      {
+        "icon": "connect_without_contact",
+        "text": "Collaboration is affected by unclear communication across cultures"
+      }
+    ]
+  },
+  "format": {
+    "title": "Format",
+    "items": [
+      {
+        "icon": "corporate_fare",
+        "text": "In-company training"
+      },
+      {
+        "icon": "videocam",
+        "text": "Online workshops"
+      },
+      {
+        "icon": "schedule",
+        "text": "Half-day or full-day sessions"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Contact",
+    "text": "Get in touch to discuss your team's needs:",
+    "email": "culturewithgen@gmail.com",
+    "location": "Based in Austria - workshops available in-company and online"
+  }
 }
