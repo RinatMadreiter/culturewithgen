@@ -1,10 +1,20 @@
 import { test, expect } from "@playwright/test";
 
 const legalPages = [
-  { path: "/privacy", title: "Privacy policy", body: "Privacy policy text", home: "/" },
-  { path: "/imprint", title: "Imprint", body: "impressum", home: "/" },
-  { path: "/de/datenschutz", title: "Datenschutz", body: "Datenschutz Text", home: "/de/" },
-  { path: "/de/impressum", title: "Impressum", body: "Impressums", home: "/de/" },
+  {
+    path: "/privacy",
+    title: "Privacy policy",
+    body: "General Data Protection Regulation (GDPR)",
+    home: "/",
+  },
+  { path: "/imprint", title: "Imprint", body: "Genevieve Navisotschnig", home: "/" },
+  {
+    path: "/de/datenschutz",
+    title: "Datenschutzerklärung",
+    body: "Datenschutz-Grundverordnung (DSGVO)",
+    home: "/de/",
+  },
+  { path: "/de/impressum", title: "Impressum", body: "Genevieve Navisotschnig", home: "/de/" },
 ];
 
 for (const { path, title, body, home } of legalPages) {
