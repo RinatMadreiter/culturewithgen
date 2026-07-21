@@ -83,19 +83,19 @@
     "items": [
       {
         "icon": "record_voice_over",
-        "text": "Unterschiedliche Kommunikationsstile führen zu Missverständnissen"
+        "text": "Teammitglieder interpretieren Kommunikationsstile unterschiedlich"
       },
       {
         "icon": "groups",
-        "text": "Unterschiedliche Entscheidungsansätze führen zu Unsicherheiten"
-      },
-      {
-        "icon": "feedback",
         "text": "Unterschiedliche Erwartungen an Beteiligung und Feedback"
       },
       {
+        "icon": "feedback",
+        "text": "Unterschiedliche Entscheidungsansätze führen zu Unsicherheiten"
+      },
+      {
         "icon": "connect_without_contact",
-        "text": "Zusammenarbeit wird durch unklare Kommunikation über Kulturen hinweg erschwert"
+        "text": "Die Zusammenarbeit wird durch unklare Kommunikation über kulturelle Unterschiede hinweg erschwert"
       },
       {
         "icon": "Unterschiedliche kulturelle Erwartungen beeinflussen die Zusammenarbeit im Team"
