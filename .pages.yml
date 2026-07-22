@@ -21,6 +21,21 @@ content:
         - header.title
         - header.subtitle
     fields:
+      - name: seo
+        label: SEO (Google title & snippet)
+        type: object
+        required: false
+        fields:
+          - name: title
+            label: Search engine title
+            type: string
+            required: false
+            description: "Shown as the clickable title in Google results (aim for ~50-60 characters). Leave empty to auto-use the hero eyebrow followed by \" | CultureWithGen\"."
+          - name: description
+            label: Search engine snippet
+            type: text
+            required: false
+            description: "The grey summary text under the title in Google results (aim for ~150-160 characters). Leave empty to use the site's default description."
       - name: header
         label: Header / First Impression
         type: object

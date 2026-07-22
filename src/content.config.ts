@@ -17,6 +17,15 @@ const iconItem = z.object({
 const landingCollection = defineCollection({
   loader: glob({ pattern: '*.json', base: './src/content/landing' }),
   schema: z.object({
+    // Optional SEO overrides for the search-engine title and snippet.
+    // When omitted (or empty), the page falls back to values derived from
+    // the on-page content - see src/pages/index.astro / de/index.astro.
+    seo: z
+      .object({
+        title: z.string().optional(),
+        description: z.string().optional(),
+      })
+      .optional(),
     header: z.object({
       eyebrow: z.string().optional(),
       title: z.string(),
