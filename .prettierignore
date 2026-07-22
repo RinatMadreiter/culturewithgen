@@ -2,3 +2,7 @@ dist/
 .astro/
 pnpm-lock.yaml
 src/content/**
+
+# Pages CMS config. Machine-adjacent and never hand-formatted by us; keeping it
+# out of the format gate means a CMS-side rewrite can't block a content deploy.
+.pages.yml
