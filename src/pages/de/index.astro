@@ -19,7 +19,8 @@ import Formats from "../../components/sections/Formats.astro";
 import Contact from "../../components/sections/Contact.astro";
 
 const entry = await getEntry("landing", "de");
-if (!entry) throw new Error("Missing landing content: src/content/landing/de.json");
+if (!entry)
+	throw new Error("Missing landing content: src/content/landing/de.json");
 const content = entry.data;
 
 // SEO: keyword-rich title (primary service + brand) and a benefit-led,
@@ -27,85 +28,106 @@ const content = entry.data;
 // overridden via the CMS (content.seo); an empty/absent override falls back
 // to the derived default below so nothing regresses when left blank.
 const seoTitle =
-  content.seo?.title?.trim() || `${content.header.eyebrow} | CultureWithGen`;
+	content.seo?.title?.trim() || `${content.header.eyebrow} | CultureWithGen`;
 const seoDescription =
-  content.seo?.description?.trim() ||
-  "Praxisorientierte Workshops für interkulturelle Kommunikation in internationalen Teams - inhouse und online. Kontaktieren Sie mich für bessere Zusammenarbeit über Kulturen hinweg.";
+	content.seo?.description?.trim() ||
+	"Praxisorientierte Workshops für interkulturelle Kommunikation in internationalen Teams - inhouse und online. Kontaktieren Sie mich für bessere Zusammenarbeit über Kulturen hinweg.";
 ---
 
 <html class="light" lang="de">
-  <head>
-    <Seo
-      title={seoTitle}
-      description={seoDescription}
-      locale="de"
-      path="/de/"
-      alternates={{ en: "/", de: "/de/" }}
-    />
-    <StructuredData
-      locale="de"
-      path="/de/"
-      offerItems={content.offer.items}
-      description={seoDescription}
-    />
-  </head>
+	<head>
+		<Seo
+			title={seoTitle}
+			description={seoDescription}
+			locale="de"
+			path="/de/"
+			alternates={{ en: "/", de: "/de/" }}
+		/>
+		<StructuredData
+			locale="de"
+			path="/de/"
+			offerItems={content.offer.items}
+			description={seoDescription}
+		/>
+	</head>
 
-  <body
-    class="bg-surface text-on-surface antialiased overflow-x-hidden font-body flex flex-col min-h-screen"
-  >
-    <Navigation
-      homeHref="/de/"
-      links={[
-        { label: 'Leistungen', href: '#services' },
-        { label: 'Über mich', href: '#about' },
-        { label: 'Workshops', href: '#formats' },
-      ]}
-      ctaLabel="Beratung buchen"
-    />
+	<body
+		class="bg-surface text-on-surface antialiased overflow-x-hidden font-body flex flex-col min-h-screen"
+	>
+		<Navigation
+			homeHref="/de/"
+			links={[
+				{ label: "Leistungen", href: "#services" },
+				{ label: "Über mich", href: "#about" },
+				{ label: "Workshops", href: "#formats" },
+			]}
+			ctaLabel="Kontakt aufnehmen"
+		/>
 
-    <main class="pt-24 flex-1">
-      <Hero {...content.header} />
-      <Offer {...content.offer} />
-      <About {...content.about} />
-      <WhoFor {...content.whoFor} />
-      <Situations {...content.situations} />
-      <Formats {...content.format} />
-      <Contact {...content.contact} />
-    </main>
+		<main class="pt-40 flex-1">
+			<Hero {...content.header} />
+			<Offer {...content.offer} />
+			<About {...content.about} />
+			<WhoFor {...content.whoFor} />
+			<Situations {...content.situations} />
+			<Formats {...content.format} />
+			<Contact {...content.contact} />
+		</main>
 
-    <footer class="bg-[#1E3932] w-full border-t border-white/10 text-[#FAF9F6] font-label">
-      <div class="max-w-3xl mx-auto px-6 py-12 flex flex-col items-center gap-6 text-center">
+		<footer
+			class="bg-[#1E3932] w-full border-t border-white/10 text-[#FAF9F6] font-label"
+		>
+			<div
+				class="max-w-3xl mx-auto px-6 py-12 flex flex-col items-center gap-6 text-center"
+			>
+				<!-- Logo -->
+				<a
+					href="/de/"
+					class="hover:opacity-80 transition-opacity"
+					aria-label="CultureWithGen Startseite"
+				>
+					<Image
+						src={logo}
+						alt="CultureWithGen"
+						height={96}
+						densities={[1, 2]}
+						class="rounded-3xl"
+					/>
+				</a>
 
-        <!-- Logo -->
-        <a href="/de/" class="hover:opacity-80 transition-opacity" aria-label="CultureWithGen Startseite">
-          <Image src={logo} alt="CultureWithGen" height={64} densities={[1, 2]} class="rounded-full" />
-        </a>
+				<!-- Tagline -->
+				<p
+					class="text-xs uppercase tracking-widest text-[#FAF9F6]/70 font-semibold"
+				>
+					Interkulturelle Kommunikation & Skills-Training
+				</p>
 
-        <!-- Tagline -->
-        <p class="text-xs uppercase tracking-widest text-[#FAF9F6]/70 font-semibold">
-          Interkulturelle Kommunikation & Skills-Training
-        </p>
+				<!-- Email -->
+				<ObfuscatedEmail
+					email={content.contact.email}
+					copyOnClick
+					class="text-sm text-[#FAF9F6]/80 hover:text-[#E07A5F] transition-colors tracking-wide"
+				/>
 
-        <!-- Email -->
-        <ObfuscatedEmail
-          email={content.contact.email}
-          copyOnClick
-          class="text-sm text-[#FAF9F6]/80 hover:text-[#E07A5F] transition-colors tracking-wide"
-        />
+				<!-- Divider -->
+				<div class="w-16 border-t border-white/10 mt-2"></div>
 
-        <!-- Divider -->
-        <div class="w-16 border-t border-white/10 mt-2"></div>
-
-        <!-- Legal links + copyright -->
-        <div class="flex flex-wrap justify-center gap-6 text-xs uppercase tracking-widest text-[#FAF9F6]/70">
-          <a href="/de/datenschutz" class="hover:text-[#E07A5F] transition-colors">Datenschutz</a>
-          <a href="/de/impressum" class="hover:text-[#E07A5F] transition-colors">Impressum</a>
-        </div>
-        <p class="text-xs text-[#FAF9F6]/60">
-          © {new Date().getFullYear()} CultureWithGen
-        </p>
-
-      </div>
-    </footer>
-  </body>
+				<!-- Legal links + copyright -->
+				<div
+					class="flex flex-wrap justify-center gap-6 text-xs uppercase tracking-widest text-[#FAF9F6]/70"
+				>
+					<a
+						href="/de/datenschutz"
+						class="hover:text-[#E07A5F] transition-colors">Datenschutz</a
+					>
+					<a href="/de/impressum" class="hover:text-[#E07A5F] transition-colors"
+						>Impressum</a
+					>
+				</div>
+				<p class="text-xs text-[#FAF9F6]/60">
+					© {new Date().getFullYear()} CultureWithGen
+				</p>
+			</div>
+		</footer>
+	</body>
 </html>
