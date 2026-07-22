@@ -96,6 +96,10 @@
       {
         "icon": "connect_without_contact",
         "text": "Collaboration is affected by unclear communication across cultures"
+      },
+      {
+        "icon": "diversity_3",
+        "text": "Different cultural expectations affect team collaboration"
       }
     ]
   },

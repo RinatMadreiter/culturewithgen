@@ -81,11 +81,14 @@ content:
             list: true
             fields:
               - name: icon
-                label: Icon name
-                type: string
-                description: "Supported: business_center, communication, connect_without_contact, corporate_fare, diversity_3, feedback, forum, groups, handshake, language, location_on, mail, military_tech, psychology, record_voice_over, schedule, school, support_agent, videocam, workspace_premium. Other names break the site build - ask a developer to add new icons."
+                label: Icon
+                type: select
+                options:
+                  values: [business_center, communication, connect_without_contact, corporate_fare, diversity_3, feedback, forum, groups, handshake, language, location_on, mail, military_tech, psychology, record_voice_over, schedule, school, support_agent, videocam, workspace_premium]
+                description: "Pick a supported icon. Adding a new one requires a developer to register its SVG in src/components/icons.ts and add the name here."
               - name: text
                 type: string
+                required: true
       - name: offer
         label: What I Offer
         type: object
@@ -100,11 +103,14 @@ content:
             list: true
             fields:
               - name: icon
-                label: Icon name
-                type: string
-                description: "Supported: business_center, communication, connect_without_contact, corporate_fare, diversity_3, feedback, forum, groups, handshake, language, location_on, mail, military_tech, psychology, record_voice_over, schedule, school, support_agent, videocam, workspace_premium. Other names break the site build - ask a developer to add new icons."
+                label: Icon
+                type: select
+                options:
+                  values: [business_center, communication, connect_without_contact, corporate_fare, diversity_3, feedback, forum, groups, handshake, language, location_on, mail, military_tech, psychology, record_voice_over, schedule, school, support_agent, videocam, workspace_premium]
+                description: "Pick a supported icon. Adding a new one requires a developer to register its SVG in src/components/icons.ts and add the name here."
               - name: text
                 type: string
+                required: true
       - name: whoFor
         label: Who This Is For
         type: object
@@ -116,11 +122,14 @@ content:
             list: true
             fields:
               - name: icon
-                label: Icon name
-                type: string
-                description: "Supported: business_center, communication, connect_without_contact, corporate_fare, diversity_3, feedback, forum, groups, handshake, language, location_on, mail, military_tech, psychology, record_voice_over, schedule, school, support_agent, videocam, workspace_premium. Other names break the site build - ask a developer to add new icons."
+                label: Icon
+                type: select
+                options:
+                  values: [business_center, communication, connect_without_contact, corporate_fare, diversity_3, feedback, forum, groups, handshake, language, location_on, mail, military_tech, psychology, record_voice_over, schedule, school, support_agent, videocam, workspace_premium]
+                description: "Pick a supported icon. Adding a new one requires a developer to register its SVG in src/components/icons.ts and add the name here."
               - name: text
                 type: string
+                required: true
       - name: situations
         label: Typical Situations
         type: object
@@ -132,11 +141,14 @@ content:
             list: true
             fields:
               - name: icon
-                label: Icon name
-                type: string
-                description: "Supported: business_center, communication, connect_without_contact, corporate_fare, diversity_3, feedback, forum, groups, handshake, language, location_on, mail, military_tech, psychology, record_voice_over, schedule, school, support_agent, videocam, workspace_premium. Other names break the site build - ask a developer to add new icons."
+                label: Icon
+                type: select
+                options:
+                  values: [business_center, communication, connect_without_contact, corporate_fare, diversity_3, feedback, forum, groups, handshake, language, location_on, mail, military_tech, psychology, record_voice_over, schedule, school, support_agent, videocam, workspace_premium]
+                description: "Pick a supported icon. Adding a new one requires a developer to register its SVG in src/components/icons.ts and add the name here."
               - name: text
                 type: string
+                required: true
       - name: format
         label: Formats
         type: object
@@ -148,11 +160,14 @@ content:
             list: true
             fields:
               - name: icon
-                label: Icon name
-                type: string
-                description: "Supported: business_center, communication, connect_without_contact, corporate_fare, diversity_3, feedback, forum, groups, handshake, language, location_on, mail, military_tech, psychology, record_voice_over, schedule, school, support_agent, videocam, workspace_premium. Other names break the site build - ask a developer to add new icons."
+                label: Icon
+                type: select
+                options:
+                  values: [business_center, communication, connect_without_contact, corporate_fare, diversity_3, feedback, forum, groups, handshake, language, location_on, mail, military_tech, psychology, record_voice_over, schedule, school, support_agent, videocam, workspace_premium]
+                description: "Pick a supported icon. Adding a new one requires a developer to register its SVG in src/components/icons.ts and add the name here."
               - name: text
                 type: string
+                required: true
       - name: contact
         label: Contact
         type: object

@@ -1,4 +1,8 @@
 import { test, expect } from "@playwright/test";
+// Titles derive from CMS-owned content (header.eyebrow); read them from the
+// same source so the assertions can't go stale after a CMS copy edit.
+import en from "../src/content/landing/en.json" with { type: "json" };
+import de from "../src/content/landing/de.json" with { type: "json" };
 
 const ORIGIN = "https://culturewithgen.com";
 
@@ -10,7 +14,7 @@ test.describe("SEO - home pages", () => {
     await page.goto("/");
 
     // Title + description
-    await expect(page).toHaveTitle(/Intercultural Communication.*CultureWithGen/);
+    await expect(page).toHaveTitle(`${en.header.eyebrow} | CultureWithGen`);
     const description = page.locator('meta[name="description"]');
     await expect(description).toHaveAttribute("content", /workshops/i);
 
@@ -76,7 +80,7 @@ test.describe("SEO - home pages", () => {
 
   test("German home is correctly localized", async ({ page }) => {
     await page.goto("/de/");
-    await expect(page).toHaveTitle(/Interkulturelle Kommunikation.*CultureWithGen/);
+    await expect(page).toHaveTitle(`${de.header.eyebrow} | CultureWithGen`);
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       "href",
       `${ORIGIN}/de/`,
