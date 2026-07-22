@@ -30,13 +30,15 @@ const landingCollection = defineCollection({
       eyebrow: z.string().optional(),
       title: z.string(),
       subtitle: z.string(),
+      // Rich-text (HTML) authored via the CMS; rendered with set:html.
       description: z.string(),
       ctaLabel: z.string(),
       image,
     }),
     about: z.object({
       title: z.string(),
-      paragraphs: z.array(z.string()),
+      // Rich-text (HTML) authored via the CMS; rendered with set:html.
+      body: z.string(),
       image,
       credentials: z.array(iconItem).default([]),
     }),

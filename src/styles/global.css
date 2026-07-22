@@ -1,5 +1,51 @@
 @import "tailwindcss";
 
+/* Rich-text regions rendered from CMS HTML (hero description, about body).
+   Tailwind's preflight resets margins and list styles, so re-establish the
+   handful of elements the editor can produce. Font size/colour are inherited
+   from the utility classes on the container. */
+.rich-text > :last-child {
+  margin-bottom: 0;
+}
+.rich-text p {
+  margin-bottom: 1.5rem;
+}
+.rich-text a {
+  color: #9a442d;
+  font-weight: 600;
+  text-decoration: underline;
+}
+.rich-text a:hover {
+  color: #7d3522;
+}
+.rich-text strong {
+  font-weight: 700;
+}
+.rich-text em {
+  font-style: italic;
+}
+.rich-text ul,
+.rich-text ol {
+  margin: 0 0 1.5rem;
+  padding-left: 1.5rem;
+}
+.rich-text ul {
+  list-style: disc;
+}
+.rich-text ol {
+  list-style: decimal;
+}
+.rich-text li {
+  margin-bottom: 0.5rem;
+}
+.rich-text h2,
+.rich-text h3 {
+  font-family: var(--font-headline, inherit);
+  font-weight: 700;
+  color: #1e3932;
+  margin: 1.5rem 0 0.75rem;
+}
+
 /* Smooth in-page scrolling, offset so anchored sections clear the fixed nav. */
 html {
   scroll-behavior: smooth;

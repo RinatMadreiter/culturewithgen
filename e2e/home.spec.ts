@@ -38,6 +38,11 @@ test.describe("English home page", () => {
     // Inline SVG icons rendered for list items
     await expect(page.locator("svg.svg-icon").first()).toBeVisible();
 
+    // CMS rich-text renders as real HTML (a <p> inside the prose container),
+    // not as escaped text - guards the set:html rendering of hero/about.
+    await expect(page.locator("#about .rich-text p").first()).toBeVisible();
+    await expect(page.locator("main .rich-text p").first()).toBeVisible();
+
     // Hero and about images render (optimised by the Image component).
     // Asserted structurally (section + non-empty alt) rather than by exact
     // alt text, because the copy is CMS-owned and drifts with content edits.

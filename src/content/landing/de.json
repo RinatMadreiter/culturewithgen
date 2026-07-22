@@ -3,7 +3,7 @@
     "eyebrow": "Kommunikation und Zusammenarbeit in multikulturellen Arbeitsumgebungen",
     "title": "Bessere Kommunikation in internationalen Arbeitsumgebungen",
     "subtitle": "Internationale Teams und lokale Mitarbeitende dabei unterstützen, effektiv über kulturelle Unterschiede hinweg zu kommunizieren und zusammenzuarbeiten.",
-    "description": "Praxisorientierte, diskussionsbasierte Workshops zur Förderung von Kommunikation und Zusammenarbeit in multikulturellen Arbeitsumgebungen und im internationalen Geschäftsalltag. Ich unterstütze Einzelpersonen und Teams dabei, kulturelles Bewusstsein zu entwickeln, unterschiedliche Kommunikationsstile und Entscheidungsansätze zu verstehen und effektiv über kulturelle Unterschiede hinweg zusammenzuarbeiten.",
+    "description": "<p>Praxisorientierte, diskussionsbasierte Workshops zur Förderung von Kommunikation und Zusammenarbeit in multikulturellen Arbeitsumgebungen und im internationalen Geschäftsalltag. Ich unterstütze Einzelpersonen und Teams dabei, kulturelles Bewusstsein zu entwickeln, unterschiedliche Kommunikationsstile und Entscheidungsansätze zu verstehen und effektiv über kulturelle Unterschiede hinweg zusammenzuarbeiten.</p>",
     "ctaLabel": "Beratung buchen",
     "image": {
       "src": "/images/profile4.webp",
@@ -12,11 +12,7 @@
   },
   "about": {
     "title": "Über mich",
-    "paragraphs": [
-      "Ich bin interkulturelle Trainerin mit Schwerpunkt auf Kommunikation und Zusammenarbeit in multikulturellen Arbeitsumgebungen. Ich arbeite in der Hochschulbildung sowie mit Unternehmen. Durch meine Lehr- und Trainingstätigkeit habe ich wertvolle Erfahrung in der Arbeit mit Menschen aus unterschiedlichsten kulturellen Hintergründen gesammelt. Meine eigenen Erfahrungen aus dem Leben und Arbeiten in verschiedenen Ländern bereichern diese Perspektive zusätzlich.",
-      "Meine Workshops werden auf die Bedürfnisse der jeweiligen Organisation zugeschnitten. Durch interaktive, diskussionsbasierte Aktivitäten entwickeln die Teilnehmenden praxisnahe Kommunikations- und Kooperationskompetenzen, die eine erfolgreiche Zusammenarbeit in multikulturellen Arbeitsumgebungen und im internationalen Geschäftsalltag unterstützen.",
-      "Mein akademischer Hintergrund umfasst einen Masterabschluss in Adult Learning in Global Change, ein Postgraduierten-Diplom in Interkultureller Kompetenz sowie ein Bachelorstudium der Psychologie und Soziologie."
-    ],
+    "body": "<p>Ich bin interkulturelle Trainerin mit Schwerpunkt auf Kommunikation und Zusammenarbeit in multikulturellen Arbeitsumgebungen. Ich arbeite in der Hochschulbildung sowie mit Unternehmen. Durch meine Lehr- und Trainingstätigkeit habe ich wertvolle Erfahrung in der Arbeit mit Menschen aus unterschiedlichsten kulturellen Hintergründen gesammelt. Meine eigenen Erfahrungen aus dem Leben und Arbeiten in verschiedenen Ländern bereichern diese Perspektive zusätzlich.</p>\n<p>Meine Workshops werden auf die Bedürfnisse der jeweiligen Organisation zugeschnitten. Durch interaktive, diskussionsbasierte Aktivitäten entwickeln die Teilnehmenden praxisnahe Kommunikations- und Kooperationskompetenzen, die eine erfolgreiche Zusammenarbeit in multikulturellen Arbeitsumgebungen und im internationalen Geschäftsalltag unterstützen.</p>\n<p>Mein akademischer Hintergrund umfasst einen Masterabschluss in Adult Learning in Global Change, ein Postgraduierten-Diplom in Interkultureller Kompetenz sowie ein Bachelorstudium der Psychologie und Soziologie.</p>",
     "image": {
       "src": "/images/profile5.webp",
       "alt": "Genevieve bei der Zusammenarbeit während eines interkulturellen Kommunikations-Workshops in einem modernen Büro."
