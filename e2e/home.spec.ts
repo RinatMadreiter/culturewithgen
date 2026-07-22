@@ -33,8 +33,10 @@ test.describe("English home page", () => {
       await expect(page.getByRole("heading", { name: heading })).toBeVisible();
     }
 
-    // Inline SVG icons rendered for list items
-    await expect(page.locator("svg.svg-icon").first()).toBeVisible();
+    // Inline SVG icons rendered for list items. Scoped to <main> so the
+    // responsive nav hamburger (svg.svg-icon, hidden at desktop widths) can't
+    // be picked up by .first().
+    await expect(page.locator("main svg.svg-icon").first()).toBeVisible();
 
     // CMS rich-text renders as real HTML (a <p> inside the prose container),
     // not as escaped text - guards the set:html rendering of hero/about.

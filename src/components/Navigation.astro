@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import { Image } from "astro:assets";
+import Icon from "./Icon.astro";
 import logo from "../assets/logo.webp";
 
 interface NavLink {
@@ -74,9 +75,44 @@ const { homeHref, links, ctaLabel } = Astro.props;
       >
         {ctaLabel}
       </a>
+
+      <!-- Mobile-only section menu: native <details> disclosure, no JS library.
+           The panel anchors to the fixed <nav> (its positioning context). -->
+      <details id="mobile-nav" class="mobile-nav md:hidden">
+        <summary
+          class="flex items-center justify-center cursor-pointer text-2xl text-on-surface hover:text-primary transition-colors"
+          aria-label="Open menu"
+        >
+          <Icon name="menu" />
+        </summary>
+        <div
+          class="absolute left-0 right-0 top-full bg-white shadow-md border-t border-[#1E3932]/10 flex flex-col py-2 font-label"
+        >
+          {
+            links.map((item) => (
+              <a
+                class="px-6 py-3 hover:text-primary hover:bg-[#F4F7F5] transition-colors"
+                href={item.href}
+              >
+                {item.label}
+              </a>
+            ))
+          }
+        </div>
+      </details>
     </div>
   </div>
 </nav>
+
+<style>
+  /* Remove the default disclosure triangle so the hamburger stands alone. */
+  .mobile-nav > summary {
+    list-style: none;
+  }
+  .mobile-nav > summary::-webkit-details-marker {
+    display: none;
+  }
+</style>
 
 <script>
   // Track the currently visible section and keep language links pointing to it
@@ -122,4 +158,22 @@ const { homeHref, links, ctaLabel } = Astro.props;
   window.addEventListener("hashchange", () =>
     setLangHref(window.location.hash),
   );
+
+  // Mobile menu: collapse the <details> after picking a link, and when
+  // tapping/clicking outside it. Keyboard toggling is handled natively.
+  const mobileNav = document.getElementById(
+    "mobile-nav",
+  ) as HTMLDetailsElement | null;
+  if (mobileNav) {
+    mobileNav.querySelectorAll("a").forEach((link) =>
+      link.addEventListener("click", () => {
+        mobileNav.open = false;
+      }),
+    );
+    document.addEventListener("click", (e) => {
+      if (mobileNav.open && !mobileNav.contains(e.target as Node)) {
+        mobileNav.open = false;
+      }
+    });
+  }
 </script>
