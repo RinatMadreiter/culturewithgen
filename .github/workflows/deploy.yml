@@ -25,9 +25,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      # SHA-pinned v3 so a compromised upstream tag can't inject code.
-      - uses: withastro/action@56781b97402ce0487b7e61ce2cb960c0e2cc5289 # v3
+      - uses: actions/checkout@v7
+      # SHA-pinned so a compromised upstream tag can't inject code.
+      - uses: withastro/action@e84f40bd8d2caa9e768ec82ad30dd81f0b280853 # v6.1.2
         with:
           node-version: 22 # package.json engines requires >=22.12.0
 
@@ -41,4 +41,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
