@@ -23,9 +23,13 @@ if (!entry) throw new Error("Missing landing content: src/content/landing/de.jso
 const content = entry.data;
 
 // SEO: keyword-rich title (primary service + brand) and a benefit-led,
-// CTA-oriented description, both grounded in the page content.
-const seoTitle = `${content.header.eyebrow} | CultureWithGen`;
+// CTA-oriented description, both grounded in the page content. Each can be
+// overridden via the CMS (content.seo); an empty/absent override falls back
+// to the derived default below so nothing regresses when left blank.
+const seoTitle =
+  content.seo?.title?.trim() || `${content.header.eyebrow} | CultureWithGen`;
 const seoDescription =
+  content.seo?.description?.trim() ||
   "Praxisorientierte Workshops für interkulturelle Kommunikation in internationalen Teams - inhouse und online. Kontaktieren Sie mich für bessere Zusammenarbeit über Kulturen hinweg.";
 ---
 
