@@ -53,6 +53,7 @@ content:
             type: rich-text
             options:
               format: html
+              switcher: false
           - name: ctaLabel
             label: Call-to-action button label
             type: string
@@ -81,6 +82,7 @@ content:
             type: rich-text
             options:
               format: html
+              switcher: false
           - name: image
             label: Portrait image
             type: object
