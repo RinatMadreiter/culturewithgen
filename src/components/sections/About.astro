@@ -48,9 +48,9 @@ const alt = image?.alt || "Trainer facilitating a workshop";
             <Image
               src={asset}
               alt={alt}
-              widths={[384, 768, 1152, 1536]}
-              sizes="(min-width: 1024px) 24rem, 18rem"
-              quality={90}
+              widths={[384, 640, 768, 1024, 1536]}
+              sizes="(min-width: 1024px) 500px, (min-width: 640px) 375px, calc(100vw - 3rem)"
+              quality={80}
               class="w-full h-auto rounded-[2rem]"
             />
           ) : (

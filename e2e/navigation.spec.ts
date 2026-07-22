@@ -41,4 +41,25 @@ test.describe("Language switching", () => {
     await expect(workshops).toHaveAttribute("href", "#formats");
     await expect(page.locator("#formats")).toBeAttached();
   });
+
+  // The language links follow the section in view, so switching language keeps
+  // the reader in place. Tracked with IntersectionObserver (it replaced a
+  // per-scroll getBoundingClientRect loop), hence this behavioural guard.
+  test("language links follow the section currently in view", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    const en = page.locator("nav a.js-lang-en").first();
+    const de = page.locator("nav a.js-lang-de").first();
+
+    // Before scrolling they point at the plain home pages.
+    await expect(en).toHaveAttribute("href", "/");
+    await expect(de).toHaveAttribute("href", "/de/");
+
+    for (const id of ["formats", "contact"]) {
+      await page.locator(`#${id}`).scrollIntoViewIfNeeded();
+      await expect(en).toHaveAttribute("href", `/#${id}`);
+      await expect(de).toHaveAttribute("href", `/de/#${id}`);
+    }
+  });
 });
