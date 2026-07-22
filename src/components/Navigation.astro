@@ -30,7 +30,7 @@ const { homeHref, links, ctaLabel } = Astro.props;
     >
       <Image
         alt="CultureWithGen Logo"
-        class="h-28 rounded-3xl md:h-36 w-auto object-contain"
+        class="h-20 rounded-3xl md:h-36 w-auto object-contain"
         src={logo}
         height={144}
         densities={[1, 2]}
@@ -53,18 +53,19 @@ const { homeHref, links, ctaLabel } = Astro.props;
     </div>
 
     <div class="flex items-center space-x-4 md:space-x-6 shrink-0">
-      <div class="text-sm font-semibold tracking-wider flex gap-2">
+      <!-- Language switcher: inline from md up. On small screens it lives in
+           the menu below, so the bar stays within narrow viewports even with
+           long translated CTA labels. -->
+      <div class="hidden md:flex text-sm font-semibold tracking-wider gap-2">
         <a
           href="/"
-          id="lang-en"
-          class="hover:text-primary hover:underline transition-all duration-200"
+          class="js-lang-en hover:text-primary hover:underline transition-all duration-200"
           >EN</a
         >
         <span class="text-outline">|</span>
         <a
           href="/de/"
-          id="lang-de"
-          class="hover:text-primary hover:underline transition-all duration-200"
+          class="js-lang-de hover:text-primary hover:underline transition-all duration-200"
           >DE</a
         >
       </div>
@@ -98,6 +99,20 @@ const { homeHref, links, ctaLabel } = Astro.props;
               </a>
             ))
           }
+          <div
+            class="mt-2 flex border-t border-[#1E3932]/10 pt-2 text-sm font-semibold tracking-wider"
+          >
+            <a
+              href="/"
+              class="js-lang-en flex-1 px-6 py-3 hover:text-primary hover:bg-[#F4F7F5] transition-colors"
+              >EN</a
+            >
+            <a
+              href="/de/"
+              class="js-lang-de flex-1 px-6 py-3 hover:text-primary hover:bg-[#F4F7F5] transition-colors"
+              >DE</a
+            >
+          </div>
         </div>
       </details>
     </div>
@@ -115,12 +130,16 @@ const { homeHref, links, ctaLabel } = Astro.props;
 </style>
 
 <script>
-  // Track the currently visible section and keep language links pointing to it
+  // Track the currently visible section and keep language links pointing to it.
+  // Selected by class, not id: the switcher renders twice (inline on desktop,
+  // inside the menu on mobile), so both copies must stay in sync.
   function setLangHref(hash: string) {
-    const en = document.getElementById("lang-en") as HTMLAnchorElement | null;
-    const de = document.getElementById("lang-de") as HTMLAnchorElement | null;
-    if (en) en.href = "/" + hash;
-    if (de) de.href = "/de/" + hash;
+    document
+      .querySelectorAll<HTMLAnchorElement>("a.js-lang-en")
+      .forEach((a) => (a.href = "/" + hash));
+    document
+      .querySelectorAll<HTMLAnchorElement>("a.js-lang-de")
+      .forEach((a) => (a.href = "/de/" + hash));
   }
 
   function getActiveSection(): string {
