@@ -1,4 +1,8 @@
 import { test, expect } from "@playwright/test";
+// Assert against the same content source the page renders from, so these
+// stay correct when copy is edited via the CMS instead of drifting stale.
+import en from "../src/content/landing/en.json" with { type: "json" };
+import de from "../src/content/landing/de.json" with { type: "json" };
 
 test.describe("English home page", () => {
   test("renders hero, all sections, contact and footer", async ({ page }) => {
@@ -12,22 +16,19 @@ test.describe("English home page", () => {
 
     // Hero eyebrow + title
     await expect(
-      page.locator("main").getByText("Intercultural Communication & Skills Training"),
+      page.locator("main").getByText(en.header.eyebrow),
     ).toBeVisible();
     await expect(
-      page.getByRole("heading", {
-        name: "Better Communication Across Cultures at Work",
-        level: 1,
-      }),
+      page.getByRole("heading", { name: en.header.title, level: 1 }),
     ).toBeVisible();
 
     // Every section heading renders
     for (const heading of [
-      "What I offer",
-      "About",
-      "Who this is for",
-      "Typical situations",
-      "Format",
+      en.offer.title,
+      en.about.title,
+      en.whoFor.title,
+      en.situations.title,
+      en.format.title,
     ]) {
       await expect(
         page.getByRole("heading", { name: heading }),
@@ -66,10 +67,7 @@ test.describe("German home page", () => {
     expect(response?.status()).toBe(200);
 
     await expect(
-      page.getByRole("heading", {
-        name: "Bessere Kommunikation in internationalen Arbeitsumgebungen",
-        level: 1,
-      }),
+      page.getByRole("heading", { name: de.header.title, level: 1 }),
     ).toBeVisible();
 
     const emailLink = page.locator("a.js-email").first();
