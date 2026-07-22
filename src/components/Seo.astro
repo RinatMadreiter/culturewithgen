@@ -29,8 +29,7 @@ const {
 
 // Astro.site comes from `site` in astro.config.mjs.
 const site = Astro.site ?? new URL("https://culturewithgen.com");
-const abs = (p: string) =>
-  p.startsWith("http") ? p : new URL(p, site).href;
+const abs = (p: string) => (p.startsWith("http") ? p : new URL(p, site).href);
 
 const canonical = abs(path);
 const ogImage = abs(image);
@@ -47,7 +46,9 @@ const hreflangs = alternates
         hreflang: loc,
         href: abs(p as string),
       })),
-      alternates.en ? { hreflang: "x-default", href: abs(alternates.en) } : null,
+      alternates.en
+        ? { hreflang: "x-default", href: abs(alternates.en) }
+        : null,
     ].filter(Boolean as unknown as <T>(v: T | null) => v is T)
   : [];
 ---

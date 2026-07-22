@@ -3,102 +3,102 @@ import { Image } from "astro:assets";
 import Icon from "../Icon.astro";
 
 interface Credential {
-	icon: string;
-	text: string;
+  icon: string;
+  text: string;
 }
 
 interface Props {
-	title: string;
-	body: string;
-	image?: { src: string; alt?: string };
-	credentials?: Credential[];
+  title: string;
+  body: string;
+  image?: { src: string; alt?: string };
+  credentials?: Credential[];
 }
 
 const { title, body, image, credentials = [] } = Astro.props;
 
 const publicImages = import.meta.glob(
-	"/public/images/*.{webp,jpg,jpeg,png,avif}",
+  "/public/images/*.{webp,jpg,jpeg,png,avif}",
 );
 const assets = import.meta.glob<{ default: ImageMetadata }>(
-	"/src/assets/images/*.{webp,jpg,jpeg,png,avif}",
-	{ eager: true },
+  "/src/assets/images/*.{webp,jpg,jpeg,png,avif}",
+  { eager: true },
 );
 const filename = image?.src?.split("/").pop();
 const inPublic = filename
-	? `/public/images/${filename}` in publicImages
-	: false;
+  ? `/public/images/${filename}` in publicImages
+  : false;
 const asset =
-	!inPublic && filename
-		? assets[`/src/assets/images/${filename}`]?.default
-		: undefined;
+  !inPublic && filename
+    ? assets[`/src/assets/images/${filename}`]?.default
+    : undefined;
 const alt = image?.alt || "Trainer facilitating a workshop";
 ---
 
 <section
-	class="py-12 lg:py-24 px-6 lg:px-12 bg-surface-container-low"
-	id="about"
+  class="py-12 lg:py-24 px-6 lg:px-12 bg-surface-container-low"
+  id="about"
 >
-	<div
-		class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-8 lg:gap-16"
-	>
-		<div class="w-full lg:w-5/12 flex justify-center items-center py-4 lg:py-0">
-			<div class="relative w-[416px] sm:w-[375px] lg:w-[500px]">
-				{
-					asset ? (
-						<Image
-							src={asset}
-							alt={alt}
-							widths={[384, 768, 1152, 1536]}
-							sizes="(min-width: 1024px) 24rem, 18rem"
-							quality={90}
-							class="w-full h-auto rounded-[2rem]"
-						/>
-					) : (
-						image?.src && (
-							<img
-								alt={alt}
-								class="w-full h-auto object-contain rounded-[2rem]"
-								src={image.src}
-							/>
-						)
-					)
-				}
-			</div>
-		</div>
-		<div class="w-full lg:w-7/12">
-			<h2
-				class="text-3xl lg:text-[2.75rem] font-headline font-bold text-primary-container mb-8 tracking-tight"
-			>
-				{title}
-			</h2>
+  <div
+    class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-8 lg:gap-16"
+  >
+    <div class="w-full lg:w-5/12 flex justify-center items-center py-4 lg:py-0">
+      <div class="relative w-[416px] sm:w-[375px] lg:w-[500px]">
+        {
+          asset ? (
+            <Image
+              src={asset}
+              alt={alt}
+              widths={[384, 768, 1152, 1536]}
+              sizes="(min-width: 1024px) 24rem, 18rem"
+              quality={90}
+              class="w-full h-auto rounded-[2rem]"
+            />
+          ) : (
+            image?.src && (
+              <img
+                alt={alt}
+                class="w-full h-auto object-contain rounded-[2rem]"
+                src={image.src}
+              />
+            )
+          )
+        }
+      </div>
+    </div>
+    <div class="w-full lg:w-7/12">
+      <h2
+        class="text-3xl lg:text-[2.75rem] font-headline font-bold text-primary-container mb-8 tracking-tight"
+      >
+        {title}
+      </h2>
 
-			<div
-				class="rich-text about-prose text-lg font-body text-on-surface-variant leading-[1.6]"
-				set:html={body}
-			/>
+      <div
+        class="rich-text about-prose text-lg font-body text-on-surface-variant leading-[1.6]"
+        set:html={body}
+      />
 
-			{
-				credentials.length > 0 && (
-					<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
-						{credentials.map((item, i) => (
-							<div
-								class:list={[
-									"bg-[#F4F7F5] border border-[#1E3932]/20 p-6 rounded-xl flex items-center gap-4 shadow-sm hover:scale-[1.02] hover:shadow-md transition-all duration-300 relative overflow-hidden group",
-									i === credentials.length - 1 && credentials.length % 2 === 1
-										? "md:col-span-2"
-										: "",
-								]}
-							>
-								<div class="absolute top-0 right-0 w-32 h-32 bg-[#1E3932]/5 rounded-bl-[100px] -z-10 group-hover:bg-[#1E3932]/10 transition-colors" />
-								<Icon name={item.icon} class="text-[#9A442D] text-3xl" />
-								<span class="font-body font-medium text-[#1E3932]">
-									{item.text}
-								</span>
-							</div>
-						))}
-					</div>
-				)
-			}
-		</div>
-	</div>
+      {
+        credentials.length > 0 && (
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+            {credentials.map((item, i) => (
+              <div
+                class:list={[
+                  "bg-[#F4F7F5] border border-[#1E3932]/20 p-6 rounded-xl flex items-center gap-4 shadow-sm hover:scale-[1.02] hover:shadow-md transition-all duration-300 relative overflow-hidden group",
+                  i === credentials.length - 1 && credentials.length % 2 === 1
+                    ? "md:col-span-2"
+                    : "",
+                ]}
+              >
+                <div class="absolute top-0 right-0 w-32 h-32 bg-[#1E3932]/5 rounded-bl-[100px] -z-10 group-hover:bg-[#1E3932]/10 transition-colors" />
+                <Icon name={item.icon} class="text-[#9A442D] text-3xl" />
+                <span class="font-body font-medium text-[#1E3932]">
+                  {item.text}
+                </span>
+              </div>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </div>
 </section>

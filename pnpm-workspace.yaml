@@ -9,10 +9,10 @@ minimumReleaseAgeExclude:
   - vite
   - rolldown
   - satteri
-  - '@astrojs/*'
-  - '@bruits/*'
-  - '@rolldown/*'
-  - '@napi-rs/*'
-  - '@tybys/*'
+  - "@astrojs/*"
+  - "@bruits/*"
+  - "@rolldown/*"
+  - "@napi-rs/*"
+  - "@tybys/*"
   # transitive build-chain dep of vite/rolldown
   - nanoid

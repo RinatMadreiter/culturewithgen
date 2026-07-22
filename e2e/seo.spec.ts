@@ -102,7 +102,9 @@ test.describe("SEO - supporting files & legal", () => {
     const res = await request.get("/robots.txt");
     expect(res.status()).toBe(200);
     const body = await res.text();
-    expect(body).toContain("Sitemap: https://culturewithgen.com/sitemap-index.xml");
+    expect(body).toContain(
+      "Sitemap: https://culturewithgen.com/sitemap-index.xml",
+    );
   });
 
   test("legal pages carry canonical and cross-language hreflang", async ({

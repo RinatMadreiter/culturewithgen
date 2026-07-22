@@ -7,18 +7,30 @@ const legalPages = [
     body: "General Data Protection Regulation (GDPR)",
     home: "/",
   },
-  { path: "/imprint", title: "Imprint", body: "Genevieve Navisotschnig", home: "/" },
+  {
+    path: "/imprint",
+    title: "Imprint",
+    body: "Genevieve Navisotschnig",
+    home: "/",
+  },
   {
     path: "/de/datenschutz",
     title: "Datenschutzerklärung",
     body: "Datenschutz-Grundverordnung (DSGVO)",
     home: "/de/",
   },
-  { path: "/de/impressum", title: "Impressum", body: "Genevieve Navisotschnig", home: "/de/" },
+  {
+    path: "/de/impressum",
+    title: "Impressum",
+    body: "Genevieve Navisotschnig",
+    home: "/de/",
+  },
 ];
 
 for (const { path, title, body, home } of legalPages) {
-  test(`legal page ${path} renders header, title and body`, async ({ page }) => {
+  test(`legal page ${path} renders header, title and body`, async ({
+    page,
+  }) => {
     const response = await page.goto(path);
     expect(response?.status()).toBe(200);
 

@@ -30,7 +30,7 @@ content:
             label: Search engine title
             type: string
             required: false
-            description: "Shown as the clickable title in Google results (aim for ~50-60 characters). Leave empty to auto-use the hero eyebrow followed by \" | CultureWithGen\"."
+            description: 'Shown as the clickable title in Google results (aim for ~50-60 characters). Leave empty to auto-use the hero eyebrow followed by " | CultureWithGen".'
           - name: description
             label: Search engine snippet
             type: text
@@ -106,7 +106,29 @@ content:
                 label: Icon
                 type: select
                 options:
-                  values: [business_center, communication, connect_without_contact, corporate_fare, diversity_3, feedback, forum, groups, handshake, language, location_on, mail, military_tech, psychology, record_voice_over, schedule, school, support_agent, videocam, workspace_premium]
+                  values:
+                    [
+                      business_center,
+                      communication,
+                      connect_without_contact,
+                      corporate_fare,
+                      diversity_3,
+                      feedback,
+                      forum,
+                      groups,
+                      handshake,
+                      language,
+                      location_on,
+                      mail,
+                      military_tech,
+                      psychology,
+                      record_voice_over,
+                      schedule,
+                      school,
+                      support_agent,
+                      videocam,
+                      workspace_premium,
+                    ]
                 description: "Pick a supported icon. Adding a new one requires a developer to register its SVG in src/components/icons.ts and add the name here."
               - name: text
                 type: string
@@ -128,7 +150,29 @@ content:
                 label: Icon
                 type: select
                 options:
-                  values: [business_center, communication, connect_without_contact, corporate_fare, diversity_3, feedback, forum, groups, handshake, language, location_on, mail, military_tech, psychology, record_voice_over, schedule, school, support_agent, videocam, workspace_premium]
+                  values:
+                    [
+                      business_center,
+                      communication,
+                      connect_without_contact,
+                      corporate_fare,
+                      diversity_3,
+                      feedback,
+                      forum,
+                      groups,
+                      handshake,
+                      language,
+                      location_on,
+                      mail,
+                      military_tech,
+                      psychology,
+                      record_voice_over,
+                      schedule,
+                      school,
+                      support_agent,
+                      videocam,
+                      workspace_premium,
+                    ]
                 description: "Pick a supported icon. Adding a new one requires a developer to register its SVG in src/components/icons.ts and add the name here."
               - name: text
                 type: string
@@ -147,7 +191,29 @@ content:
                 label: Icon
                 type: select
                 options:
-                  values: [business_center, communication, connect_without_contact, corporate_fare, diversity_3, feedback, forum, groups, handshake, language, location_on, mail, military_tech, psychology, record_voice_over, schedule, school, support_agent, videocam, workspace_premium]
+                  values:
+                    [
+                      business_center,
+                      communication,
+                      connect_without_contact,
+                      corporate_fare,
+                      diversity_3,
+                      feedback,
+                      forum,
+                      groups,
+                      handshake,
+                      language,
+                      location_on,
+                      mail,
+                      military_tech,
+                      psychology,
+                      record_voice_over,
+                      schedule,
+                      school,
+                      support_agent,
+                      videocam,
+                      workspace_premium,
+                    ]
                 description: "Pick a supported icon. Adding a new one requires a developer to register its SVG in src/components/icons.ts and add the name here."
               - name: text
                 type: string
@@ -166,7 +232,29 @@ content:
                 label: Icon
                 type: select
                 options:
-                  values: [business_center, communication, connect_without_contact, corporate_fare, diversity_3, feedback, forum, groups, handshake, language, location_on, mail, military_tech, psychology, record_voice_over, schedule, school, support_agent, videocam, workspace_premium]
+                  values:
+                    [
+                      business_center,
+                      communication,
+                      connect_without_contact,
+                      corporate_fare,
+                      diversity_3,
+                      feedback,
+                      forum,
+                      groups,
+                      handshake,
+                      language,
+                      location_on,
+                      mail,
+                      military_tech,
+                      psychology,
+                      record_voice_over,
+                      schedule,
+                      school,
+                      support_agent,
+                      videocam,
+                      workspace_premium,
+                    ]
                 description: "Pick a supported icon. Adding a new one requires a developer to register its SVG in src/components/icons.ts and add the name here."
               - name: text
                 type: string
@@ -185,7 +273,29 @@ content:
                 label: Icon
                 type: select
                 options:
-                  values: [business_center, communication, connect_without_contact, corporate_fare, diversity_3, feedback, forum, groups, handshake, language, location_on, mail, military_tech, psychology, record_voice_over, schedule, school, support_agent, videocam, workspace_premium]
+                  values:
+                    [
+                      business_center,
+                      communication,
+                      connect_without_contact,
+                      corporate_fare,
+                      diversity_3,
+                      feedback,
+                      forum,
+                      groups,
+                      handshake,
+                      language,
+                      location_on,
+                      mail,
+                      military_tech,
+                      psychology,
+                      record_voice_over,
+                      schedule,
+                      school,
+                      support_agent,
+                      videocam,
+                      workspace_premium,
+                    ]
                 description: "Pick a supported icon. Adding a new one requires a developer to register its SVG in src/components/icons.ts and add the name here."
               - name: text
                 type: string
