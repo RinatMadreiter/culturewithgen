@@ -83,12 +83,13 @@ const alt = image?.alt || "Trainer facilitating a workshop";
 						{credentials.map((item, i) => (
 							<div
 								class:list={[
-									"bg-[#F4F7F5] border border-[#1E3932]/20 p-6 rounded-xl flex items-center gap-4 shadow-sm",
+									"bg-[#F4F7F5] border border-[#1E3932]/20 p-6 rounded-xl flex items-center gap-4 shadow-sm hover:scale-[1.02] hover:shadow-md transition-all duration-300 relative overflow-hidden group",
 									i === credentials.length - 1 && credentials.length % 2 === 1
 										? "md:col-span-2"
 										: "",
 								]}
 							>
+								<div class="absolute top-0 right-0 w-32 h-32 bg-[#1E3932]/5 rounded-bl-[100px] -z-10 group-hover:bg-[#1E3932]/10 transition-colors" />
 								<Icon name={item.icon} class="text-[#9A442D] text-3xl" />
 								<span class="font-body font-medium text-[#1E3932]">
 									{item.text}

@@ -24,7 +24,8 @@ const { title, items = [] } = Astro.props;
     <div class="flex flex-wrap justify-center gap-6">
       {
         items.map((item) => (
-          <div class="bg-[#F4F7F5] border border-[#1E3932]/20 px-8 py-6 rounded-full shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-3">
+          <div class="bg-[#F4F7F5] border border-[#1E3932]/20 px-8 py-6 rounded-full shadow-sm hover:scale-[1.02] hover:shadow-md transition-all duration-300 flex items-center gap-3 relative overflow-hidden group">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-[#1E3932]/5 rounded-bl-[100px] -z-10 group-hover:bg-[#1E3932]/10 transition-colors" />
             <Icon name={item.icon} class="text-[#9A442D]" />
             <span class="text-lg font-headline font-bold text-[#1E3932]">
               {item.text}

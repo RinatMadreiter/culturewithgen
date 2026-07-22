@@ -26,7 +26,8 @@ const { title, items = [] } = Astro.props;
     <div class="space-y-4">
       {
         items.map((item) => (
-          <div class="bg-[#F4F7F5] p-6 rounded-2xl border border-[#1E3932]/20 shadow-sm hover:shadow-md transition-shadow duration-300 flex items-center gap-6">
+          <div class="bg-[#F4F7F5] p-6 rounded-2xl border border-[#1E3932]/20 shadow-sm hover:scale-[1.02] hover:shadow-md transition-all duration-300 flex items-center gap-6 relative overflow-hidden group">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-[#1E3932]/5 rounded-bl-[100px] -z-10 group-hover:bg-[#1E3932]/10 transition-colors" />
             <div class="w-12 h-12 rounded-full bg-[#1E3932]/10 flex items-center justify-center shrink-0">
               <Icon name={item.icon} class="text-[#9A442D]" />
             </div>
