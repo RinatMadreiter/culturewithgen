@@ -9,12 +9,12 @@ interface Credential {
 
 interface Props {
 	title: string;
-	paragraphs: string[];
+	body: string;
 	image?: { src: string; alt?: string };
 	credentials?: Credential[];
 }
 
-const { title, paragraphs = [], image, credentials = [] } = Astro.props;
+const { title, body, image, credentials = [] } = Astro.props;
 
 const publicImages = import.meta.glob(
 	"/public/images/*.{webp,jpg,jpeg,png,avif}",
@@ -72,13 +72,10 @@ const alt = image?.alt || "Trainer facilitating a workshop";
 				{title}
 			</h2>
 
-			{
-				paragraphs.map((paragraph) => (
-					<p class="text-lg font-body text-on-surface-variant leading-[1.6] mb-6">
-						{paragraph}
-					</p>
-				))
-			}
+			<div
+				class="rich-text about-prose text-lg font-body text-on-surface-variant leading-[1.6]"
+				set:html={body}
+			/>
 
 			{
 				credentials.length > 0 && (
