@@ -130,50 +130,59 @@ const { homeHref, links, ctaLabel } = Astro.props;
 </style>
 
 <script>
-  // Track the currently visible section and keep language links pointing to it.
-  // Selected by class, not id: the switcher renders twice (inline on desktop,
-  // inside the menu on mobile), so both copies must stay in sync.
+  // Keep the language links pointing at the section the reader is on, so
+  // switching language lands on the same place. The switcher renders twice
+  // (inline on desktop, inside the menu on mobile), so both copies are
+  // selected by class and looked up once rather than on every update.
+  const enLinks = document.querySelectorAll<HTMLAnchorElement>("a.js-lang-en");
+  const deLinks = document.querySelectorAll<HTMLAnchorElement>("a.js-lang-de");
+
   function setLangHref(hash: string) {
-    document
-      .querySelectorAll<HTMLAnchorElement>("a.js-lang-en")
-      .forEach((a) => (a.href = "/" + hash));
-    document
-      .querySelectorAll<HTMLAnchorElement>("a.js-lang-de")
-      .forEach((a) => (a.href = "/de/" + hash));
+    enLinks.forEach((a) => (a.href = "/" + hash));
+    deLinks.forEach((a) => (a.href = "/de/" + hash));
   }
 
-  function getActiveSection(): string {
-    const sections = Array.from(
-      document.querySelectorAll<HTMLElement>("section[id]"),
-    );
-    const navH = 96; // fixed nav height offset
-    const viewTop = navH;
-    const viewBottom = window.innerHeight;
-    let active = "";
-    let maxVisible = 0;
-    for (const s of sections) {
-      const rect = s.getBoundingClientRect();
-      // Height of this section currently visible below the nav
-      const visible =
-        Math.min(rect.bottom, viewBottom) - Math.max(rect.top, viewTop);
-      if (visible > maxVisible) {
-        maxVisible = visible;
-        active = s.id;
+  // Which section is most visible is tracked with IntersectionObserver rather
+  // than measured on every scroll event. The previous handler called
+  // getBoundingClientRect() once per section per scroll, which Lighthouse
+  // attributed ~185ms of forced reflow to; the observer reports the visible
+  // height itself, so no layout is read.
+  const NAV_OFFSET = 96; // discount the fixed nav from the top of the viewport
+  const visibleHeight = new Map<string, number>();
+
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        visibleHeight.set(
+          entry.target.id,
+          entry.isIntersecting ? entry.intersectionRect.height : 0,
+        );
       }
-    }
-    return active ? "#" + active : "";
-  }
+      let activeId = "";
+      let maxVisible = 0;
+      for (const [id, height] of visibleHeight) {
+        if (height > maxVisible) {
+          maxVisible = height;
+          activeId = id;
+        }
+      }
+      if (activeId) setLangHref("#" + activeId);
+    },
+    {
+      rootMargin: `-${NAV_OFFSET}px 0px 0px 0px`,
+      // Fine-grained thresholds keep the active section accurate for sections
+      // taller than the viewport, which never reach a high intersection ratio.
+      threshold: Array.from({ length: 11 }, (_, i) => i / 10),
+    },
+  );
 
-  function sync() {
-    const hash = getActiveSection();
-    if (hash) setLangHref(hash);
-  }
+  document
+    .querySelectorAll<HTMLElement>("section[id]")
+    .forEach((section) => sectionObserver.observe(section));
 
-  // Seed on load from URL hash first, then correct via scroll position
+  // Seed from the URL hash; the observer corrects it as sections report in.
   setLangHref(window.location.hash);
-  sync();
 
-  window.addEventListener("scroll", sync, { passive: true });
   window.addEventListener("hashchange", () =>
     setLangHref(window.location.hash),
   );
