@@ -1,0 +1,134 @@
+---
+interface Props {
+  locale?: "en" | "de";
+}
+
+const { locale = "en" } = Astro.props;
+const label = locale === "de" ? "Nach oben" : "Back to top";
+---
+
+<button
+  id="back-to-top"
+  type="button"
+  aria-label={label}
+  title={label}
+  class="fixed bottom-6 right-6 lg:bottom-8 lg:right-8 z-40 w-14 h-14 rounded-full flex items-center justify-center bg-[#9A442D] text-white shadow-[0_10px_30px_rgba(154,68,45,0.35)] opacity-0 translate-y-2 pointer-events-none hover:bg-[#7D3522] hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(154,68,45,0.45)] transition-all duration-300"
+>
+  <svg
+    class="w-[22px] h-[22px]"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path d="M12 19V5" />
+    <path d="M5 12l7-7 7 7" />
+  </svg>
+</button>
+
+<style>
+  #back-to-top.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  #back-to-top.pulse {
+    animation: back-to-top-pulse 0.55s ease;
+  }
+
+  #back-to-top.pulse svg {
+    animation: back-to-top-arrow 0.5s ease;
+  }
+
+  @keyframes back-to-top-pulse {
+    0% {
+      box-shadow:
+        0 0 0 0 rgba(154, 68, 45, 0.55),
+        0 10px 30px rgba(154, 68, 45, 0.35);
+    }
+    70% {
+      box-shadow:
+        0 0 0 16px rgba(154, 68, 45, 0),
+        0 10px 30px rgba(154, 68, 45, 0.35);
+    }
+    100% {
+      box-shadow:
+        0 0 0 0 rgba(154, 68, 45, 0),
+        0 10px 30px rgba(154, 68, 45, 0.35);
+    }
+  }
+
+  @keyframes back-to-top-arrow {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    40% {
+      transform: translateY(-10px);
+      opacity: 0;
+    }
+    41% {
+      transform: translateY(10px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #back-to-top {
+      transition: opacity 0.2s ease;
+    }
+    #back-to-top.pulse,
+    #back-to-top.pulse svg {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  const button = document.getElementById("back-to-top");
+
+  if (button) {
+    const threshold = 600;
+    let ticking = false;
+
+    const updateVisibility = () => {
+      button.classList.toggle("is-visible", window.scrollY > threshold);
+      ticking = false;
+    };
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!ticking) {
+          requestAnimationFrame(updateVisibility);
+          ticking = true;
+        }
+      },
+      { passive: true },
+    );
+
+    updateVisibility();
+
+    button.addEventListener("click", () => {
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+
+      window.scrollTo({
+        top: 0,
+        behavior: reduceMotion ? "auto" : "smooth",
+      });
+
+      button.classList.remove("pulse");
+      void button.offsetWidth;
+      button.classList.add("pulse");
+    });
+  }
+</script>

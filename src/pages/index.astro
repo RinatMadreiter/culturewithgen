@@ -17,6 +17,7 @@ import WhoFor from "../components/sections/WhoFor.astro";
 import Situations from "../components/sections/Situations.astro";
 import Formats from "../components/sections/Formats.astro";
 import Contact from "../components/sections/Contact.astro";
+import BackToTop from "../components/BackToTop.astro";
 
 const entry = await getEntry("landing", "en");
 if (!entry) throw new Error("Missing landing content: src/content/landing/en.json");
@@ -107,5 +108,7 @@ const seoDescription =
 
       </div>
     </footer>
+
+    <BackToTop locale="en" />
   </body>
 </html>

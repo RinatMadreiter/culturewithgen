@@ -17,13 +17,13 @@ import WhoFor from "../../components/sections/WhoFor.astro";
 import Situations from "../../components/sections/Situations.astro";
 import Formats from "../../components/sections/Formats.astro";
 import Contact from "../../components/sections/Contact.astro";
+import BackToTop from "../../components/BackToTop.astro";
 
 const entry = await getEntry("landing", "de");
 if (!entry)
 	throw new Error("Missing landing content: src/content/landing/de.json");
 const content = entry.data;
 
-// SEO: keyword-rich title (primary service + brand) and a benefit-led,
 // CTA-oriented description, both grounded in the page content. Each can be
 // overridden via the CMS (content.seo); an empty/absent override falls back
 // to the derived default below so nothing regresses when left blank.
@@ -129,5 +129,7 @@ const seoDescription =
 				</p>
 			</div>
 		</footer>
+
+		<BackToTop locale="de" />
 	</body>
 </html>
