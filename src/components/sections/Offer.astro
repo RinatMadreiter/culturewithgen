@@ -34,7 +34,7 @@ const { title, subtitle, items = [] } = Astro.props;
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       {
         items.map((item) => (
-          <div class="bg-[#F4F7F5] border border-[#1E3932]/10 p-10 rounded-[1.5rem] shadow-sm hover:scale-[1.02] hover:shadow-md transition-all duration-300 relative overflow-hidden group">
+          <div class="bg-[#F4F7F5] border border-[#1E3932]/20 p-10 rounded-[1.5rem] shadow-sm hover:scale-[1.02] hover:shadow-md transition-all duration-300 relative overflow-hidden group">
             <div class="absolute top-0 right-0 w-32 h-32 bg-[#1E3932]/5 rounded-bl-[100px] -z-10 group-hover:bg-[#1E3932]/10 transition-colors" />
             <Icon name={item.icon} class="text-4xl text-[#9A442D] mb-6" />
             <h3 class="text-xl font-headline font-bold text-[#1E3932] mb-4">
