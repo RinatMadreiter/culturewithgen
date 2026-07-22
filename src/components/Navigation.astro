@@ -1,80 +1,112 @@
 ---
-import '../styles/global.css';
-import { Image } from 'astro:assets';
-import logo from '../assets/logo.webp';
+import "../styles/global.css";
+import { Image } from "astro:assets";
+import logo from "../assets/logo.webp";
 
 interface NavLink {
-    label: string;
-    href: string;
+  label: string;
+  href: string;
 }
 
 interface Props {
-    homeHref: string;
-    links: NavLink[];
-    ctaLabel: string;
+  homeHref: string;
+  links: NavLink[];
+  ctaLabel: string;
 }
 
 const { homeHref, links, ctaLabel } = Astro.props;
 ---
 
-<nav class="fixed top-0 w-full z-50 bg-surface backdrop-blur-md shadow-md font-label tracking-tight text-on-surface">
-    <div class="flex justify-between items-center px-4 md:px-8 py-4 max-w-7xl mx-auto">
+<nav
+  class="fixed top-0 w-full z-50 bg-surface backdrop-blur-md shadow-md font-label tracking-tight text-on-surface"
+>
+  <div
+    class="flex justify-between items-center px-4 md:px-8 py-4 max-w-7xl mx-auto"
+  >
+    <a
+      href={homeHref}
+      class="text-xl rounded-xl font-bold transition-transform hover:scale-105 shrink-0"
+    >
+      <Image
+        alt="CultureWithGen Logo"
+        class="h-28 rounded-3xl md:h-36 w-auto object-contain"
+        src={logo}
+        height={144}
+        densities={[1, 2]}
+        loading="eager"
+      />
+      <span class="sr-only">CultureWithGen</span>
+    </a>
 
-        <a href={homeHref} class="text-xl rounded-xl font-bold transition-transform hover:scale-105 shrink-0">
-            <Image alt="CultureWithGen Logo" class="h-28 rounded-3xl md:h-36 w-auto object-contain" src={logo} height={144} densities={[1, 2]} loading="eager" />
-            <span class="sr-only">CultureWithGen</span>
-        </a>
-
-        <div class="hidden md:flex items-center space-x-8">
-            {links.map((item) => (
-            <a class="hover:text-primary hover:underline transition-all duration-200" href={item.href}>
-                {item.label}
-            </a>
-            ))}
-        </div>
-
-        <div class="flex items-center space-x-4 md:space-x-6 shrink-0">
-            <div class="text-sm font-semibold tracking-wider flex gap-2">
-                <a href="/" id="lang-en" class="hover:text-primary hover:underline transition-all duration-200">EN</a>
-                <span class="text-outline">|</span>
-                <a href="/de/" id="lang-de" class="hover:text-primary hover:underline transition-all duration-200">DE</a>
-            </div>
-
-            <a href="#contact"
-                class="bg-[#9A442D] text-white px-4 py-2 md:px-6 rounded-lg font-bold shadow-[0_6px_20px_rgba(154,68,45,0.35)] hover:bg-[#7D3522] hover:shadow-[0_8px_24px_rgba(154,68,45,0.45)] hover:-translate-y-0.5 transition-all duration-200">
-                {ctaLabel}
-            </a>
-        </div>
-
+    <div class="hidden md:flex items-center space-x-8">
+      {
+        links.map((item) => (
+          <a
+            class="hover:text-primary hover:underline transition-all duration-200"
+            href={item.href}
+          >
+            {item.label}
+          </a>
+        ))
+      }
     </div>
+
+    <div class="flex items-center space-x-4 md:space-x-6 shrink-0">
+      <div class="text-sm font-semibold tracking-wider flex gap-2">
+        <a
+          href="/"
+          id="lang-en"
+          class="hover:text-primary hover:underline transition-all duration-200"
+          >EN</a
+        >
+        <span class="text-outline">|</span>
+        <a
+          href="/de/"
+          id="lang-de"
+          class="hover:text-primary hover:underline transition-all duration-200"
+          >DE</a
+        >
+      </div>
+
+      <a
+        href="#contact"
+        class="bg-[#9A442D] text-white px-4 py-2 md:px-6 rounded-lg font-bold shadow-[0_6px_20px_rgba(154,68,45,0.35)] hover:bg-[#7D3522] hover:shadow-[0_8px_24px_rgba(154,68,45,0.45)] hover:-translate-y-0.5 transition-all duration-200"
+      >
+        {ctaLabel}
+      </a>
+    </div>
+  </div>
 </nav>
 
 <script>
   // Track the currently visible section and keep language links pointing to it
   function setLangHref(hash: string) {
-    const en = document.getElementById('lang-en') as HTMLAnchorElement | null;
-    const de = document.getElementById('lang-de') as HTMLAnchorElement | null;
-    if (en) en.href = '/' + hash;
-    if (de) de.href = '/de/' + hash;
+    const en = document.getElementById("lang-en") as HTMLAnchorElement | null;
+    const de = document.getElementById("lang-de") as HTMLAnchorElement | null;
+    if (en) en.href = "/" + hash;
+    if (de) de.href = "/de/" + hash;
   }
 
   function getActiveSection(): string {
-    const sections = Array.from(document.querySelectorAll<HTMLElement>('section[id]'));
+    const sections = Array.from(
+      document.querySelectorAll<HTMLElement>("section[id]"),
+    );
     const navH = 96; // fixed nav height offset
     const viewTop = navH;
     const viewBottom = window.innerHeight;
-    let active = '';
+    let active = "";
     let maxVisible = 0;
     for (const s of sections) {
       const rect = s.getBoundingClientRect();
       // Height of this section currently visible below the nav
-      const visible = Math.min(rect.bottom, viewBottom) - Math.max(rect.top, viewTop);
+      const visible =
+        Math.min(rect.bottom, viewBottom) - Math.max(rect.top, viewTop);
       if (visible > maxVisible) {
         maxVisible = visible;
         active = s.id;
       }
     }
-    return active ? '#' + active : '';
+    return active ? "#" + active : "";
   }
 
   function sync() {
@@ -86,6 +118,8 @@ const { homeHref, links, ctaLabel } = Astro.props;
   setLangHref(window.location.hash);
   sync();
 
-  window.addEventListener('scroll', sync, { passive: true });
-  window.addEventListener('hashchange', () => setLangHref(window.location.hash));
+  window.addEventListener("scroll", sync, { passive: true });
+  window.addEventListener("hashchange", () =>
+    setLangHref(window.location.hash),
+  );
 </script>

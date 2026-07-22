@@ -51,7 +51,11 @@ const {
         box-sizing: border-box;
       }
       body {
-        font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+        font-family:
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          sans-serif;
         line-height: 1.65;
         color: var(--muted);
         background-color: var(--page);
@@ -127,7 +131,13 @@ const {
     <header class="site-header">
       <div class="site-header__inner">
         <a class="logo-link" href={homeHref} aria-label={homeAriaLabel}>
-          <Image src={logo} alt="CultureWithGen" height={44} densities={[1, 2]} loading="eager" />
+          <Image
+            src={logo}
+            alt="CultureWithGen"
+            height={44}
+            densities={[1, 2]}
+            loading="eager"
+          />
         </a>
         <a class="back-link" href={homeHref}>← {backLabel}</a>
       </div>

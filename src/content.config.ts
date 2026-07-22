@@ -1,6 +1,6 @@
-import { defineCollection } from 'astro:content';
-import { z } from 'astro/zod';
-import { glob } from 'astro/loaders';
+import { defineCollection } from "astro:content";
+import { z } from "astro/zod";
+import { glob } from "astro/loaders";
 
 const image = z
   .object({
@@ -15,7 +15,7 @@ const iconItem = z.object({
 });
 
 const landingCollection = defineCollection({
-  loader: glob({ pattern: '*.json', base: './src/content/landing' }),
+  loader: glob({ pattern: "*.json", base: "./src/content/landing" }),
   schema: z.object({
     // Optional SEO overrides for the search-engine title and snippet.
     // When omitted (or empty), the page falls back to values derived from
@@ -69,7 +69,7 @@ const landingCollection = defineCollection({
 });
 
 const legalCollection = defineCollection({
-  loader: glob({ pattern: '*.md', base: './src/content/legal' }),
+  loader: glob({ pattern: "*.md", base: "./src/content/legal" }),
   schema: z.object({
     title: z.string(),
   }),

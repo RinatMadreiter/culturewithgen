@@ -15,8 +15,13 @@ interface Props {
   description: string;
 }
 
-const { locale, path, image = "/og-image.jpg", offerItems, description } =
-  Astro.props;
+const {
+  locale,
+  path,
+  image = "/og-image.jpg",
+  offerItems,
+  description,
+} = Astro.props;
 
 const site = Astro.site ?? new URL("https://culturewithgen.com");
 const abs = (p: string) => (p.startsWith("http") ? p : new URL(p, site).href);
@@ -89,4 +94,8 @@ const jsonLd = {
 };
 ---
 
-<script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd).replace(/</g, '\\u003c')} />
+<script
+  is:inline
+  type="application/ld+json"
+  set:html={JSON.stringify(jsonLd).replace(/</g, "\\u003c")}
+/>

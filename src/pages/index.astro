@@ -20,7 +20,8 @@ import Contact from "../components/sections/Contact.astro";
 import BackToTop from "../components/BackToTop.astro";
 
 const entry = await getEntry("landing", "en");
-if (!entry) throw new Error("Missing landing content: src/content/landing/en.json");
+if (!entry)
+  throw new Error("Missing landing content: src/content/landing/en.json");
 const content = entry.data;
 
 // SEO: keyword-rich title (primary service + brand) and a benefit-led,
@@ -57,9 +58,9 @@ const seoDescription =
     <Navigation
       homeHref="/"
       links={[
-        { label: 'Services', href: '#services' },
-        { label: 'About', href: '#about' },
-        { label: 'Workshops', href: '#formats' },
+        { label: "Services", href: "#services" },
+        { label: "About", href: "#about" },
+        { label: "Workshops", href: "#formats" },
       ]}
       ctaLabel="Let's Talk"
     />
@@ -74,16 +75,31 @@ const seoDescription =
       <Contact {...content.contact} />
     </main>
 
-    <footer class="bg-[#1E3932] w-full border-t border-white/10 text-[#FAF9F6] font-label">
-      <div class="max-w-3xl mx-auto px-6 py-12 flex flex-col items-center gap-6 text-center">
-
+    <footer
+      class="bg-[#1E3932] w-full border-t border-white/10 text-[#FAF9F6] font-label"
+    >
+      <div
+        class="max-w-3xl mx-auto px-6 py-12 flex flex-col items-center gap-6 text-center"
+      >
         <!-- Logo -->
-        <a href="/" class="hover:opacity-80 transition-opacity" aria-label="CultureWithGen home">
-          <Image src={logo} alt="CultureWithGen" height={96} densities={[1, 2]} class="rounded-3xl" />
+        <a
+          href="/"
+          class="hover:opacity-80 transition-opacity"
+          aria-label="CultureWithGen home"
+        >
+          <Image
+            src={logo}
+            alt="CultureWithGen"
+            height={96}
+            densities={[1, 2]}
+            class="rounded-3xl"
+          />
         </a>
 
         <!-- Tagline -->
-        <p class="text-xs uppercase tracking-widest text-[#FAF9F6]/70 font-semibold">
+        <p
+          class="text-xs uppercase tracking-widest text-[#FAF9F6]/70 font-semibold"
+        >
           Intercultural Communication & Skills Training
         </p>
 
@@ -98,14 +114,19 @@ const seoDescription =
         <div class="w-16 border-t border-white/10 mt-2"></div>
 
         <!-- Legal links + copyright -->
-        <div class="flex flex-wrap justify-center gap-6 text-xs uppercase tracking-widest text-[#FAF9F6]/70">
-          <a href="/privacy" class="hover:text-[#E07A5F] transition-colors">Privacy Policy</a>
-          <a href="/imprint" class="hover:text-[#E07A5F] transition-colors">Imprint</a>
+        <div
+          class="flex flex-wrap justify-center gap-6 text-xs uppercase tracking-widest text-[#FAF9F6]/70"
+        >
+          <a href="/privacy" class="hover:text-[#E07A5F] transition-colors"
+            >Privacy Policy</a
+          >
+          <a href="/imprint" class="hover:text-[#E07A5F] transition-colors"
+            >Imprint</a
+          >
         </div>
         <p class="text-xs text-[#FAF9F6]/60">
           © {new Date().getFullYear()} CultureWithGen
         </p>
-
       </div>
     </footer>
 
