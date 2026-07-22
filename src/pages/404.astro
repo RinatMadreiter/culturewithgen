@@ -1,0 +1,170 @@
+---
+// Static 404 page. GitHub Pages serves the built 404.html for any unmatched
+// path. Self-contained and styled with the site's real palette + system font
+// (mirroring LegalLayout, since the Tailwind theme tokens aren't wired). Not
+// CMS-editable by design. One page covers both languages, so it offers a home
+// link for each.
+import { Image } from "astro:assets";
+import logo from "../assets/logo.webp";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page not found | CultureWithGen</title>
+    <meta name="robots" content="noindex, follow" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <meta name="theme-color" content="#1E3932" />
+    <style>
+      :root {
+        --ink: #1e3932;
+        --muted: #475650;
+        --accent: #9a442d;
+        --accent-hover: #7d3522;
+        --page: #f4f7f5;
+        --line: rgba(30, 57, 50, 0.15);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.25rem;
+        padding: 3rem 1.5rem;
+        text-align: center;
+        font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+        color: var(--muted);
+        background-color: var(--page);
+      }
+      .logo-link {
+        display: inline-flex;
+        margin-bottom: 2.5rem;
+        border-radius: 9999px;
+        transition: transform 0.2s ease;
+      }
+      .logo-link:hover {
+        transform: scale(1.04);
+      }
+      .logo-link img {
+        height: 72px;
+        width: auto;
+        border-radius: 9999px;
+      }
+      .code {
+        font-size: clamp(4.5rem, 18vw, 8rem);
+        line-height: 1;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        color: var(--accent);
+        margin: 0;
+      }
+      h1 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: var(--ink);
+        margin: 0.75rem 0 0;
+      }
+      h1 .sub {
+        display: block;
+        font-size: 1.125rem;
+        font-weight: 500;
+        color: var(--muted);
+        margin-top: 0.25rem;
+      }
+      p.message {
+        max-width: 32rem;
+        font-size: 1rem;
+        line-height: 1.6;
+        margin: 1rem 0 2.5rem;
+      }
+      p.message .sub {
+        display: block;
+        color: rgba(71, 86, 80, 0.75);
+        margin-top: 0.25rem;
+      }
+      .actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+      .btn {
+        display: inline-block;
+        width: 100%;
+        padding: 0.75rem 2rem;
+        border-radius: 0.5rem;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        text-decoration: none;
+        transition: all 0.2s ease;
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: #fff;
+        box-shadow: 0 10px 30px rgba(154, 68, 45, 0.35);
+      }
+      .btn-primary:hover {
+        background: var(--accent-hover);
+        transform: translateY(-2px);
+      }
+      .btn-secondary {
+        border: 1px solid var(--line);
+        color: var(--ink);
+      }
+      .btn-secondary:hover {
+        background: rgba(30, 57, 50, 0.05);
+      }
+      @media (min-width: 480px) {
+        .actions {
+          flex-direction: row;
+        }
+        .btn {
+          width: auto;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .logo-link,
+        .btn {
+          transition: none;
+        }
+        .logo-link:hover,
+        .btn-primary:hover {
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="logo-link" href="/" aria-label="CultureWithGen - home">
+      <Image src={logo} alt="CultureWithGen" height={72} densities={[1, 2]} />
+    </a>
+
+    <p class="code">404</p>
+
+    <h1>
+      Page not found
+      <span class="sub">Seite nicht gefunden</span>
+    </h1>
+
+    <p class="message">
+      The page you're looking for doesn't exist or may have moved.
+      <span class="sub"
+        >Die gesuchte Seite existiert nicht oder wurde verschoben.</span
+      >
+    </p>
+
+    <div class="actions">
+      <a class="btn btn-primary" href="/">Back to home</a>
+      <a class="btn btn-secondary" href="/de/">Zur Startseite</a>
+    </div>
+  </body>
+</html>
