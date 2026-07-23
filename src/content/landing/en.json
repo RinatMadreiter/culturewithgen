@@ -58,19 +58,19 @@
     "items": [
       {
         "icon": "diversity_3",
-        "text": "Teams made up of different nationalities"
+        "text": "Multicultural Teams"
       },
       {
         "icon": "business_center",
-        "text": "Companies working in an international business environment"
+        "text": "Organisations operating internationally"
       },
       {
         "icon": "support_agent",
-        "text": "Staff working with international clients or colleagues"
+        "text": "Professionals working with international colleagues or clients"
       },
       {
         "icon": "communication",
-        "text": "Teams that want to improve collaboration and avoid misunderstandings"
+        "text": "Teams seeking to strengthen collaboration and navigate cultural differences effectively"
       }
     ]
   },
