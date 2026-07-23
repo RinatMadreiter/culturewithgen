@@ -78,24 +78,24 @@
     "title": "Typical situations",
     "items": [
       {
-        "icon": "record_voice_over",
-        "text": "Team members interpret communication styles differently"
+        "icon": "communication",
+        "text": "Communication styles are interpreted in different ways"
       },
       {
-        "icon": "groups",
-        "text": "Different expectations around participation and feedback"
+        "icon": "business_center",
+        "text": "Expectations around roles and responsibilities vary"
       },
       {
         "icon": "feedback",
-        "text": "Different approaches to decision-making create uncertainty"
+        "text": "Ways of working and approaches to feedback vary"
+      },
+      {
+        "icon": "handshake",
+        "text": "Approaches to decision-making create uncertainty"
       },
       {
         "icon": "connect_without_contact",
-        "text": "Collaboration is affected by unclear communication across cultures"
-      },
-      {
-        "icon": "diversity_3",
-        "text": "Different cultural expectations affect team collaboration"
+        "text": "Misunderstandings impact teamwork"
       }
     ]
   },
