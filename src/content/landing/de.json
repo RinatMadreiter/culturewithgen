@@ -58,11 +58,11 @@
     "items": [
       {
         "icon": "diversity_3",
-        "text": "Teams aus unterschiedlichen nationalen Hintergründen"
+        "text": "Multikulturelle Teams"
       },
       {
         "icon": "business_center",
-        "text": "Unternehmen in einem internationalen Geschäftsumfeld"
+        "text": "Organisationen mit internationaler Ausrichtung"
       },
       {
         "icon": "support_agent",
@@ -70,7 +70,7 @@
       },
       {
         "icon": "communication",
-        "text": "Teams, die ihre Zusammenarbeit verbessern und Missverständnisse vermeiden möchten"
+        "text": "Teams, die ihre Zusammenarbeit stärken und Missverständnisse vermeiden möchten"
       }
     ]
   },
