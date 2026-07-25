@@ -34,10 +34,7 @@ const asset =
 const alt = image?.alt || "Trainer facilitating a workshop";
 ---
 
-<section
-  class="py-12 lg:py-24 px-6 lg:px-12 bg-surface-container-low"
-  id="about"
->
+<section class="py-12 lg:py-24 px-6 lg:px-12" id="about">
   <div
     class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-8 lg:gap-16"
   >
@@ -66,14 +63,12 @@ const alt = image?.alt || "Trainer facilitating a workshop";
       </div>
     </div>
     <div class="w-full lg:w-7/12">
-      <h2
-        class="text-3xl lg:text-[2.75rem] font-headline font-bold text-primary-container mb-8 tracking-tight"
-      >
+      <h2 class="text-3xl lg:text-[2.75rem] font-bold mb-8 tracking-tight">
         {title}
       </h2>
 
       <div
-        class="rich-text about-prose text-lg font-body text-on-surface-variant leading-[1.6]"
+        class="rich-text about-prose text-lg leading-[1.6]"
         set:html={body}
       />
 
@@ -91,9 +86,7 @@ const alt = image?.alt || "Trainer facilitating a workshop";
               >
                 <div class="absolute top-0 right-0 w-32 h-32 bg-[#1E3932]/5 rounded-bl-[100px] -z-10 group-hover:bg-[#1E3932]/10 transition-colors" />
                 <Icon name={item.icon} class="text-[#9A442D] text-3xl" />
-                <span class="font-body font-medium text-[#1E3932]">
-                  {item.text}
-                </span>
+                <span class="font-medium text-[#1E3932]">{item.text}</span>
               </div>
             ))}
           </div>

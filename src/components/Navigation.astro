@@ -18,9 +18,7 @@ interface Props {
 const { homeHref, links, ctaLabel } = Astro.props;
 ---
 
-<nav
-  class="fixed top-0 w-full z-50 bg-surface backdrop-blur-md shadow-md font-label tracking-tight text-on-surface"
->
+<nav class="fixed top-0 w-full z-50 backdrop-blur-md shadow-md tracking-tight">
   <div
     class="flex justify-between items-center px-4 md:px-8 py-4 max-w-7xl mx-auto"
   >
@@ -43,7 +41,7 @@ const { homeHref, links, ctaLabel } = Astro.props;
       {
         links.map((item) => (
           <a
-            class="hover:text-primary hover:underline transition-all duration-200"
+            class="hover:underline transition-all duration-200"
             href={item.href}
           >
             {item.label}
@@ -59,14 +57,12 @@ const { homeHref, links, ctaLabel } = Astro.props;
       <div class="hidden md:flex text-sm font-semibold tracking-wider gap-2">
         <a
           href="/"
-          class="js-lang-en hover:text-primary hover:underline transition-all duration-200"
-          >EN</a
+          class="js-lang-en hover:underline transition-all duration-200">EN</a
         >
-        <span class="text-outline">|</span>
+        <span>|</span>
         <a
           href="/de/"
-          class="js-lang-de hover:text-primary hover:underline transition-all duration-200"
-          >DE</a
+          class="js-lang-de hover:underline transition-all duration-200">DE</a
         >
       </div>
 
@@ -81,18 +77,18 @@ const { homeHref, links, ctaLabel } = Astro.props;
            The panel anchors to the fixed <nav> (its positioning context). -->
       <details id="mobile-nav" class="mobile-nav md:hidden">
         <summary
-          class="flex items-center justify-center cursor-pointer text-2xl text-on-surface hover:text-primary transition-colors"
+          class="flex items-center justify-center cursor-pointer text-2xl transition-colors"
           aria-label="Open menu"
         >
           <Icon name="menu" />
         </summary>
         <div
-          class="absolute left-0 right-0 top-full bg-white shadow-md border-t border-[#1E3932]/10 flex flex-col py-2 font-label"
+          class="absolute left-0 right-0 top-full bg-white shadow-md border-t border-[#1E3932]/10 flex flex-col py-2"
         >
           {
             links.map((item) => (
               <a
-                class="px-6 py-3 hover:text-primary hover:bg-[#F4F7F5] transition-colors"
+                class="px-6 py-3 hover:bg-[#F4F7F5] transition-colors"
                 href={item.href}
               >
                 {item.label}
@@ -104,12 +100,12 @@ const { homeHref, links, ctaLabel } = Astro.props;
           >
             <a
               href="/"
-              class="js-lang-en flex-1 px-6 py-3 hover:text-primary hover:bg-[#F4F7F5] transition-colors"
+              class="js-lang-en flex-1 px-6 py-3 hover:bg-[#F4F7F5] transition-colors"
               >EN</a
             >
             <a
               href="/de/"
-              class="js-lang-de flex-1 px-6 py-3 hover:text-primary hover:bg-[#F4F7F5] transition-colors"
+              class="js-lang-de flex-1 px-6 py-3 hover:bg-[#F4F7F5] transition-colors"
               >DE</a
             >
           </div>

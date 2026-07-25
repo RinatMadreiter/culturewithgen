@@ -3,7 +3,6 @@ import { getEntry } from "astro:content";
 import { Image } from "astro:assets";
 
 import "../styles/global.css";
-import "@fontsource-variable/manrope";
 
 import Navigation from "../components/Navigation.astro";
 import ObfuscatedEmail from "../components/ObfuscatedEmail.astro";
@@ -52,9 +51,7 @@ const seoDescription =
     />
   </head>
 
-  <body
-    class="bg-surface text-on-surface antialiased overflow-x-hidden font-body flex flex-col min-h-screen"
-  >
+  <body class="antialiased overflow-x-hidden flex flex-col min-h-screen">
     <Navigation
       homeHref="/"
       links={[
@@ -75,9 +72,7 @@ const seoDescription =
       <Contact {...content.contact} />
     </main>
 
-    <footer
-      class="bg-[#1E3932] w-full border-t border-white/10 text-[#FAF9F6] font-label"
-    >
+    <footer class="bg-[#1E3932] w-full border-t border-white/10 text-[#FAF9F6]">
       <div
         class="max-w-3xl mx-auto px-6 py-12 flex flex-col items-center gap-6 text-center"
       >

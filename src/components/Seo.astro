@@ -72,9 +72,10 @@ const hreflangs = alternates
   ))
 }
 
-<!-- Icons & theme -->
+<!-- Icons & theme. No SVG icon: the only vector source we had was a 1 MB PNG
+     wrapped in an <svg>, which browsers fetched at High priority right across
+     FCP. The .ico + 96px PNG cover every browser between them. -->
 <link rel="icon" href="/favicon.ico" sizes="any" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <meta name="theme-color" content="#1E3932" />
