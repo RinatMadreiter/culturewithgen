@@ -104,15 +104,18 @@
     "items": [
       {
         "icon": "corporate_fare",
-        "text": "In-company training"
+        "text": "In-company training",
+        "description": "Delivered on-site at your organisation, tailored to your team's specific context and challenges."
       },
       {
         "icon": "videocam",
-        "text": "Online workshops"
+        "text": "Online workshops",
+        "description": "Interactive live sessions for distributed or international teams, wherever they are based."
       },
       {
         "icon": "schedule",
-        "text": "Half-day or full-day sessions"
+        "text": "Half-day or full-day sessions",
+        "description": "Flexible durations designed to fit your team's schedule while allowing time for real practice."
       }
     ]
   },

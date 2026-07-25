@@ -14,6 +14,12 @@ const iconItem = z.object({
   text: z.string(),
 });
 
+const formatItem = z.object({
+  icon: z.string(),
+  text: z.string(),
+  description: z.string().optional(),
+});
+
 const landingCollection = defineCollection({
   loader: glob({ pattern: "*.json", base: "./src/content/landing" }),
   schema: z.object({
@@ -57,7 +63,7 @@ const landingCollection = defineCollection({
     }),
     format: z.object({
       title: z.string(),
-      items: z.array(iconItem),
+      items: z.array(formatItem),
     }),
     contact: z.object({
       title: z.string(),

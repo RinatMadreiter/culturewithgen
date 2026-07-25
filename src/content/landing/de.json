@@ -104,15 +104,18 @@
     "items": [
       {
         "icon": "corporate_fare",
-        "text": "Inhouse-Trainings im Unternehmen"
+        "text": "Inhouse-Trainings im Unternehmen",
+        "description": "Vor Ort in Ihrem Unternehmen durchgeführt und auf den spezifischen Kontext und die Herausforderungen Ihres Teams zugeschnitten."
       },
       {
         "icon": "videocam",
-        "text": "Online-Workshops"
+        "text": "Online-Workshops",
+        "description": "Interaktive Live-Sessions für verteilte oder internationale Teams, unabhängig vom Standort."
       },
       {
         "icon": "schedule",
-        "text": "Halbtägige oder ganztägige Workshops"
+        "text": "Halbtägige oder ganztägige Workshops",
+        "description": "Flexible Zeitformate, die sich an den Zeitplan Ihres Teams anpassen und dabei Raum für praktische Übungen lassen."
       }
     ]
   },

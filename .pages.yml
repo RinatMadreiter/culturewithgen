@@ -300,6 +300,11 @@ content:
               - name: text
                 type: string
                 required: true
+              - name: description
+                label: Expanding sentence
+                type: string
+                required: false
+                description: "One sentence expanding on this workshop format."
       - name: contact
         label: Contact
         type: object

@@ -33,6 +33,17 @@ test.describe("English home page", () => {
       await expect(page.getByRole("heading", { name: heading })).toBeVisible();
     }
 
+    // Workshop format cards render both the title and the expanding
+    // description sentence for each format.
+    for (const item of en.format.items) {
+      await expect(
+        page.getByRole("heading", { name: item.text, level: 3 }),
+      ).toBeVisible();
+      if (item.description) {
+        await expect(page.getByText(item.description)).toBeVisible();
+      }
+    }
+
     // Inline SVG icons rendered for list items. Scoped to <main> so the
     // responsive nav hamburger (svg.svg-icon, hidden at desktop widths) can't
     // be picked up by .first().
