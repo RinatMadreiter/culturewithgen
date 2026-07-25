@@ -27,7 +27,10 @@ const { title, items = [] } = Astro.props;
         items.map((item) => (
           <div class="bg-[#F4F7F5] border border-[#1E3932]/20 p-6 lg:p-10 rounded-[1.5rem] shadow-sm hover:scale-[1.02] hover:shadow-md transition-all duration-300 relative overflow-hidden group text-center">
             <div class="absolute top-0 right-0 w-32 h-32 bg-[#1E3932]/5 rounded-bl-[100px] -z-10 group-hover:bg-[#1E3932]/10 transition-colors" />
-            <Icon name={item.icon} class="text-4xl text-[#9A442D] mb-6 mx-auto" />
+            <Icon
+              name={item.icon}
+              class="text-4xl text-[#9A442D] mb-6 mx-auto"
+            />
             <h3 class="text-xl font-bold text-[#1E3932] mb-4">{item.text}</h3>
             {item.description && <p class="text-base">{item.description}</p>}
           </div>
