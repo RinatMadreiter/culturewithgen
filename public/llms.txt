@@ -1,0 +1,50 @@
+# CultureWithGen
+
+> Intercultural communication and collaboration training for multicultural workplaces and international business, run by Genevieve Navisotschnig from Austria. Practical, discussion-based workshops are delivered in English, in-company or online, and are tailored to each organisation. The website is a bilingual (English/German) single-page site; this file summarises what the service is and who it is for.
+
+CultureWithGen helps international teams and local staff communicate and collaborate effectively across cultures. Workshops use real-life examples, workplace situations and interactive activities so that participants leave with communication and collaboration skills they can apply immediately.
+
+All workshops are delivered in English. Drawing on a background as a Business English trainer, the trainer adapts language and delivery to participants' English proficiency levels, so mixed-fluency groups can take part on equal footing.
+
+Topics covered:
+
+- Communication and collaboration in multicultural teams
+- Working effectively with international colleagues and clients
+- Understanding different communication styles and cultural perspectives
+- Developing cultural awareness and intercultural competence
+
+Who it is for:
+
+- Multicultural teams
+- Organisations operating internationally
+- Professionals working with international colleagues or clients
+- Teams seeking to strengthen collaboration and navigate cultural differences
+
+Situations workshops typically address:
+
+- Communication styles are interpreted in different ways
+- Expectations around roles and responsibilities vary
+- Ways of working and approaches to feedback vary
+- Approaches to decision-making create uncertainty
+- Misunderstandings impact teamwork
+
+Formats: in-company training, online workshops, half-day or full-day sessions. Individual sessions or a series of training sessions can be arranged.
+
+Trainer: Genevieve Navisotschnig, an intercultural trainer working in higher education and with companies, with experience of living and working in different countries. Qualifications: Master's degree in Adult Learning in Global Change, Postgraduate Diploma in Intercultural Competence, Bachelor's degree in Psychology and Sociology.
+
+Location and availability: based in Austria (Neumarkt am Wallersee, Salzburg). Workshops are available on-site at the client's premises and online, so delivery is not limited to Austria.
+
+Enquiries: via the contact section of the website, which lists the email address.
+
+## Main pages
+
+- [Home (English)](https://culturewithgen.com/): Full service description — offering, audience, typical situations, workshop formats, trainer background and contact details.
+- [Home (German)](https://culturewithgen.com/de/): The same content in German. Note that the workshops themselves are delivered in English.
+
+## Optional
+
+- [Imprint](https://culturewithgen.com/imprint): Legal disclosure and business owner details.
+- [Privacy policy](https://culturewithgen.com/privacy): GDPR information on data processing.
+- [Impressum (German)](https://culturewithgen.com/de/impressum): German-language imprint.
+- [Datenschutzerklärung (German)](https://culturewithgen.com/de/datenschutz): German-language privacy policy.
+- [Sitemap](https://culturewithgen.com/sitemap-index.xml): Machine-readable index of all pages.
