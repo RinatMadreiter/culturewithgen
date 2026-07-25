@@ -33,9 +33,7 @@ const asset =
 const alt = image?.alt || "Professional portrait of intercultural trainer";
 ---
 
-<section
-  class="relative pt-20 pb-10 lg:pb-32 px-6 lg:px-12 overflow-hidden bg-surface"
->
+<section class="relative pt-20 pb-10 lg:pb-32 px-6 lg:px-12 overflow-hidden">
   <div
     class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center"
   >
@@ -49,30 +47,28 @@ const alt = image?.alt || "Professional portrait of intercultural trainer";
               name="language"
               class="eyebrow-globe text-[#9A442D] text-xl leading-none"
             />
-            <span class="text-sm font-semibold text-[#1E3932]/70 tracking-wide font-label">
+            <span class="text-sm font-semibold text-[#1E3932]/70 tracking-wide">
               {eyebrow}
             </span>
           </div>
         )
       }
       <h1
-        class="text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.1] font-headline font-extrabold text-primary-container tracking-[-0.02em] mb-8"
+        class="text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.1] font-extrabold tracking-[-0.02em] mb-8"
       >
         {title}
       </h1>
-      <p
-        class="text-xl md:text-2xl font-body font-medium text-on-surface-variant mb-6 leading-relaxed"
-      >
+      <p class="text-xl md:text-2xl font-medium mb-6 leading-relaxed">
         {subtitle}
       </p>
       <div
-        class="rich-text text-base font-body text-on-surface-variant mb-12 leading-relaxed max-w-2xl"
+        class="rich-text text-base mb-12 leading-relaxed max-w-2xl"
         set:html={description}
       />
       <div class="flex flex-col sm:flex-row items-center gap-6">
         <a
           href="#contact"
-          class="w-full sm:w-auto bg-[#9A442D] text-white px-8 py-4 rounded-lg font-label font-bold tracking-wider hover:bg-[#7D3522] transition-all duration-200 shadow-[0_10px_30px_rgba(154,68,45,0.35)] hover:shadow-[0_12px_36px_rgba(154,68,45,0.45)] hover:-translate-y-0.5 text-center"
+          class="w-full sm:w-auto bg-[#9A442D] text-white px-8 py-4 rounded-lg font-bold tracking-wider hover:bg-[#7D3522] transition-all duration-200 shadow-[0_10px_30px_rgba(154,68,45,0.35)] hover:shadow-[0_12px_36px_rgba(154,68,45,0.45)] hover:-translate-y-0.5 text-center"
         >
           {ctaLabel}
         </a>
@@ -80,7 +76,7 @@ const alt = image?.alt || "Professional portrait of intercultural trainer";
     </div>
     <div class="lg:col-span-5 relative">
       <div
-        class="absolute inset-0 bg-primary-container rounded-[2rem] transform translate-x-4 translate-y-4 -z-10 opacity-10"
+        class="absolute inset-0 rounded-[2rem] transform translate-x-4 translate-y-4 -z-10 opacity-10"
       >
       </div>
       {

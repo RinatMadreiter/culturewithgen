@@ -115,7 +115,12 @@ const label = locale === "de" ? "Nach oben" : "Back to top";
       { passive: true },
     );
 
-    updateVisibility();
+    // Reading scrollY forces a synchronous layout. Doing that during module
+    // evaluation pulled the document's first full layout ahead of the first
+    // paint (65ms of it, in a mobile trace). rAF defers the initial sync until
+    // after that paint; the button starts hidden, which is the correct state
+    // for any load that isn't already scrolled past the threshold.
+    requestAnimationFrame(updateVisibility);
 
     button.addEventListener("click", () => {
       const reduceMotion = window.matchMedia(

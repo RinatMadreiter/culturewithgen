@@ -14,14 +14,9 @@ interface Props {
 const { title, items = [] } = Astro.props;
 ---
 
-<section
-  class="py-12 lg:py-24 px-6 lg:px-12 bg-surface-container-low"
-  id="formats"
->
+<section class="py-12 lg:py-24 px-6 lg:px-12" id="formats">
   <div class="max-w-7xl mx-auto text-center">
-    <h2
-      class="text-3xl lg:text-[2.75rem] font-headline font-bold text-primary-container tracking-tight mb-12"
-    >
+    <h2 class="text-3xl lg:text-[2.75rem] font-bold tracking-tight mb-12">
       {title}
     </h2>
     <div class="flex flex-wrap justify-center gap-6">
@@ -29,9 +24,7 @@ const { title, items = [] } = Astro.props;
         items.map((item) => (
           <div class="bg-[#F4F7F5] border border-[#1E3932]/20 px-8 py-6 rounded-full shadow-sm hover:scale-[1.02] hover:shadow-md transition-all duration-300 flex items-center gap-3">
             <Icon name={item.icon} class="text-[#9A442D]" />
-            <span class="text-lg font-headline font-bold text-[#1E3932]">
-              {item.text}
-            </span>
+            <span class="text-lg font-bold text-[#1E3932]">{item.text}</span>
           </div>
         ))
       }
