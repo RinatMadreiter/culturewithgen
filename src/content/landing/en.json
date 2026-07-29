@@ -110,12 +110,12 @@
       {
         "icon": "videocam",
         "text": "Online workshops",
-        "description": "Interactive live sessions for distributed or international teams, wherever they are based."
+        "description": "Interactive live workshops for distributed or international teams, wherever they are based."
       },
       {
         "icon": "schedule",
         "text": "Half-day or full-day sessions",
-        "description": "Flexible durations designed to fit your team's schedule while allowing time for real practice."
+        "description": "Flexible durations with half-day and full-day workshop options to suit your objectives and schedule."
       }
     ]
   },
