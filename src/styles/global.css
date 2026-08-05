@@ -58,24 +58,49 @@ html {
   }
 }
 
-/* Eyebrow globe: spins once slowly on page load, then idles. */
+/* Hero intro: a single staggered entrance that reads name -> topic -> globe.
+   Each step only animates opacity/transform so nothing reflows, and the short
+   overlapping delays keep the whole sequence under ~1.5s. */
+.hero-name {
+  animation: hero-rise-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-eyebrow-text {
+  animation: hero-rise-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+}
+
+@keyframes hero-rise-in {
+  from {
+    transform: translateY(8px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Globe arrives last, sliding in from the left and settling with one spin -
+   it reads as the finishing accent on the line the name opened. */
 .eyebrow-globe {
-  animation: globe-spin-in 2.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: globe-spin-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.65s both;
   display: inline-block;
 }
 
 @keyframes globe-spin-in {
   from {
-    transform: rotate(-180deg) scale(0.6);
+    transform: translateX(-8px) rotate(-180deg) scale(0.6);
     opacity: 0;
   }
   to {
-    transform: rotate(0deg) scale(1);
+    transform: translateX(0) rotate(0deg) scale(1);
     opacity: 1;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero-name,
+  .hero-eyebrow-text,
   .eyebrow-globe {
     animation: none;
   }

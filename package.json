@@ -10,6 +10,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "preview:prod": "astro build && astro preview --port 4322",
     "sync": "astro sync",
     "astro": "astro",
     "test": "playwright test",

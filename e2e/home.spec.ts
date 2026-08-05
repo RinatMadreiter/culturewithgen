@@ -14,7 +14,10 @@ test.describe("English home page", () => {
     const response = await page.goto("/");
     expect(response?.status()).toBe(200);
 
-    // Hero eyebrow + title
+    // Hero name (hardcoded, not CMS-driven) + eyebrow + title
+    await expect(
+      page.locator("main").getByText("Genevieve Navisotschnig"),
+    ).toBeVisible();
     await expect(
       page.locator("main").getByText(en.header.eyebrow),
     ).toBeVisible();
@@ -90,6 +93,10 @@ test.describe("German home page", () => {
     const response = await page.goto("/de/");
     expect(response?.status()).toBe(200);
 
+    // Hero name (hardcoded, not CMS-driven) renders on the German page too.
+    await expect(
+      page.locator("main").getByText("Genevieve Navisotschnig"),
+    ).toBeVisible();
     await expect(
       page.getByRole("heading", { name: de.header.title, level: 1 }),
     ).toBeVisible();
