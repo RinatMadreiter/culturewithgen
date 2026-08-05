@@ -70,6 +70,14 @@ test.describe("English home page", () => {
       "mailto:culturewithgen@gmail.com",
     );
 
+    // Footer LinkedIn link opens in new tab with security attributes.
+    const linkedIn = page.locator('footer a[href*="linkedin"]');
+    await expect(linkedIn).toBeVisible();
+    await expect(linkedIn).toHaveAttribute("target", "_blank");
+    await expect(linkedIn).toHaveAttribute("rel", /noopener/);
+    await expect(linkedIn).toHaveAttribute("rel", /noreferrer/);
+    await expect(linkedIn.locator("svg")).toBeVisible();
+
     // Footer
     await expect(page.locator("footer")).toContainText("CultureWithGen");
 
