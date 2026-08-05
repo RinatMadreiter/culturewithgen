@@ -10,4 +10,4 @@ Maierhof 14
 
 ## Kontakt
 
-- E-Mail: culturewithgen [at] gmail [dot] com
+- E-Mail: [culturewithgen@gmail.com](mailto:culturewithgen@gmail.com)

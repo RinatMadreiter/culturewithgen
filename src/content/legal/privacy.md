@@ -15,7 +15,7 @@ The controller responsible for this website is:
 - Genevieve Navisotschnig
 - Maierhof 14
 - 5202 Neumarkt am Wallersee
-- E-Mail: culturewithgen [at] gmail [dot] com
+- E-Mail: [culturewithgen@gmail.com](mailto:culturewithgen@gmail.com)
 
 ## 3. Hosting
 
