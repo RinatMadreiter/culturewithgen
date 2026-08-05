@@ -22,23 +22,7 @@ Verantwortlich für diese Website ist:
 Diese Website wird über **GitHub Pages** gehostet. Anbieter ist GitHub, Inc., 88 Colin P. Kelly Jr. St., San Francisco, CA 94107, USA. GitHub nennt außerdem GitHub B.V., Prins Bernhardplein 200, 1097JB Amsterdam, Niederlande, als Kontaktadresse in Europa.  
 Weitere Informationen: [GitHub General Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement)
 
-## 4. Pages CMS
-
-Zur Verwaltung der Inhalte dieser Website wird **Pages CMS** verwendet. Dabei handelt es sich um ein Content-Management-System für statische Websites, das mit GitHub verbunden ist und den Zugriff auf Repository-Inhalte ermöglicht.
-
-Im Rahmen der Nutzung von Pages CMS können personenbezogene Daten verarbeitet werden, insbesondere Anmeldedaten im Zusammenhang mit GitHub, Benutzerkennungen, E-Mail-Adressen im Rahmen von Kollaboratoren-Zugriffen sowie technische Metadaten, die für Authentifizierung, Zugriffsprüfung und Inhaltsverwaltung erforderlich sind.
-
-Die Authentifizierung erfolgt über GitHub bzw. über mit GitHub verbundene Zugriffstoken oder eine GitHub-App-Installation. Die konkrete Verarbeitung hängt davon ab, auf welche Weise der Zugriff auf das jeweilige Repository erfolgt.
-
-Pages CMS betrifft in der Regel nicht die normalen Besucher dieser Website, sondern nur Personen, die Inhalte verwalten oder bearbeiten.
-
-Weitere Informationen:
-
-- [Pages CMS Dokumentation](https://pagescms.org/docs/)
-- [Pages CMS auf GitHub Marketplace](https://github.com/marketplace/pages-cms)
-- [Pages CMS Datenschutzerklärung](https://pagescms.org/privacy/)
-
-## 5. Zugriffsdaten
+## 4. Zugriffsdaten
 
 Diese Website wird über GitHub Pages bereitgestellt. Beim Aufruf der Website werden aus technischen Gründen Informationen verarbeitet, die erforderlich sind, um die Website korrekt auszuliefern und die Sicherheit und Stabilität des Betriebs zu gewährleisten.
 
@@ -51,25 +35,23 @@ Dabei können insbesondere folgende Daten verarbeitet werden:
 - Betriebssystem
 - Referrer-URL
 
-## 6. Keine Cookies, kein Tracking
+## 5. Keine Cookies, kein Tracking
 
 Diese Website verwendet keine eigenen Cookies, keine Analyse-Tools, kein Tracking und keine sonstigen Drittanbieter-Dienste.
 
 Es werden insbesondere keine Tools zur Reichweitenmessung, keine Werbe- oder Marketing-Cookies und keine eingebetteten externen Inhalte verwendet.
 
-## 7. Rechtsgrundlage
+## 6. Rechtsgrundlage
 
 Die Verarbeitung technisch erforderlicher Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Das berechtigte Interesse liegt in der sicheren, stabilen und effizienten Bereitstellung dieser Website.
 
-Soweit personenbezogene Daten im Rahmen der Inhaltsverwaltung über Pages CMS verarbeitet werden, erfolgt dies ebenfalls auf Grundlage berechtigter Interessen gemäß Art. 6 Abs. 1 lit. f DSGVO, insbesondere zur technischen und organisatorischen Verwaltung der Website.
+## 7. Drittlandübermittlung
 
-## 8. Drittlandübermittlung
-
-Da das Hosting über GitHub erfolgt und Pages CMS mit GitHub verbunden ist, kann eine Verarbeitung personenbezogener Daten in den USA oder anderen Drittländern nicht ausgeschlossen werden.
+Da das Hosting über GitHub erfolgt, kann eine Verarbeitung personenbezogener Daten in den USA oder anderen Drittländern nicht ausgeschlossen werden.
 
 GitHub gibt an, personenbezogene Daten auch in den Vereinigten Staaten und anderen Ländern zu verarbeiten und für Übermittlungen aus der EU unter anderem Standardvertragsklauseln und das Data Privacy Framework zu verwenden.
 
-## 9. Betroffenenrechte
+## 8. Betroffenenrechte
 
 Betroffenen Personen stehen nach der DSGVO grundsätzlich folgende Rechte zu:
 
@@ -82,7 +64,7 @@ Betroffenen Personen stehen nach der DSGVO grundsätzlich folgende Rechte zu:
 
 Wenn angenommen wird, dass die Verarbeitung personenbezogener Daten gegen Datenschutzrecht verstößt, besteht zudem das Recht auf Beschwerde bei einer zuständigen Aufsichtsbehörde.
 
-## 10. Zuständige Aufsichtsbehörde in Österreich
+## 9. Zuständige Aufsichtsbehörde in Österreich
 
 Österreichische Datenschutzbehörde  
 Barichgasse 40–42  
@@ -90,6 +72,6 @@ Barichgasse 40–42
 Website: [https://www.dsb.gv.at/](https://www.dsb.gv.at/)
 E-Mail: [dsb@dsb.gv.at](mailto:dsb@dsb.gv.at)
 
-## 11. Stand
+## 10. Stand
 
 Stand: Juli 2026
