@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import logo from "../assets/logo.webp";
 import Seo from "../components/Seo.astro";
+import Footer from "../components/Footer.astro";
 
 type Locale = "en" | "de";
 
@@ -61,6 +62,11 @@ const {
         background-color: var(--page);
         margin: 0;
         padding: 0;
+        /* Sticky footer: the imprint page is short enough that without this the
+           footer would float mid-viewport with page background beneath it. */
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
       }
       .site-header {
         position: sticky;
@@ -104,9 +110,12 @@ const {
         text-decoration: underline;
       }
       main {
+        width: 100%;
+        box-sizing: border-box;
         max-width: 880px;
         margin: 2.5rem auto;
         padding: 0 1.5rem;
+        flex: 1;
       }
       .legal-prose {
         background: var(--card);
@@ -114,6 +123,11 @@ const {
         border-radius: 1rem;
         padding: 2.5rem;
         box-shadow: 0 12px 40px rgba(30, 57, 50, 0.06);
+        /* Long German compounds ("Datenschutzerklärung",
+           "Drittlandübermittlung") are wider than the content column on narrow
+           screens and would otherwise push the whole page into horizontal
+           scroll. Only affects words that cannot otherwise fit. */
+        overflow-wrap: break-word;
       }
       .legal-prose h1 {
         color: var(--ink);
@@ -148,5 +162,6 @@ const {
         <slot />
       </article>
     </main>
+    <Footer locale={lang} />
   </body>
 </html>

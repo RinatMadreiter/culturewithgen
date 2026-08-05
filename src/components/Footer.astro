@@ -1,0 +1,149 @@
+---
+interface Props {
+  locale?: "en" | "de";
+}
+
+const { locale = "en" } = Astro.props;
+
+const LINKEDIN_URL =
+  "https://www.linkedin.com/in/genevieve-navisotschnig-40127b166/";
+
+// Locale copy lives here rather than at each call site: the footer renders on
+// the two home pages and all four legal pages. Mirrors BackToTop.astro.
+const COPY = {
+  en: {
+    tagline: "Intercultural Communication & Collaboration",
+    privacyHref: "/privacy",
+    privacyLabel: "Privacy Policy",
+    imprintHref: "/imprint",
+    imprintLabel: "Imprint",
+    linkedInLabel: "LinkedIn profile",
+  },
+  de: {
+    tagline: "Interkulturelle Kommunikation & Zusammenarbeit",
+    privacyHref: "/de/datenschutz",
+    privacyLabel: "Datenschutz",
+    imprintHref: "/de/impressum",
+    imprintLabel: "Impressum",
+    linkedInLabel: "LinkedIn-Profil",
+  },
+} as const;
+
+const t = COPY[locale];
+---
+
+<!-- Deliberately a deeper green than the #1E3932 Contact section on the home
+     pages, so the footer reads as a separate, recessed "basement" rather than
+     continuing the same dark block. The colour carries the boundary. -->
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <!-- Social sits above the legal links in the markup, not via CSS order, so
+         keyboard focus order matches the visual order. -->
+    <a
+      class="site-footer__social"
+      href={LINKEDIN_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={t.linkedInLabel}
+    >
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path
+          d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+        ></path>
+      </svg>
+    </a>
+
+    <div class="site-footer__legal">
+      <a href={t.privacyHref}>{t.privacyLabel}</a>
+      <a href={t.imprintHref}>{t.imprintLabel}</a>
+    </div>
+
+    <p class="site-footer__copy">
+      © {new Date().getFullYear()} CultureWithGen · {t.tagline}
+    </p>
+  </div>
+</footer>
+
+<style>
+  /* Written as plain CSS rather than utility classes on purpose: this component
+     renders both on the Tailwind-powered home pages and on the legal pages,
+     which deliberately do not load Tailwind. Every property Preflight would
+     normally normalise (link colour and decoration, paragraph margin, svg
+     display) is therefore set explicitly, so the footer looks identical with or
+     without a reset in play. */
+  .site-footer {
+    width: 100%;
+    background-color: #102420;
+    color: #faf9f6;
+  }
+
+  .site-footer__inner {
+    box-sizing: border-box;
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .site-footer__legal {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    font-size: 0.75rem;
+    line-height: 1.333;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .site-footer__legal a,
+  .site-footer__social {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* 44px minimum touch target on small screens. */
+    min-height: 2.75rem;
+    color: rgba(250, 249, 246, 0.7);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .site-footer__social {
+    min-width: 2.75rem;
+  }
+
+  .site-footer__legal a:hover,
+  .site-footer__legal a:focus-visible,
+  .site-footer__social:hover,
+  .site-footer__social:focus-visible {
+    color: #e07a5f;
+  }
+
+  .site-footer__social svg {
+    display: block;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .site-footer__copy {
+    margin: 0;
+    font-size: 0.75rem;
+    line-height: 1.333;
+    text-align: center;
+    text-wrap: balance;
+    color: rgba(250, 249, 246, 0.6);
+  }
+
+  /* The layout is a centred stack at every width; only the enlarged touch
+     targets are relaxed here, where pointer precision makes them unnecessary
+     and they would otherwise pad out the footer. */
+  @media (min-width: 768px) {
+    .site-footer__legal a,
+    .site-footer__social {
+      min-height: 0;
+      min-width: 0;
+    }
+  }
+</style>
