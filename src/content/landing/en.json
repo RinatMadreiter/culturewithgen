@@ -130,6 +130,14 @@
       {
         "quote": "<p>Genevieve created a safe, open space where everyone felt comfortable sharing. We left with concrete tools we still use every day.</p>",
         "name": "HR manager, technology company"
+      },
+      {
+        "quote": "<p>Best teacher ever!</p>",
+        "name": "Rinat",
+        "image": {
+          "src": "/images/profile4.webp",
+          "alt": "profile photo"
+        }
       }
     ]
   },
