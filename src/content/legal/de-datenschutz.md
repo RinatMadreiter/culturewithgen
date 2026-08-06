@@ -41,17 +41,23 @@ Diese Website verwendet keine eigenen Cookies, keine Analyse-Tools, kein Trackin
 
 Es werden insbesondere keine Tools zur Reichweitenmessung, keine Werbe- oder Marketing-Cookies und keine eingebetteten externen Inhalte verwendet.
 
-## 6. Rechtsgrundlage
+## 6. Externe Links
+
+Diese Website enthält externe Links, insbesondere ein über **Google Forms** bereitgestelltes Kontaktformular. Diese Links öffnen sich in einem neuen Tab und führen zu Websites Dritter. Über diese Links werden auf dieser Website keine personenbezogenen Daten erhoben oder verarbeitet.
+
+Wenn Sie einem solchen Link folgen und den verlinkten Dienst nutzen, ist der jeweilige Anbieter für die Verarbeitung Ihrer Daten verantwortlich. Wenn Sie das Kontaktformular über Google Forms verwenden, werden die von Ihnen dort eingegebenen Daten von Google verarbeitet (Anbieter: Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland). Einzelheiten entnehmen Sie bitte der [Datenschutzerklärung](https://policies.google.com/privacy) und den [Nutzungsbedingungen](https://policies.google.com/terms) von Google.
+
+## 7. Rechtsgrundlage
 
 Die Verarbeitung technisch erforderlicher Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Das berechtigte Interesse liegt in der sicheren, stabilen und effizienten Bereitstellung dieser Website.
 
-## 7. Drittlandübermittlung
+## 8. Drittlandübermittlung
 
 Da das Hosting über GitHub erfolgt, kann eine Verarbeitung personenbezogener Daten in den USA oder anderen Drittländern nicht ausgeschlossen werden.
 
 GitHub gibt an, personenbezogene Daten auch in den Vereinigten Staaten und anderen Ländern zu verarbeiten und für Übermittlungen aus der EU unter anderem Standardvertragsklauseln und das Data Privacy Framework zu verwenden.
 
-## 8. Betroffenenrechte
+## 9. Betroffenenrechte
 
 Betroffenen Personen stehen nach der DSGVO grundsätzlich folgende Rechte zu:
 
@@ -64,7 +70,7 @@ Betroffenen Personen stehen nach der DSGVO grundsätzlich folgende Rechte zu:
 
 Wenn angenommen wird, dass die Verarbeitung personenbezogener Daten gegen Datenschutzrecht verstößt, besteht zudem das Recht auf Beschwerde bei einer zuständigen Aufsichtsbehörde.
 
-## 9. Zuständige Aufsichtsbehörde in Österreich
+## 10. Zuständige Aufsichtsbehörde in Österreich
 
 Österreichische Datenschutzbehörde  
 Barichgasse 40–42  
@@ -72,6 +78,6 @@ Barichgasse 40–42
 Website: [https://www.dsb.gv.at/](https://www.dsb.gv.at/)
 E-Mail: [dsb@dsb.gv.at](mailto:dsb@dsb.gv.at)
 
-## 10. Stand
+## 11. Stand
 
-Stand: Juli 2026
+Stand: August 2026

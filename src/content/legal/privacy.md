@@ -41,17 +41,23 @@ This website does not use its own cookies, analytics tools, tracking, or any oth
 
 In particular, no tools for reach measurement, no advertising or marketing cookies, and no embedded external content are used.
 
-## 6. Legal Basis
+## 6. External Links
+
+This website contains external links, in particular a contact form provided via **Google Forms**. These links open in a new tab and lead to websites operated by third parties. No personal data is collected or processed on this website through these links.
+
+When you follow such a link and use the linked service, the respective provider is responsible for the processing of your data. If you use the Google Forms contact form, the data you enter there is processed by Google (provider: Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland). For details, please refer to Google's [Privacy Policy](https://policies.google.com/privacy) and [Terms of Service](https://policies.google.com/terms).
+
+## 7. Legal Basis
 
 The processing of technically required data is carried out on the basis of Art. 6 para. 1 lit. f GDPR. The legitimate interest lies in the secure, stable, and efficient provision of this website.
 
-## 7. Third-Country Transfer
+## 8. Third-Country Transfer
 
 Since the hosting is provided through GitHub, processing of personal data in the USA or other third countries cannot be ruled out.
 
 GitHub states that it also processes personal data in the United States and other countries and uses, among other things, standard contractual clauses and the Data Privacy Framework for transfers from the EU.
 
-## 8. Data Subject Rights
+## 9. Data Subject Rights
 
 Under the GDPR, data subjects generally have the following rights:
 
@@ -64,7 +70,7 @@ Under the GDPR, data subjects generally have the following rights:
 
 If it is assumed that the processing of personal data violates data protection law, there is also the right to lodge a complaint with a competent supervisory authority.
 
-## 9. Competent Supervisory Authority in Austria
+## 10. Competent Supervisory Authority in Austria
 
 Austrian Data Protection Authority  
 Barichgasse 40–42  
@@ -72,6 +78,6 @@ Barichgasse 40–42
 Website: [https://www.dsb.gv.at/](https://www.dsb.gv.at/)
 Email: [dsb@dsb.gv.at](mailto:dsb@dsb.gv.at)
 
-## 10. Status
+## 11. Status
 
-Status: July 2026
+Status: August 2026
