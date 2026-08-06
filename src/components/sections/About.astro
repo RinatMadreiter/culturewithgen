@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import Icon from "../Icon.astro";
+import { resolveImage } from "../../lib/images";
 
 interface Credential {
   icon: string;
@@ -16,21 +17,7 @@ interface Props {
 
 const { title, body, image, credentials = [] } = Astro.props;
 
-const publicImages = import.meta.glob(
-  "/public/images/*.{webp,jpg,jpeg,png,avif}",
-);
-const assets = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/assets/images/*.{webp,jpg,jpeg,png,avif}",
-  { eager: true },
-);
-const filename = image?.src?.split("/").pop();
-const inPublic = filename
-  ? `/public/images/${filename}` in publicImages
-  : false;
-const asset =
-  !inPublic && filename
-    ? assets[`/src/assets/images/${filename}`]?.default
-    : undefined;
+const asset = resolveImage(image?.src);
 const alt = image?.alt || "Trainer facilitating a workshop";
 ---
 

@@ -65,6 +65,20 @@ const landingCollection = defineCollection({
       title: z.string(),
       items: z.array(formatItem),
     }),
+    // Optional so neither locale JSON is forced to carry the key.
+    testimonials: z
+      .object({
+        title: z.string(),
+        items: z.array(
+          z.object({
+            // Rich-text (HTML) authored via the CMS; rendered with set:html.
+            quote: z.string(),
+            name: z.string(),
+            image,
+          }),
+        ),
+      })
+      .optional(),
     contact: z.object({
       title: z.string(),
       text: z.string(),

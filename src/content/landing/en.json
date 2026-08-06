@@ -119,6 +119,19 @@
       }
     ]
   },
+  "testimonials": {
+    "title": "What participants say",
+    "items": [
+      {
+        "quote": "<p>The workshop completely changed how our team communicates across cultures. Practical, engaging and immediately useful.</p>",
+        "name": "Team lead, international NGO"
+      },
+      {
+        "quote": "<p>Genevieve created a safe, open space where everyone felt comfortable sharing. We left with concrete tools we still use every day.</p>",
+        "name": "HR manager, technology company"
+      }
+    ]
+  },
   "contact": {
     "title": "Contact",
     "text": "Let's discuss how a tailored workshop or a series of training sessions could support you or your team:",

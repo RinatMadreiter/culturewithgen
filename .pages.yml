@@ -305,6 +305,42 @@ content:
                 type: string
                 required: false
                 description: "One sentence expanding on this workshop format."
+      - name: testimonials
+        label: Testimonials
+        type: object
+        required: false
+        fields:
+          - name: title
+            type: string
+          - name: items
+            label: Testimonials
+            type: object
+            list: true
+            fields:
+              - name: quote
+                label: Quote (rich text)
+                type: rich-text
+                options:
+                  format: html
+                  switcher: false
+              - name: name
+                type: string
+                required: true
+              - name: image
+                label: Photo (optional, shown as a circle)
+                type: object
+                required: false
+                fields:
+                  - name: src
+                    label: Image
+                    type: image
+                    options:
+                      media: landing-images
+                    required: false
+                  - name: alt
+                    label: Alt text
+                    type: string
+                    required: false
       - name: contact
         label: Contact
         type: object

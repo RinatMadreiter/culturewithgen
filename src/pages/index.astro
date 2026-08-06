@@ -13,6 +13,7 @@ import About from "../components/sections/About.astro";
 import WhoFor from "../components/sections/WhoFor.astro";
 import Situations from "../components/sections/Situations.astro";
 import Formats from "../components/sections/Formats.astro";
+import Testimonials from "../components/sections/Testimonials.astro";
 import Contact from "../components/sections/Contact.astro";
 import BackToTop from "../components/BackToTop.astro";
 
@@ -67,6 +68,7 @@ const seoDescription =
       <WhoFor {...content.whoFor} />
       <Situations {...content.situations} />
       <Formats {...content.format} />
+      {content.testimonials && <Testimonials {...content.testimonials} />}
       <Contact {...content.contact} />
     </main>
 

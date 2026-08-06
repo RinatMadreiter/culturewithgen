@@ -1,0 +1,83 @@
+---
+import { Image } from "astro:assets";
+import { resolveImage } from "../../lib/images";
+
+interface Testimonial {
+  quote: string;
+  name: string;
+  image?: { src: string; alt?: string };
+}
+
+interface Props {
+  title: string;
+  items: Testimonial[];
+}
+
+const { title, items = [] } = Astro.props;
+---
+
+<section class="py-12 lg:py-24 px-6 lg:px-12 bg-[#F4F7F5]" id="testimonials">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-8 lg:mb-16">
+      <h2 class="text-3xl lg:text-[2.75rem] font-bold tracking-tight">
+        {title}
+      </h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {
+        items.map((item, i) => {
+          const asset = resolveImage(item.image?.src);
+          const alt = item.image?.alt || item.name;
+          const spanFull =
+            i === items.length - 1 && items.length % 2 === 1
+              ? "md:col-span-2"
+              : "";
+          return (
+            <figure
+              class:list={[
+                "bg-white border border-[#1E3932]/20 p-6 lg:p-10 rounded-[1.5rem] shadow-sm hover:scale-[1.02] hover:shadow-md transition-all duration-300 relative overflow-hidden group flex flex-col",
+                spanFull,
+              ]}
+            >
+              <div class="absolute top-0 right-0 w-32 h-32 bg-[#1E3932]/5 rounded-bl-[100px] -z-10 group-hover:bg-[#1E3932]/10 transition-colors" />
+              <svg
+                class="w-10 h-10 text-[#1E3932]/15 group-hover:text-[#9A442D]/30 transition-colors mb-4"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z" />
+              </svg>
+              <blockquote
+                class="rich-text text-lg leading-[1.6] text-[#1E3932] flex-1"
+                set:html={item.quote}
+              />
+              <figcaption class="flex items-center gap-4 mt-6 pt-6 border-t border-[#1E3932]/10">
+                {asset ? (
+                  <Image
+                    src={asset}
+                    alt={alt}
+                    width={56}
+                    height={56}
+                    class="w-14 h-14 rounded-full object-cover shrink-0"
+                  />
+                ) : (
+                  item.image?.src && (
+                    <img
+                      src={item.image.src}
+                      alt={alt}
+                      width={56}
+                      height={56}
+                      class="w-14 h-14 rounded-full object-cover shrink-0"
+                    />
+                  )
+                )}
+                <span class="font-bold text-[#1E3932]">{item.name}</span>
+              </figcaption>
+            </figure>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>
