@@ -10,7 +10,7 @@ const { name, class: className = "" } = Astro.props;
 
 const path = ICON_PATHS[name];
 // Fail the build loudly on unknown names (e.g. a typo entered via Pages CMS)
-// instead of silently rendering nothing in production.
+// instead of silently rendering nothing in  production.
 if (!path) {
   throw new Error(
     `Unknown icon "${name}". Add its SVG path to src/components/icons.ts ` +
