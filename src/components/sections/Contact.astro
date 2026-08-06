@@ -1,15 +1,15 @@
 ---
 import Icon from "../Icon.astro";
-import ObfuscatedEmail from "../ObfuscatedEmail.astro";
+import { CONTACT_FORM_URL } from "../../lib/links";
 
 interface Props {
   title: string;
   text: string;
-  email: string;
   location: string;
+  ctaLabel: string;
 }
 
-const { title, text, email, location } = Astro.props;
+const { title, text, location, ctaLabel } = Astro.props;
 ---
 
 <section
@@ -24,12 +24,14 @@ const { title, text, email, location } = Astro.props;
       {text}
     </p>
     <div class="flex flex-col items-center gap-8">
-      <ObfuscatedEmail
-        email={email}
-        showIcon={true}
-        iconClass="email-cta__icon text-2xl"
-        class="email-cta inline-flex items-center gap-3 bg-[#9A442D] text-white text-lg md:text-2xl font-bold px-8 py-4 rounded-full shadow-[0_12px_36px_rgba(154,68,45,0.45)] hover:bg-[#7D3522] hover:-translate-y-0.5 hover:shadow-[0_16px_44px_rgba(154,68,45,0.55)] transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FAF9F6]"
-      />
+      <a
+        href={CONTACT_FORM_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-3 bg-[#9A442D] text-white text-lg md:text-2xl font-bold px-8 py-4 rounded-full shadow-[0_12px_36px_rgba(154,68,45,0.45)] hover:bg-[#7D3522] hover:-translate-y-0.5 hover:shadow-[0_16px_44px_rgba(154,68,45,0.55)] transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FAF9F6]"
+      >
+        {ctaLabel}
+      </a>
       <div class="flex items-center gap-2 text-base text-[#FAF9F6]/70">
         <Icon name="location_on" class="text-sm" />
         <span>{location}</span>

@@ -85,7 +85,6 @@ const landingCollection = defineCollection({
     contact: z.object({
       title: z.string(),
       text: z.string(),
-      email: z.string(),
       location: z.string(),
     }),
   }),

@@ -22,6 +22,17 @@ if (!entry)
   throw new Error("Missing landing content: src/content/landing/de.json");
 const content = entry.data;
 
+// Testimonials nav link is bound to the CMS `visible` toggle: it appears only
+// while the section is shown, so the anchor never points at a hidden section.
+const navLinks = [
+  { label: "Leistungen", href: "#services" },
+  { label: "Über mich", href: "#about" },
+  { label: "Workshops", href: "#formats" },
+];
+if (content.testimonials && content.testimonials.visible !== false) {
+  navLinks.push({ label: "Referenzen", href: "#testimonials" });
+}
+
 // CTA-oriented description, both grounded in the page content. Each can be
 // overridden via the CMS (content.seo); an empty/absent override falls back
 // to the derived default below so nothing regresses when left blank.
@@ -50,15 +61,7 @@ const seoDescription =
   </head>
 
   <body class="antialiased overflow-x-hidden flex flex-col min-h-screen">
-    <Navigation
-      homeHref="/de/"
-      links={[
-        { label: "Leistungen", href: "#services" },
-        { label: "Über mich", href: "#about" },
-        { label: "Workshops", href: "#formats" },
-      ]}
-      ctaLabel="Kontakt aufnehmen"
-    />
+    <Navigation homeHref="/de/" links={navLinks} ctaLabel="Kontakt aufnehmen" />
 
     <main class="pt-16 md:pt-40 flex-1">
       <Hero {...content.header} />
@@ -72,7 +75,7 @@ const seoDescription =
           <Testimonials {...content.testimonials} />
         )
       }
-      <Contact {...content.contact} />
+      <Contact {...content.contact} ctaLabel={content.header.ctaLabel} />
     </main>
 
     <Footer locale="de" />

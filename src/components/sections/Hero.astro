@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import Icon from "../Icon.astro";
 import { resolveImage } from "../../lib/images";
+import { CONTACT_FORM_URL } from "../../lib/links";
 
 interface Props {
   eyebrow?: string;
@@ -57,7 +58,9 @@ const alt = image?.alt || "Professional portrait of intercultural trainer";
       />
       <div class="flex flex-col sm:flex-row items-center gap-6">
         <a
-          href="#contact"
+          href={CONTACT_FORM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
           class="w-full sm:w-auto bg-[#9A442D] text-white px-8 py-4 rounded-lg font-bold tracking-wider hover:bg-[#7D3522] transition-all duration-200 shadow-[0_10px_30px_rgba(154,68,45,0.35)] hover:shadow-[0_12px_36px_rgba(154,68,45,0.45)] hover:-translate-y-0.5 text-center"
         >
           {ctaLabel}

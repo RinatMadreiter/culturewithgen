@@ -65,13 +65,12 @@ test.describe("English home page", () => {
     await expect(aboutImg).toBeVisible();
     await expect(aboutImg).toHaveAttribute("alt", /.+/);
 
-    // Contact email link reveals its mailto only on user intent (gated).
-    const emailLink = page.locator("a.js-email").first();
-    await emailLink.focus();
-    await expect(emailLink).toHaveAttribute(
-      "href",
-      "mailto:culturewithgen@gmail.com",
-    );
+    // Contact CTA links out to the Google Form in a new tab.
+    const contactCta = page.locator("#contact a[href*='forms.gle']");
+    await expect(contactCta).toBeVisible();
+    await expect(contactCta).toHaveAttribute("target", "_blank");
+    await expect(contactCta).toHaveAttribute("rel", /noopener/);
+    await expect(contactCta).toHaveAttribute("rel", /noreferrer/);
 
     // Footer LinkedIn link opens in new tab with security attributes.
     const linkedIn = page.locator('footer a[href*="linkedin"]');
@@ -101,11 +100,10 @@ test.describe("German home page", () => {
       page.getByRole("heading", { name: de.header.title, level: 1 }),
     ).toBeVisible();
 
-    const emailLink = page.locator("a.js-email").first();
-    await emailLink.focus();
-    await expect(emailLink).toHaveAttribute(
-      "href",
-      "mailto:culturewithgen@gmail.com",
-    );
+    const contactCta = page.locator("#contact a[href*='forms.gle']");
+    await expect(contactCta).toBeVisible();
+    await expect(contactCta).toHaveAttribute("target", "_blank");
+    await expect(contactCta).toHaveAttribute("rel", /noopener/);
+    await expect(contactCta).toHaveAttribute("rel", /noreferrer/);
   });
 });
