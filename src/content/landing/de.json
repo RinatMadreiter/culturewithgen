@@ -120,7 +120,7 @@
     ]
   },
   "testimonials": {
-    "visible": true,
+    "visible": false,
     "title": "Das sagen Teilnehmende",
     "items": [
       {
