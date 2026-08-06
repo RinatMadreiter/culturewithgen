@@ -310,6 +310,11 @@ content:
         type: object
         required: false
         fields:
+          - name: visible
+            label: Show testimonials section
+            type: boolean
+            default: true
+            description: "Turn off to temporarily hide the whole testimonials section from the site without deleting its content."
           - name: title
             type: string
           - name: items

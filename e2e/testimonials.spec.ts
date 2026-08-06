@@ -8,6 +8,21 @@ const locales = [
 ];
 
 for (const { path, label, data } of locales) {
+  // The CMS `visible` toggle hides the whole section without deleting content.
+  // Branch at registration so the suite tracks the seed data: when the section
+  // is toggled off we assert its absence; otherwise we run the full contract.
+  const hidden = data.visible === false;
+
+  if (hidden) {
+    test(`Testimonials (${label}) is hidden when the CMS toggle is off`, async ({
+      page,
+    }) => {
+      await page.goto(path);
+      await expect(page.locator("#testimonials")).toHaveCount(0);
+    });
+    continue;
+  }
+
   test.describe(`Testimonials (${label})`, () => {
     test("renders the heading, every quote and every name", async ({
       page,

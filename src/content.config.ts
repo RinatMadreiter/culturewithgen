@@ -68,6 +68,9 @@ const landingCollection = defineCollection({
     // Optional so neither locale JSON is forced to carry the key.
     testimonials: z
       .object({
+        // CMS toggle to hide the whole section without deleting its content.
+        // Defaults to visible when the key is absent.
+        visible: z.boolean().default(true),
         title: z.string(),
         items: z.array(
           z.object({

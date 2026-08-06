@@ -67,7 +67,11 @@ const seoDescription =
       <WhoFor {...content.whoFor} />
       <Situations {...content.situations} />
       <Formats {...content.format} />
-      {content.testimonials && <Testimonials {...content.testimonials} />}
+      {
+        content.testimonials && content.testimonials.visible !== false && (
+          <Testimonials {...content.testimonials} />
+        )
+      }
       <Contact {...content.contact} />
     </main>
 

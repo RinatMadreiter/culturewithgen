@@ -120,6 +120,7 @@
     ]
   },
   "testimonials": {
+    "visible": true,
     "title": "What participants say",
     "items": [
       {
