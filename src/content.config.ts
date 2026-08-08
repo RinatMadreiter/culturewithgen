@@ -2,9 +2,15 @@ import { defineCollection } from "astro:content";
 import { z } from "astro/zod";
 import { glob } from "astro/loaders";
 
+// `src` is optional on purpose. Every image field in .pages.yml is optional,
+// so an editor can save alt text without picking a file, producing
+// `{ "alt": "..." }` with no src. Requiring src here made that legal CMS input
+// fail `astro check` and block the whole deploy. Components already skip
+// rendering when src is missing, so tolerating it degrades gracefully instead
+// of taking the site's pipeline down over a content edit.
 const image = z
   .object({
-    src: z.string(),
+    src: z.string().optional(),
     alt: z.string().optional(),
   })
   .optional();

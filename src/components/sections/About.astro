@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import Icon from "../Icon.astro";
-import { resolveImage } from "../../lib/images";
+import { resolveImage, type CmsImage } from "../../lib/images";
 
 interface Credential {
   icon: string;
@@ -11,7 +11,7 @@ interface Credential {
 interface Props {
   title: string;
   body: string;
-  image?: { src: string; alt?: string };
+  image?: CmsImage;
   credentials?: Credential[];
 }
 

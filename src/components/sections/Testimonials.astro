@@ -1,11 +1,11 @@
 ---
 import { Image } from "astro:assets";
-import { resolveImage } from "../../lib/images";
+import { resolveImage, type CmsImage } from "../../lib/images";
 
 interface Testimonial {
   quote: string;
   name: string;
-  image?: { src: string; alt?: string };
+  image?: CmsImage;
 }
 
 interface Props {

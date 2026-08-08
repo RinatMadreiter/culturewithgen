@@ -15,9 +15,11 @@ test.describe("English home page", () => {
     expect(response?.status()).toBe(200);
 
     // Hero name (hardcoded, not CMS-driven) + eyebrow + title
-    await expect(
-      page.locator("main").getByText("Genevieve Navisotschnig"),
-    ).toBeVisible();
+    // Anchored to .hero-name: testimonial copy also mentions her by name, so a
+    // loose text match resolves to several elements and trips strict mode.
+    await expect(page.locator("main .hero-name")).toHaveText(
+      "Genevieve Navisotschnig",
+    );
     await expect(
       page.locator("main").getByText(en.header.eyebrow),
     ).toBeVisible();
@@ -93,9 +95,11 @@ test.describe("German home page", () => {
     expect(response?.status()).toBe(200);
 
     // Hero name (hardcoded, not CMS-driven) renders on the German page too.
-    await expect(
-      page.locator("main").getByText("Genevieve Navisotschnig"),
-    ).toBeVisible();
+    // Anchored to .hero-name: testimonial copy also mentions her by name, so a
+    // loose text match resolves to several elements and trips strict mode.
+    await expect(page.locator("main .hero-name")).toHaveText(
+      "Genevieve Navisotschnig",
+    );
     await expect(
       page.getByRole("heading", { name: de.header.title, level: 1 }),
     ).toBeVisible();

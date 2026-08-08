@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import Icon from "../Icon.astro";
-import { resolveImage } from "../../lib/images";
+import { resolveImage, type CmsImage } from "../../lib/images";
 import { CONTACT_FORM_URL } from "../../lib/links";
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
   subtitle: string;
   description: string;
   ctaLabel: string;
-  image?: { src: string; alt?: string };
+  image?: CmsImage;
 }
 
 const { eyebrow, title, subtitle, description, ctaLabel, image } = Astro.props;

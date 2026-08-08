@@ -1,5 +1,15 @@
 import type { ImageMetadata } from "astro";
 
+/**
+ * Shape of a CMS image field. Both keys are optional because every image field
+ * in .pages.yml is optional - an editor can save alt text without picking a
+ * file. Mirrors the `image` schema in src/content.config.ts; keep them in sync.
+ */
+export interface CmsImage {
+  src?: string;
+  alt?: string;
+}
+
 // CMS uploads land in public/images/ and take precedence; src/assets/images/
 // holds the committed originals and is used only when no public copy exists.
 const publicImages = import.meta.glob(
