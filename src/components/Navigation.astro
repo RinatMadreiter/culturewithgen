@@ -3,7 +3,6 @@ import "../styles/global.css";
 import { Image } from "astro:assets";
 import Icon from "./Icon.astro";
 import logo from "../assets/logo.webp";
-import { CONTACT_FORM_URL } from "../lib/links";
 
 interface NavLink {
   label: string;
@@ -14,9 +13,10 @@ interface Props {
   homeHref: string;
   links: NavLink[];
   ctaLabel: string;
+  contactFormUrl: string;
 }
 
-const { homeHref, links, ctaLabel } = Astro.props;
+const { homeHref, links, ctaLabel, contactFormUrl } = Astro.props;
 ---
 
 <nav class="fixed top-0 w-full z-50 backdrop-blur-md shadow-md tracking-tight">
@@ -68,7 +68,7 @@ const { homeHref, links, ctaLabel } = Astro.props;
       </div>
 
       <a
-        href={CONTACT_FORM_URL}
+        href={contactFormUrl}
         target="_blank"
         rel="noopener noreferrer"
         class="bg-[#9A442D] text-white px-4 py-2 md:px-6 rounded-lg font-bold shadow-[0_6px_20px_rgba(154,68,45,0.35)] hover:bg-[#7D3522] hover:shadow-[0_8px_24px_rgba(154,68,45,0.45)] hover:-translate-y-0.5 transition-all duration-200"

@@ -2,7 +2,6 @@
 import { Image } from "astro:assets";
 import Icon from "../Icon.astro";
 import { resolveImage, type CmsImage } from "../../lib/images";
-import { CONTACT_FORM_URL } from "../../lib/links";
 
 interface Props {
   eyebrow?: string;
@@ -11,9 +10,18 @@ interface Props {
   description: string;
   ctaLabel: string;
   image?: CmsImage;
+  contactFormUrl: string;
 }
 
-const { eyebrow, title, subtitle, description, ctaLabel, image } = Astro.props;
+const {
+  eyebrow,
+  title,
+  subtitle,
+  description,
+  ctaLabel,
+  image,
+  contactFormUrl,
+} = Astro.props;
 
 const asset = resolveImage(image?.src);
 const alt = image?.alt || "Professional portrait of intercultural trainer";
@@ -58,7 +66,7 @@ const alt = image?.alt || "Professional portrait of intercultural trainer";
       />
       <div class="flex flex-col sm:flex-row items-center gap-6">
         <a
-          href={CONTACT_FORM_URL}
+          href={contactFormUrl}
           target="_blank"
           rel="noopener noreferrer"
           class="w-full sm:w-auto bg-[#9A442D] text-white px-8 py-4 rounded-lg font-bold tracking-wider hover:bg-[#7D3522] transition-all duration-200 shadow-[0_10px_30px_rgba(154,68,45,0.35)] hover:shadow-[0_12px_36px_rgba(154,68,45,0.45)] hover:-translate-y-0.5 text-center"

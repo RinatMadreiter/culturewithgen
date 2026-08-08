@@ -16,6 +16,9 @@ import Formats from "../../components/sections/Formats.astro";
 import Testimonials from "../../components/sections/Testimonials.astro";
 import Contact from "../../components/sections/Contact.astro";
 import BackToTop from "../../components/BackToTop.astro";
+import { CONTACT_FORM_URLS } from "../../lib/links";
+
+const contactFormUrl = CONTACT_FORM_URLS.de;
 
 const entry = await getEntry("landing", "de");
 if (!entry)
@@ -61,10 +64,15 @@ const seoDescription =
   </head>
 
   <body class="antialiased overflow-x-hidden flex flex-col min-h-screen">
-    <Navigation homeHref="/de/" links={navLinks} ctaLabel="Kontakt aufnehmen" />
+    <Navigation
+      homeHref="/de/"
+      links={navLinks}
+      ctaLabel="Kontakt aufnehmen"
+      contactFormUrl={contactFormUrl}
+    />
 
     <main class="pt-16 md:pt-40 flex-1">
-      <Hero {...content.header} />
+      <Hero {...content.header} contactFormUrl={contactFormUrl} />
       <Offer {...content.offer} />
       <About {...content.about} />
       <WhoFor {...content.whoFor} />
@@ -75,7 +83,11 @@ const seoDescription =
           <Testimonials {...content.testimonials} />
         )
       }
-      <Contact {...content.contact} ctaLabel={content.header.ctaLabel} />
+      <Contact
+        {...content.contact}
+        ctaLabel={content.header.ctaLabel}
+        contactFormUrl={contactFormUrl}
+      />
     </main>
 
     <Footer locale="de" />
