@@ -1,121 +1,18 @@
 import { defineCollection } from "astro:content";
-import { z } from "astro/zod";
 import { glob } from "astro/loaders";
-
-// `src` is optional on purpose. Every image field in .pages.yml is optional,
-// so an editor can save alt text without picking a file, producing
-// `{ "alt": "..." }` with no src. Requiring src here made that legal CMS input
-// fail `astro check` and block the whole deploy. Components already skip
-// rendering when src is missing, so tolerating it degrades gracefully instead
-// of taking the site's pipeline down over a content edit.
-const image = z
-  .object({
-    src: z.string().optional(),
-    alt: z.string().optional(),
-    // Which part of the photo survives a square/circular crop. Must match the
-    // `position` select in .pages.yml and ImagePosition in src/lib/images.ts.
-    position: z
-      .enum([
-        "center",
-        "top",
-        "bottom",
-        "left",
-        "right",
-        "left-top",
-        "right-top",
-        "left-bottom",
-        "right-bottom",
-      ])
-      .optional(),
-  })
-  .optional();
-
-const iconItem = z.object({
-  icon: z.string(),
-  text: z.string(),
-});
-
-const formatItem = z.object({
-  icon: z.string(),
-  text: z.string(),
-  description: z.string().optional(),
-});
+// Schemas live in src/lib/content-schema.ts so plain Node (and therefore
+// scripts/check-cms-schema.mjs) can import them; this file keeps only the
+// collection wiring, which does depend on the astro:content virtual module.
+import { landingSchema, legalSchema } from "./lib/content-schema";
 
 const landingCollection = defineCollection({
   loader: glob({ pattern: "*.json", base: "./src/content/landing" }),
-  schema: z.object({
-    // Optional SEO overrides for the search-engine title and snippet.
-    // When omitted (or empty), the page falls back to values derived from
-    // the on-page content - see src/pages/index.astro / de/index.astro.
-    seo: z
-      .object({
-        title: z.string().optional(),
-        description: z.string().optional(),
-      })
-      .optional(),
-    header: z.object({
-      eyebrow: z.string().optional(),
-      title: z.string(),
-      subtitle: z.string(),
-      // Rich-text (HTML) authored via the CMS; rendered with set:html.
-      description: z.string(),
-      ctaLabel: z.string(),
-      image,
-    }),
-    about: z.object({
-      title: z.string(),
-      // Rich-text (HTML) authored via the CMS; rendered with set:html.
-      body: z.string(),
-      image,
-      credentials: z.array(iconItem).default([]),
-    }),
-    offer: z.object({
-      title: z.string(),
-      subtitle: z.string().optional(),
-      items: z.array(iconItem),
-    }),
-    whoFor: z.object({
-      title: z.string(),
-      items: z.array(iconItem),
-    }),
-    situations: z.object({
-      title: z.string(),
-      items: z.array(iconItem),
-    }),
-    format: z.object({
-      title: z.string(),
-      items: z.array(formatItem),
-    }),
-    // Optional so neither locale JSON is forced to carry the key.
-    testimonials: z
-      .object({
-        // CMS toggle to hide the whole section without deleting its content.
-        // Defaults to visible when the key is absent.
-        visible: z.boolean().default(true),
-        title: z.string(),
-        items: z.array(
-          z.object({
-            // Rich-text (HTML) authored via the CMS; rendered with set:html.
-            quote: z.string(),
-            name: z.string(),
-            image,
-          }),
-        ),
-      })
-      .optional(),
-    contact: z.object({
-      title: z.string(),
-      text: z.string(),
-      location: z.string(),
-    }),
-  }),
+  schema: landingSchema,
 });
 
 const legalCollection = defineCollection({
   loader: glob({ pattern: "*.md", base: "./src/content/legal" }),
-  schema: z.object({
-    title: z.string(),
-  }),
+  schema: legalSchema,
 });
 
 export const collections = {

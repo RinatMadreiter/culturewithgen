@@ -1,20 +1,14 @@
 import type { ImageMetadata } from "astro";
+import type { z } from "astro/zod";
+import type { imagePositionSchema, imageSchema } from "./content-schema";
 
 /**
  * Which part of a photo to keep when it is cropped to a square/circle.
- * Mirrors the `position` select in .pages.yml and the schema in
- * src/content.config.ts; all three must stay in sync.
+ * Inferred from the Zod schema rather than hand-written, so the type and the
+ * validator cannot drift apart - adding a position to one without the other is
+ * now a compile error instead of a silent runtime mismatch.
  */
-export type ImagePosition =
-  | "center"
-  | "top"
-  | "bottom"
-  | "left"
-  | "right"
-  | "left-top"
-  | "right-top"
-  | "left-bottom"
-  | "right-bottom";
+export type ImagePosition = z.infer<typeof imagePositionSchema>;
 
 /**
  * Full Tailwind class per position. Written out literally on purpose: Tailwind
@@ -39,15 +33,11 @@ export function objectPositionClass(position?: ImagePosition): string {
 }
 
 /**
- * Shape of a CMS image field. Every key is optional because every image field
- * in .pages.yml is optional - an editor can save alt text without picking a
- * file. Mirrors the `image` schema in src/content.config.ts; keep them in sync.
+ * Shape of a CMS image field, inferred from the Zod schema so the two cannot
+ * disagree. Every key is optional because every image field in .pages.yml is
+ * optional - an editor can save alt text without picking a file.
  */
-export interface CmsImage {
-  src?: string;
-  alt?: string;
-  position?: ImagePosition;
-}
+export type CmsImage = z.infer<typeof imageSchema>;
 
 // CMS uploads land in public/images/ and take precedence; src/assets/images/
 // holds the committed originals and is used only when no public copy exists.

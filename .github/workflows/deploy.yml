@@ -31,9 +31,12 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
-          node-version: 22 # package.json engines requires >=22.12.0
+          node-version: 24 # active LTS; matches package.json engines
       - run: corepack enable
       - run: pnpm install --frozen-lockfile
+      # Runs before astro check: it is faster, and its message names the exact
+      # drifting field instead of a generic InvalidContentEntryDataError.
+      - run: pnpm check:schema
       - run: pnpm astro check
       - run: pnpm format:check
 
@@ -46,7 +49,7 @@ jobs:
       # SHA-pinned so a compromised upstream tag can't inject code.
       - uses: withastro/action@e84f40bd8d2caa9e768ec82ad30dd81f0b280853 # v6.1.2
         with:
-          node-version: 22 # package.json engines requires >=22.12.0
+          node-version: 24 # active LTS; matches package.json engines
 
   deploy:
     needs: build
