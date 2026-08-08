@@ -12,6 +12,21 @@ const image = z
   .object({
     src: z.string().optional(),
     alt: z.string().optional(),
+    // Which part of the photo survives a square/circular crop. Must match the
+    // `position` select in .pages.yml and ImagePosition in src/lib/images.ts.
+    position: z
+      .enum([
+        "center",
+        "top",
+        "bottom",
+        "left",
+        "right",
+        "left-top",
+        "right-top",
+        "left-bottom",
+        "right-bottom",
+      ])
+      .optional(),
   })
   .optional();
 

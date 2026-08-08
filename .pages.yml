@@ -346,6 +346,25 @@ content:
                     label: Alt text
                     type: string
                     required: false
+                  - name: position
+                    label: Photo crop position
+                    type: select
+                    required: false
+                    default: center
+                    options:
+                      values:
+                        [
+                          center,
+                          top,
+                          bottom,
+                          left,
+                          right,
+                          left-top,
+                          right-top,
+                          left-bottom,
+                          right-bottom,
+                        ]
+                    description: "Photos are cropped to a circle. Pick which part to keep if the face is cut off - e.g. 'top' when the head sits high in the frame. Defaults to center."
       - name: contact
         label: Contact
         type: object

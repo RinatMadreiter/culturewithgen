@@ -70,6 +70,49 @@ for (const { path, label, data } of locales) {
       expect(parseFloat(radius)).toBeGreaterThanOrEqual(28);
     });
 
+    // The crop position comes from a CMS select and is mapped to a literal
+    // Tailwind class. Guards the interpolation trap: `object-${position}`
+    // would compile to no CSS, silently leaving avatars un-croppable.
+    test("avatar has a real object-position applied", async ({ page }) => {
+      await page.goto(path);
+      const imgs = page.locator("#testimonials figcaption img");
+      if ((await imgs.count()) === 0) {
+        test.skip(true, "seed data has no testimonial images");
+      }
+
+      const first = imgs.first();
+      const cls = (await first.getAttribute("class")) ?? "";
+      expect(cls).toMatch(/\bobject-(center|top|bottom|left|right)/);
+
+      // Asserting the computed value is useless here: with no position set the
+      // avatar is object-center, whose 50% 50% is identical to the CSS default
+      // - it would pass even if no class resolved at all. What genuinely breaks
+      // is Tailwind not emitting the utilities, so assert the CSS exists for
+      // every position an editor can pick.
+      const missing = await page.evaluate(() => {
+        let css = "";
+        for (const sheet of Array.from(document.styleSheets)) {
+          try {
+            for (const rule of Array.from(sheet.cssRules)) css += rule.cssText;
+          } catch {
+            /* cross-origin sheet, skip */
+          }
+        }
+        return [
+          "object-center",
+          "object-top",
+          "object-bottom",
+          "object-left",
+          "object-right",
+          "object-left-top",
+          "object-right-top",
+          "object-left-bottom",
+          "object-right-bottom",
+        ].filter((c) => !css.includes(c));
+      });
+      expect(missing, "object-position utilities absent from CSS").toEqual([]);
+    });
+
     test("an imageless testimonial still renders its name and emits no img", async ({
       page,
     }) => {

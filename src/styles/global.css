@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/* Tailwind auto-detects sources across the project, which means class names
+   written in e2e specs get compiled into the production bundle. That bloats the
+   CSS and makes tests self-fulfilling: a spec asserting a utility exists would
+   itself cause that utility to be generated. Only ship classes used by src/. */
+@source not "../../e2e";
+
 /* Rich-text regions rendered from CMS HTML (hero description, about body).
    Tailwind's preflight resets margins and list styles, so re-establish the
    handful of elements the editor can produce. Font size/colour are inherited

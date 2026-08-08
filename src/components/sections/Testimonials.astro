@@ -1,6 +1,10 @@
 ---
 import { Image } from "astro:assets";
-import { resolveImage, type CmsImage } from "../../lib/images";
+import {
+  resolveImage,
+  objectPositionClass,
+  type CmsImage,
+} from "../../lib/images";
 
 interface Testimonial {
   quote: string;
@@ -28,6 +32,8 @@ const { title, items = [] } = Astro.props;
         items.map((item, i) => {
           const asset = resolveImage(item.image?.src);
           const alt = item.image?.alt || item.name;
+          // Photos are cropped to a circle; this keeps the chosen part visible.
+          const avatarClass = `w-14 h-14 rounded-full object-cover ${objectPositionClass(item.image?.position)} shrink-0`;
           const spanFull =
             i === items.length - 1 && items.length % 2 === 1
               ? "md:col-span-2"
@@ -59,7 +65,7 @@ const { title, items = [] } = Astro.props;
                     alt={alt}
                     width={56}
                     height={56}
-                    class="w-14 h-14 rounded-full object-cover shrink-0"
+                    class={avatarClass}
                   />
                 ) : (
                   item.image?.src && (
@@ -68,7 +74,7 @@ const { title, items = [] } = Astro.props;
                       alt={alt}
                       width={56}
                       height={56}
-                      class="w-14 h-14 rounded-full object-cover shrink-0"
+                      class={avatarClass}
                     />
                   )
                 )}
