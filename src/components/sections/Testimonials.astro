@@ -40,6 +40,9 @@ const { title, items = [] } = Astro.props;
           const asset = resolveImage(item.image?.src);
           const alt = item.image?.alt || item.name;
           // Photos are cropped to a circle; this keeps the chosen part visible.
+          // The <Image> below emits 2x/3x sources (densities) so the 56px
+          // avatar stays sharp on mobile retina screens rather than upscaling
+          // a single 1x source; the variants are tiny, so quality is high.
           const avatarClass = `w-14 h-14 rounded-full object-cover ${objectPositionClass(item.image?.position)} shrink-0`;
           return (
             <figure class="bg-white border border-[#1E3932]/20 p-6 lg:p-10 rounded-[1.5rem] shadow-sm hover:scale-[1.02] hover:shadow-md transition-all duration-300 relative overflow-hidden group break-inside-avoid mb-8">
@@ -63,6 +66,8 @@ const { title, items = [] } = Astro.props;
                     alt={alt}
                     width={56}
                     height={56}
+                    densities={[2, 3]}
+                    quality={90}
                     class={avatarClass}
                   />
                 ) : (
