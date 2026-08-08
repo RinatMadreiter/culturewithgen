@@ -128,18 +128,23 @@
         "name": "Ulrike Szigeti, Former Vice Rector and International Coordinator, FH Salzburg",
         "image": {
           "src": "/images/Ulrike_Szigeti_Photo_2026-2.jpeg",
-          "alt": "image of Ulrike Szigeti"
+          "alt": "image of Ulrike Szigeti",
+          "position": "top"
         }
       },
       {
         "quote": "<p>I've been working with Genevieve as my Business English trainer for the past four years. Through our sessions, she has helped me develop the communication skills and confidence I need in professional settings.</p>",
-        "name": "Gerhard Santner, Sales Manager, Packaging Industry, Austria"
+        "name": "Gerhard Santner, Sales Manager, Packaging Industry, Austria",
+        "image": {
+          "position": "center"
+        }
       },
       {
         "quote": "<p>Best teacher ever! Friendly, engaging and adaptable.</p>",
         "name": "Rinat, Web Developer, Austria",
         "image": {
-          "alt": "profile photo"
+          "alt": "profile photo",
+          "position": "center"
         }
       }
     ]
