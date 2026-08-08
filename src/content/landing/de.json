@@ -127,17 +127,24 @@
         "quote": "<p>Während meiner Zeit als Verantwortliche für das Hochschuldidaktik-Programm an der Fachhochschule Salzburg habe ich die Zusammenarbeit mit Genevieve Navisotschnig sehr geschätzt. Sie sprüht vor Ideen, und gemeinsam haben wir gute Workshops entwickelt. Ich schätze Genevieves Professionalität und ihre profunde Kenntnis der Materie.</p><p>Sie beschäftigt sich nicht nur theoretisch mit interkultureller Kommunikation, sondern steht auch aufgrund ihrer Lebenserfahrung hinter diesen Themen. Dadurch schafft sie es, Lernende für diese Themen zu begeistern. Dabei wählt sie immer auch einen praktischen Ansatz, der das Interesse für die theoretische Auseinandersetzung weckt.</p><p>Für mich ist jede Form der Kooperation mit Genevieve Navisotschnig eine persönliche Bereicherung.</p>",
         "name": "Ulrike Szigeti, Ehemalige Vizerektorin und Internationale Koordinatorin, FH Salzburg",
         "image": {
-          "src": "/images/Ulrike_Szigeti_Photo_2026-1.jpeg",
-          "alt": "Foto von Ulrike Szigeti"
+          "src": "/images/Ulrike_Szigeti.jpeg",
+          "alt": "Foto von Ulrike Szigeti",
+          "position": "center"
         }
       },
       {
         "quote": "<p>Seit vier Jahren arbeite ich mit Genevieve als meiner Business-Englisch-Trainerin zusammen. Durch unsere gemeinsamen Trainingseinheiten hat sie mir geholfen, die Kommunikationsfähigkeiten und das Selbstvertrauen zu entwickeln, die ich für die Zusammenarbeit mit Kolleg:innen und Kund:innen aus verschiedenen Ländern brauche. Wenn ich daran denke, wo ich am Anfang stand und wo ich heute bin, haben sich meine Kommunikationsfähigkeiten und mein Selbstvertrauen enorm verbessert. Genevieve hat einen wesentlichen Anteil an dieser Entwicklung.</p><p>Unsere Trainingseinheiten sind immer interessant und abwechslungsreich, weil wir eine Vielzahl aktueller Themen aus Wirtschaft und Gesellschaft besprechen. Genevieve ist sehr flexibel und sorgt stets dafür, dass unsere Gespräche für meine beruflichen Aufgaben und Interessen relevant sind. Ich schätze es außerdem sehr, dass ich die Unterrichtsmaterialien im Voraus erhalte, sodass ich mich gut vorbereiten und die Übungen bearbeiten kann.</p><p>Besonders schätze ich ihr breit gefächertes Wissen, ihre offene Kommunikation und ihre freundliche Art.</p><p>Ich kann Genevieve allen, die eine kompetente, anpassungsfähige und professionelle Trainerin suchen, uneingeschränkt weiterempfehlen.</p>",
-        "name": "Gerhard Santner, Sales Manager, Verpackungsindustrie, Österreich"
+        "name": "Gerhard Santner, Sales Manager, Verpackungsindustrie, Österreich",
+        "image": {
+          "position": "center"
+        }
       },
       {
         "quote": "<p>Beste Trainerin überhaupt! Freundlich, engagiert und flexibel.</p>",
-        "name": "Rinat, Web Developer, Österreich"
+        "name": "Rinat, Web Developer, Österreich",
+        "image": {
+          "position": "center"
+        }
       }
     ]
   },
