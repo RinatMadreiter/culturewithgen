@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
-// The nav exposes section links two ways: an inline row on >=md screens and a
-// <details> hamburger disclosure on small screens. These guard both.
+// The nav exposes section links two ways: an inline row on >=lg screens and a
+// <details> hamburger disclosure below lg. These guard both.
 test.describe("Mobile navigation menu", () => {
   test("hamburger opens the section links and a tap closes it", async ({
     page,
@@ -33,9 +33,9 @@ test.describe("Mobile navigation menu", () => {
     await page.goto("/");
 
     await expect(page.locator("#mobile-nav summary")).toBeHidden();
-    // The inline links live in the `hidden md:flex` container, shown at >=md.
+    // The inline links live in the `hidden lg:flex` container, shown at >=lg.
     await expect(
-      page.locator(".md\\:flex").getByRole("link", { name: "Workshops" }),
+      page.locator(".lg\\:flex").getByRole("link", { name: "Workshops" }),
     ).toBeVisible();
   });
 

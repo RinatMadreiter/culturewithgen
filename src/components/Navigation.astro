@@ -38,7 +38,7 @@ const { homeHref, links, ctaLabel, contactFormUrl } = Astro.props;
       <span class="sr-only">CultureWithGen</span>
     </a>
 
-    <div class="hidden md:flex items-center space-x-8">
+    <div class="hidden lg:flex items-center space-x-8">
       {
         links.map((item) => (
           <a
@@ -52,10 +52,10 @@ const { homeHref, links, ctaLabel, contactFormUrl } = Astro.props;
     </div>
 
     <div class="flex items-center space-x-4 md:space-x-6 shrink-0">
-      <!-- Language switcher: inline from md up. On small screens it lives in
-           the menu below, so the bar stays within narrow viewports even with
-           long translated CTA labels. -->
-      <div class="hidden md:flex text-sm font-semibold tracking-wider gap-2">
+      <!-- Language switcher: inline from lg up. Below lg it lives in the menu
+           below, so the bar stays within narrow and tablet viewports even with
+           the longer German nav labels, which crowd the row up to ~900px. -->
+      <div class="hidden lg:flex text-sm font-semibold tracking-wider gap-2">
         <a
           href="/"
           class="js-lang-en hover:underline transition-all duration-200">EN</a
@@ -76,9 +76,9 @@ const { homeHref, links, ctaLabel, contactFormUrl } = Astro.props;
         {ctaLabel}
       </a>
 
-      <!-- Mobile-only section menu: native <details> disclosure, no JS library.
+      <!-- Section menu below lg: native <details> disclosure, no JS library.
            The panel anchors to the fixed <nav> (its positioning context). -->
-      <details id="mobile-nav" class="mobile-nav md:hidden">
+      <details id="mobile-nav" class="mobile-nav lg:hidden">
         <summary
           class="flex items-center justify-center cursor-pointer text-2xl transition-colors"
           aria-label="Open menu"

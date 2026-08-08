@@ -18,9 +18,9 @@ for (const { path, label, data } of locales) {
     await page.setViewportSize({ width: 1280, height: 800 });
     await page.goto(path);
 
-    // Desktop bar: links live in the `hidden md:flex` container.
+    // Desktop bar: links live in the `hidden lg:flex` container.
     const desktopLink = page
-      .locator(".md\\:flex")
+      .locator(".lg\\:flex")
       .locator('a[href="#testimonials"]');
     await expect(desktopLink).toHaveCount(shown ? 1 : 0);
   });
