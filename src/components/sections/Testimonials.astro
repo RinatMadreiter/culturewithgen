@@ -27,24 +27,22 @@ const { title, items = [] } = Astro.props;
         {title}
       </h2>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    {
+      /* Masonry via CSS multi-column: one column on mobile, two from md up.
+        Each card keeps its natural height (no row-height equalisation), and
+        break-inside-avoid stops a card splitting across a column boundary.
+        Vertical rhythm is mb-8 on each card, since multi-column has no
+        row-gap; gap-8 sets the horizontal column-gap. No JS, no library. */
+    }
+    <div class="columns-1 md:columns-2 gap-8 -mb-8">
       {
-        items.map((item, i) => {
+        items.map((item) => {
           const asset = resolveImage(item.image?.src);
           const alt = item.image?.alt || item.name;
           // Photos are cropped to a circle; this keeps the chosen part visible.
           const avatarClass = `w-14 h-14 rounded-full object-cover ${objectPositionClass(item.image?.position)} shrink-0`;
-          const spanFull =
-            i === items.length - 1 && items.length % 2 === 1
-              ? "md:col-span-2"
-              : "";
           return (
-            <figure
-              class:list={[
-                "bg-white border border-[#1E3932]/20 p-6 lg:p-10 rounded-[1.5rem] shadow-sm hover:scale-[1.02] hover:shadow-md transition-all duration-300 relative overflow-hidden group flex flex-col",
-                spanFull,
-              ]}
-            >
+            <figure class="bg-white border border-[#1E3932]/20 p-6 lg:p-10 rounded-[1.5rem] shadow-sm hover:scale-[1.02] hover:shadow-md transition-all duration-300 relative overflow-hidden group break-inside-avoid mb-8">
               <div class="absolute top-0 right-0 w-32 h-32 bg-[#1E3932]/5 rounded-bl-[100px] -z-10 group-hover:bg-[#1E3932]/10 transition-colors" />
               <svg
                 class="w-10 h-10 text-[#1E3932]/15 group-hover:text-[#9A442D]/30 transition-colors mb-4"
@@ -55,7 +53,7 @@ const { title, items = [] } = Astro.props;
                 <path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z" />
               </svg>
               <blockquote
-                class="rich-text text-lg leading-[1.6] text-[#1E3932] flex-1"
+                class="rich-text text-lg leading-[1.6] text-[#1E3932]"
                 set:html={item.quote}
               />
               <figcaption class="flex items-center gap-4 mt-6 pt-6 border-t border-[#1E3932]/10">
