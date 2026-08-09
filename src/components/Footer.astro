@@ -1,34 +1,20 @@
 ---
+import { type Locale, UI, LEGAL_ROUTES, LINKEDIN_URL } from "../lib/i18n";
+import { SITE_NAME } from "../lib/site";
+
 interface Props {
-  locale?: "en" | "de";
+  // Required, not defaulted to "en": a forgotten prop used to render English
+  // copy on the German page silently, which is worse than a build error.
+  locale: Locale;
 }
 
-const { locale = "en" } = Astro.props;
+const { locale } = Astro.props;
 
-const LINKEDIN_URL = "https://www.linkedin.com/in/culture-with-gen/";
-
-// Locale copy lives here rather than at each call site: the footer renders on
-// the two home pages and all four legal pages. Mirrors BackToTop.astro.
-const COPY = {
-  en: {
-    tagline: "Intercultural Communication & Collaboration",
-    privacyHref: "/privacy",
-    privacyLabel: "Privacy Policy",
-    imprintHref: "/imprint",
-    imprintLabel: "Imprint",
-    linkedInLabel: "LinkedIn profile",
-  },
-  de: {
-    tagline: "Interkulturelle Kommunikation & Zusammenarbeit",
-    privacyHref: "/de/datenschutz",
-    privacyLabel: "Datenschutz",
-    imprintHref: "/de/impressum",
-    imprintLabel: "Impressum",
-    linkedInLabel: "LinkedIn-Profil",
-  },
-} as const;
-
-const t = COPY[locale];
+const t = UI[locale].footer;
+// Hrefs come from the shared route table so the footer links and the hreflang
+// alternates in the legal pages can never drift apart.
+const privacyHref = LEGAL_ROUTES.privacy[locale];
+const imprintHref = LEGAL_ROUTES.imprint[locale];
 ---
 
 <!-- Deliberately a deeper green than the #1E3932 Contact section on the home
@@ -53,12 +39,15 @@ const t = COPY[locale];
     </a>
 
     <div class="site-footer__legal">
-      <a href={t.privacyHref}>{t.privacyLabel}</a>
-      <a href={t.imprintHref}>{t.imprintLabel}</a>
+      <a href={privacyHref}>{t.privacyLabel}</a>
+      <a href={imprintHref}>{t.imprintLabel}</a>
     </div>
 
+    <!-- Built as one expression, not adjacent {..} interpolations: Astro
+         collapses the newline a formatter may insert between them to nothing,
+         which silently produced "© 2026CultureWithGen". -->
     <p class="site-footer__copy">
-      © {new Date().getFullYear()} CultureWithGen · {t.tagline}
+      {`© ${new Date().getFullYear()} ${SITE_NAME} · ${t.tagline}`}
     </p>
   </div>
 </footer>

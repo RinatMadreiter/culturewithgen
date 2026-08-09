@@ -30,12 +30,34 @@ content:
             label: Search engine title
             type: string
             required: false
-            description: 'Shown as the clickable title in Google results (aim for ~50-60 characters). Leave empty to auto-use the hero eyebrow followed by " | CultureWithGen".'
+            description: 'Shown as the clickable title in Google results (aim for ~50-60 characters). Leave empty to use the site default, "Genevieve Navisotschnig | CultureWithGen".'
           - name: description
             label: Search engine snippet
             type: text
             required: false
             description: "The grey summary text under the title in Google results (aim for ~150-160 characters). Leave empty to use the site's default description."
+      - name: nav
+        label: Top menu links
+        type: object
+        required: false
+        description: "Wording of the links in the top menu. These jump to the sections below, so if you rename a section heading you can match its menu link here. Leave a field empty to keep the default wording."
+        fields:
+          - name: services
+            label: Link to the "What I offer" section
+            type: string
+            required: false
+          - name: about
+            label: Link to the "About" section
+            type: string
+            required: false
+          - name: workshops
+            label: Link to the "Workshop Formats" section
+            type: string
+            required: false
+          - name: testimonials
+            label: Link to the testimonials section
+            type: string
+            required: false
       - name: header
         label: Header / First Impression
         type: object
@@ -57,6 +79,7 @@ content:
           - name: ctaLabel
             label: Call-to-action button label
             type: string
+            description: "Used by all three contact buttons: the one in the top menu, the one in this header, and the one in the Contact section."
           - name: image
             label: Hero image
             type: object
@@ -67,10 +90,30 @@ content:
                 type: image
                 options:
                   media: landing-images
+                required: false
               - name: alt
                 label: Alt text
                 type: string
                 required: false
+              - name: position
+                label: Image crop position
+                type: select
+                required: false
+                default: center
+                options:
+                  values:
+                    [
+                      center,
+                      top,
+                      bottom,
+                      left,
+                      right,
+                      left-top,
+                      right-top,
+                      left-bottom,
+                      right-bottom,
+                    ]
+                description: "Which part of the photo to keep when it is cropped to fit. Pick 'top' if heads are cut off, for example. Defaults to center."
       - name: about
         label: About
         type: object
@@ -93,10 +136,14 @@ content:
                 type: image
                 options:
                   media: landing-images
+                required: false
               - name: alt
                 label: Alt text
                 type: string
                 required: false
+          # No crop-position picker here on purpose: the portrait renders at its
+          # natural aspect ratio (h-auto / object-contain in About.astro), so it
+          # is never cropped and the control would have no visible effect.
           - name: credentials
             label: Credentials
             type: object

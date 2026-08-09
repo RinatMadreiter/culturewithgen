@@ -1,6 +1,7 @@
 ---
 // Central SEO head component.
-type Locale = "en" | "de";
+import { type Locale, otherLocale } from "../lib/i18n";
+import { SITE_NAME, DEFAULT_OG_IMAGE, absoluteUrl } from "../lib/site";
 
 interface Props {
   title: string;
@@ -22,21 +23,19 @@ const {
   locale,
   path,
   alternates,
-  image = "/og-image.jpg",
+  image = DEFAULT_OG_IMAGE,
   type = "website",
   noindex = false,
 } = Astro.props;
 
 // Astro.site comes from `site` in astro.config.mjs.
-const site = Astro.site ?? new URL("https://culturewithgen.com");
-const abs = (p: string) => (p.startsWith("http") ? p : new URL(p, site).href);
+const abs = (p: string) => absoluteUrl(p, Astro.site);
 
 const canonical = abs(path);
 const ogImage = abs(image);
 
-const SITE_NAME = "CultureWithGen";
 const OG_LOCALE: Record<Locale, string> = { en: "en_GB", de: "de_AT" };
-const altLocale: Locale = locale === "en" ? "de" : "en";
+const altLocale = otherLocale(locale);
 
 // Build the hreflang set (only when translated paths are provided). x-default
 // points crawlers without a language preference at the English page.
@@ -46,10 +45,10 @@ const hreflangs = alternates
         hreflang: loc,
         href: abs(p as string),
       })),
-      alternates.en
-        ? { hreflang: "x-default", href: abs(alternates.en) }
-        : null,
-    ].filter(Boolean as unknown as <T>(v: T | null) => v is T)
+      ...(alternates.en
+        ? [{ hreflang: "x-default", href: abs(alternates.en) }]
+        : []),
+    ]
   : [];
 ---
 

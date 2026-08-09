@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import LegalLayout from "../layouts/LegalLayout.astro";
+import { UI, LEGAL_ROUTES, type LegalDoc } from "../lib/i18n";
 
 // Generate /privacy and /imprint from the English legal markdown files
 // in src/content/legal (German files are prefixed with "de-").
@@ -17,31 +18,19 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 
-// Per-page SEO description and the German counterpart for hreflang.
-const meta: Record<string, { description: string; de: string }> = {
-  privacy: {
-    description:
-      "Privacy policy for CultureWithGen - how your data is handled when you visit the site or get in touch.",
-    de: "/de/datenschutz",
-  },
-  imprint: {
-    description:
-      "Imprint and legal information for CultureWithGen intercultural communication training.",
-    de: "/de/impressum",
-  },
-};
-const m = meta[entry.id] ?? { description: entry.data.title, de: "/de/" };
+// Description and the German counterpart both come from the shared tables, so
+// the hreflang pair cannot drift from the footer's links.
+const doc = entry.id as LegalDoc;
+const routes = LEGAL_ROUTES[doc];
+const description = UI.en.legal.descriptions[doc] ?? entry.data.title;
 ---
 
 <LegalLayout
   lang="en"
   title={entry.data.title}
-  description={m.description}
-  path={`/${entry.id}`}
-  alternates={{ en: `/${entry.id}`, de: m.de }}
-  homeHref="/"
-  backLabel="Back to Home"
-  homeAriaLabel="CultureWithGen - home"
+  description={description}
+  path={routes?.en ?? `/${entry.id}`}
+  alternates={routes}
 >
   <Content />
 </LegalLayout>

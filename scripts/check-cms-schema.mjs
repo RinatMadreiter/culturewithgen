@@ -1,14 +1,19 @@
 /**
- * Guards against CMS <-> Zod schema drift.
+ * Guards the CMS content pipeline. Two independent classes of failure, both of
+ * which have taken production down:
  *
- * Three schemas must agree: .pages.yml (what the CMS lets an editor save),
- * the Zod schema (what the build validates), and the TS types (what components
- * consume). TS is inferred from Zod so those two cannot drift. This script
- * covers the remaining pair: .pages.yml vs Zod.
+ *  A/B) SCHEMA DRIFT. Three schemas must agree: .pages.yml (what the CMS lets
+ *       an editor save), the Zod schema (what the build validates), and the TS
+ *       types (what components consume). TS is inferred from Zod so those two
+ *       cannot drift; this script covers the remaining pair, .pages.yml vs Zod.
+ *       Drift caused 11 failed deploys over ~26h when .pages.yml marked image
+ *       `src` optional while Zod required it - the CMS produced
+ *       `{"alt": "..."}` and the build rejected its own CMS's output.
  *
- * Drift here has caused two outages, most recently 11 failed deploys over ~26h
- * when .pages.yml marked image `src` optional while Zod required it - the CMS
- * produced `{"alt": "..."}` and the build rejected its own CMS's output.
+ *    C) BAD CONTENT. The schemas can agree perfectly while the JSON on disk is
+ *       truncated or malformed. Three separate commits exist repairing a
+ *       corrupted en.json. A and B cannot see that, so C parses and validates
+ *       the real files, where the error can name the offending file and field.
  *
  * Runs in CI (`pnpm check:schema`) because the Playwright suite does not.
  *
@@ -16,7 +21,7 @@
  * markdown content rather than frontmatter data, so comparing it to the Zod
  * schema would be a guaranteed false positive.
  */
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { parse } from "yaml";
@@ -209,7 +214,59 @@ if (failures.length) {
   process.exit(1);
 }
 
+// ---------------------------------------------------------------------------
+// C) The content the CMS has ACTUALLY written must be valid.
+//
+// The checks above compare two schemas to each other; they say nothing about
+// the JSON on disk. A CMS write that lands truncated or malformed passes them
+// both and only fails later, during `astro build`, as a generic content error.
+// That has happened three times (see the commits repairing en.json), so parse
+// and validate the real files here where the message can name the file.
+const CONTENT_DIR = join(root, "src", "content", "landing");
+const contentFailures = [];
+const contentFiles = readdirSync(CONTENT_DIR).filter((f) =>
+  f.endsWith(".json"),
+);
+
+if (contentFiles.length === 0) {
+  contentFailures.push(`no .json content files found in ${CONTENT_DIR}`);
+}
+
+for (const file of contentFiles) {
+  const path = join(CONTENT_DIR, file);
+  let data;
+  try {
+    data = JSON.parse(readFileSync(path, "utf8"));
+  } catch (err) {
+    // Truncated or corrupted write - the exact failure mode seen in production.
+    contentFailures.push(`${file} is not valid JSON\n      -> ${err.message}`);
+    continue;
+  }
+  const result = landingSchema.safeParse(data);
+  if (!result.success) {
+    const why = result.error.issues
+      .map((i) => `${i.path.join(".") || "(root)"}: ${i.message}`)
+      .join("; ");
+    contentFailures.push(
+      `${file} does not satisfy the Zod schema\n      -> ${why}`,
+    );
+  }
+}
+
+if (contentFailures.length) {
+  console.error(
+    `\nContent in src/content/landing is invalid (${contentFailures.length} issue(s)):\n`,
+  );
+  for (const f of contentFailures) console.error(`  - ${f}`);
+  console.error(
+    "\nThis is the content itself, not the schema. A malformed CMS write\n" +
+      "must be repaired in the JSON file before the site can build.\n",
+  );
+  process.exit(1);
+}
+
 console.log(
   `check:schema - .pages.yml and Zod agree ` +
-    `(${allProbes.length} optional field(s) probed).`,
+    `(${allProbes.length} optional field(s) probed); ` +
+    `${contentFiles.length} content file(s) valid.`,
 );

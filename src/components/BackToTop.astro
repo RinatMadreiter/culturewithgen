@@ -1,10 +1,14 @@
 ---
+import { type Locale, UI } from "../lib/i18n";
+
 interface Props {
-  locale?: "en" | "de";
+  // Required, not defaulted to "en": a forgotten prop used to render an English
+  // label on the German page silently, which is worse than a build error.
+  locale: Locale;
 }
 
-const { locale = "en" } = Astro.props;
-const label = locale === "de" ? "Nach oben" : "Back to top";
+const { locale } = Astro.props;
+const label = UI[locale].backToTop;
 ---
 
 <button

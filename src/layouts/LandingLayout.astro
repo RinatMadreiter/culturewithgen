@@ -1,0 +1,125 @@
+---
+/**
+ * The entire landing page, for both languages.
+ *
+ * src/pages/index.astro and src/pages/de/index.astro were ~90% identical (88 of
+ * 98 lines), each carrying its own <html>/<head>/<body> plus the same section
+ * list, so every chrome change had to be made twice and kept in sync by hand -
+ * which had already drifted. They are now thin: load the locale's content, hand
+ * it to this layout.
+ *
+ * This owns the sections rather than exposing a <slot> for them, because a slot
+ * would have left that identical section list duplicated in both pages, which
+ * is the duplication being removed.
+ */
+import type { z } from "astro/zod";
+import type { landingSchema } from "../lib/content-schema";
+
+import "../styles/global.css";
+
+import Seo from "../components/Seo.astro";
+import StructuredData from "../components/StructuredData.astro";
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
+import BackToTop from "../components/BackToTop.astro";
+import Hero from "../components/sections/Hero.astro";
+import Offer from "../components/sections/Offer.astro";
+import About from "../components/sections/About.astro";
+import WhoFor from "../components/sections/WhoFor.astro";
+import Situations from "../components/sections/Situations.astro";
+import Formats from "../components/sections/Formats.astro";
+import Testimonials from "../components/sections/Testimonials.astro";
+import Contact from "../components/sections/Contact.astro";
+
+import { type Locale, UI, HOME_HREF } from "../lib/i18n";
+import { CONTACT_FORM_URLS } from "../lib/links";
+
+type LandingContent = z.infer<typeof landingSchema>;
+
+interface Props {
+  locale: Locale;
+  content: LandingContent;
+}
+
+const { locale, content } = Astro.props;
+
+const t = UI[locale];
+const path = HOME_HREF[locale];
+const contactFormUrl = CONTACT_FORM_URLS[locale];
+
+// The CTA label comes from the CMS (header.ctaLabel), the same value the hero
+// and contact CTAs use. The nav used to hardcode its own copy, so editing the
+// label in the CMS changed two of the three buttons and left the nav behind.
+const ctaLabel = content.header.ctaLabel;
+
+const showTestimonials =
+  !!content.testimonials && content.testimonials.visible !== false;
+
+// Menu wording is CMS-overridable so a renamed section heading can be matched
+// in the menu. A blank override falls back to the built-in label rather than
+// rendering an empty link.
+const navLabel = (key: keyof typeof t.nav) =>
+  content.nav?.[key]?.trim() || t.nav[key];
+
+// Testimonials nav link is bound to the CMS `visible` toggle: it appears only
+// while the section is shown, so the anchor never points at a hidden section.
+const navLinks = [
+  { label: navLabel("services"), href: "#services" },
+  { label: navLabel("about"), href: "#about" },
+  { label: navLabel("workshops"), href: "#formats" },
+  ...(showTestimonials
+    ? [{ label: navLabel("testimonials"), href: "#testimonials" }]
+    : []),
+];
+
+// Both can be overridden via the CMS (content.seo); an empty or absent override
+// falls back to the locale default so nothing regresses when left blank.
+const seoTitle = content.seo?.title?.trim() || t.seo.title;
+const seoDescription = content.seo?.description?.trim() || t.seo.description;
+---
+
+<html class="light" lang={locale}>
+  <head>
+    <Seo
+      title={seoTitle}
+      description={seoDescription}
+      locale={locale}
+      path={path}
+      alternates={HOME_HREF}
+    />
+    <StructuredData
+      locale={locale}
+      path={path}
+      offerItems={content.offer.items}
+      description={seoDescription}
+    />
+  </head>
+
+  <body class="antialiased overflow-x-hidden flex flex-col min-h-screen">
+    <Navigation
+      homeHref={path}
+      links={navLinks}
+      ctaLabel={ctaLabel}
+      contactFormUrl={contactFormUrl}
+    />
+
+    <main class="pt-16 md:pt-40 flex-1">
+      <Hero {...content.header} contactFormUrl={contactFormUrl} />
+      <Offer {...content.offer} />
+      <About {...content.about} />
+      <WhoFor {...content.whoFor} />
+      <Situations {...content.situations} />
+      <Formats {...content.format} />
+      {showTestimonials && <Testimonials {...content.testimonials!} />}
+      <Contact
+        {...content.contact}
+        ctaLabel={ctaLabel}
+        contactFormUrl={contactFormUrl}
+      />
+    </main>
+
+    <Footer locale={locale} />
+
+    <BackToTop locale={locale} />
+  </body>
+</html>

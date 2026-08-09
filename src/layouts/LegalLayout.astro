@@ -4,7 +4,8 @@ import logo from "../assets/logo.webp";
 import Seo from "../components/Seo.astro";
 import Footer from "../components/Footer.astro";
 
-type Locale = "en" | "de";
+import { type Locale, UI, HOME_HREF } from "../lib/i18n";
+import { SITE_NAME } from "../lib/site";
 
 interface Props {
   lang: Locale;
@@ -12,27 +13,20 @@ interface Props {
   description: string;
   path: string;
   alternates?: Partial<Record<Locale, string>>;
-  homeHref: string;
-  backLabel: string;
-  homeAriaLabel: string;
 }
 
-const {
-  lang,
-  title,
-  description,
-  path,
-  alternates,
-  homeHref,
-  backLabel,
-  homeAriaLabel,
-} = Astro.props;
+const { lang, title, description, path, alternates } = Astro.props;
+
+// Derived from `lang` rather than passed in: these were three more props each
+// caller had to supply correctly, in the right language, every time.
+const homeHref = HOME_HREF[lang];
+const { backLabel, homeAriaLabel } = UI[lang].legal;
 ---
 
 <html lang={lang}>
   <head>
     <Seo
-      title={`${title} | CultureWithGen`}
+      title={`${title} | ${SITE_NAME}`}
       description={description}
       locale={lang}
       path={path}

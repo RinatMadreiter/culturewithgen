@@ -54,6 +54,18 @@ export const landingSchema = z.object({
       description: z.string().optional(),
     })
     .optional(),
+  // Optional wording overrides for the top-menu links. Every field is optional
+  // and an empty string is treated as "not set", so clearing one in the CMS
+  // falls back to the built-in label (src/lib/i18n.ts) rather than rendering a
+  // blank link. The hrefs are not editable - they are section anchors.
+  nav: z
+    .object({
+      services: z.string().optional(),
+      about: z.string().optional(),
+      workshops: z.string().optional(),
+      testimonials: z.string().optional(),
+    })
+    .optional(),
   header: z.object({
     eyebrow: z.string().optional(),
     title: z.string(),

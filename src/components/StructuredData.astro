@@ -1,6 +1,12 @@
 ---
 // Schema.org JSON-LD for the home page.
-type Locale = "en" | "de";
+import { type Locale, UI } from "../lib/i18n";
+import {
+  SITE_NAME,
+  SITE_ORIGIN,
+  DEFAULT_OG_IMAGE,
+  absoluteUrl,
+} from "../lib/site";
 
 interface IconItem {
   icon: string;
@@ -18,28 +24,17 @@ interface Props {
 const {
   locale,
   path,
-  image = "/og-image.jpg",
+  image = DEFAULT_OG_IMAGE,
   offerItems,
   description,
 } = Astro.props;
 
-const site = Astro.site ?? new URL("https://culturewithgen.com");
-const abs = (p: string) => (p.startsWith("http") ? p : new URL(p, site).href);
+const site = Astro.site ?? new URL(SITE_ORIGIN);
+const abs = (p: string) => absoluteUrl(p, Astro.site);
 
 const canonical = abs(path);
-const SITE_NAME = "CultureWithGen";
 
-const jobTitle =
-  locale === "de"
-    ? "Interkulturelle Kommunikationstrainerin"
-    : "Intercultural Communication Trainer";
-
-const serviceType =
-  locale === "de"
-    ? "Interkulturelles Kommunikationstraining"
-    : "Intercultural communication training";
-
-const areaServedName = locale === "de" ? "Österreich" : "Austria";
+const { jobTitle, serviceType, areaServed: areaServedName } = UI[locale].schema;
 
 const jsonLd = {
   "@context": "https://schema.org",

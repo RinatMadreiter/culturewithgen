@@ -1,7 +1,11 @@
 ---
 import { Image } from "astro:assets";
 import Icon from "../Icon.astro";
-import { resolveImage, type CmsImage } from "../../lib/images";
+import {
+  resolveImage,
+  objectPositionClass,
+  type CmsImage,
+} from "../../lib/images";
 
 interface Props {
   eyebrow?: string;
@@ -25,6 +29,12 @@ const {
 
 const asset = resolveImage(image?.src);
 const alt = image?.alt || "Professional portrait of intercultural trainer";
+
+// From lg up the image is object-cover inside a min-height, so it can crop.
+// This lets the editor choose which part survives that crop. Built from a
+// literal class map, never interpolated - `object-${position}` compiles to no
+// CSS at all in Tailwind.
+const heroImageClass = `w-full h-auto object-cover ${objectPositionClass(image?.position)} rounded-[2rem] shadow-[0_12px_40px_rgba(30,57,50,0.12)] bg-gray-200 lg:min-h-[400px]`;
 ---
 
 <section class="relative pt-20 pb-10 lg:pb-32 px-6 lg:px-12 overflow-hidden">
@@ -90,13 +100,13 @@ const alt = image?.alt || "Professional portrait of intercultural trainer";
             quality={80}
             loading="eager"
             fetchpriority="high"
-            class="w-full h-auto object-cover rounded-[2rem] shadow-[0_12px_40px_rgba(30,57,50,0.12)] bg-gray-200 lg:min-h-[400px]"
+            class={heroImageClass}
           />
         ) : (
           image?.src && (
             <img
               alt={alt}
-              class="w-full h-auto object-cover rounded-[2rem] shadow-[0_12px_40px_rgba(30,57,50,0.12)] bg-gray-200 lg:min-h-[400px]"
+              class={heroImageClass}
               loading="eager"
               src={image.src}
             />

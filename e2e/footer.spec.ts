@@ -37,6 +37,15 @@ for (const { path, label, copy } of pages) {
       await expect(footer).toContainText("CultureWithGen");
       await expect(footer).toContainText(copy.tagline);
 
+      // The copyright line is assembled from a year, the brand and the tagline.
+      // Asserted as a whole because the parts were once adjacent {..} expressions
+      // and a formatter's newline between them rendered as "© 2026CultureWithGen"
+      // - every individual substring above still passed.
+      const year = new Date().getFullYear();
+      await expect(footer.locator(".site-footer__copy")).toHaveText(
+        `© ${year} CultureWithGen · ${copy.tagline}`,
+      );
+
       await expect(footer.locator(`a[href="${copy.privacy}"]`)).toBeVisible();
       await expect(footer.locator(`a[href="${copy.imprint}"]`)).toBeVisible();
 

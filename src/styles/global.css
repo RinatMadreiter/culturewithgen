@@ -46,7 +46,6 @@
 }
 .rich-text h2,
 .rich-text h3 {
-  font-family: var(--font-headline, inherit);
   font-weight: 700;
   color: #1e3932;
   margin: 1.5rem 0 0.75rem;
