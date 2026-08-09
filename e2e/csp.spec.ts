@@ -1,13 +1,9 @@
 import { test, expect } from "@playwright/test";
 
-// The hero, about and testimonial bodies are CMS-authored HTML rendered with
-// set:html, and the CMS commits straight to main. The CSP is what stops an
-// injected <script> from executing if that content is ever tampered with.
-//
-// It is injected at build time by integrations/csp.mjs, which hashes the inline
-// scripts Astro emits. That is easy to get subtly wrong: too strict silently
-// breaks the language switcher and back-to-top, too loose ('unsafe-inline')
-// leaves the XSS door open. These assert both directions.
+// The CSP is generated at build time by integrations/csp.mjs, which hashes the
+// inline scripts Astro emits. That is easy to get subtly wrong in either
+// direction: too strict silently breaks the language switcher and back-to-top,
+// too loose ('unsafe-inline') makes the policy pointless. These cover both.
 
 const pages = ["/", "/de/", "/privacy", "/404.html"];
 

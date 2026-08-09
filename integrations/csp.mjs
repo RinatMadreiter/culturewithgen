@@ -6,20 +6,13 @@ import { fileURLToPath } from "node:url";
 /**
  * Injects a per-page Content-Security-Policy <meta> into the built HTML.
  *
- * Why this exists: the hero, about and testimonial bodies are CMS-authored
- * HTML rendered with `set:html` (see src/components/sections/*.astro). Anyone
- * who can sign in to Pages CMS can therefore inject markup into the live site,
- * and the CMS commits straight to main. A CSP means injected <script>, inline
- * event handlers and `javascript:` URLs do not execute even if that happens.
+ * A <meta> rather than a header because GitHub Pages serves static files and
+ * cannot send custom headers. Note that `frame-ancestors` has no effect in
+ * meta form.
  *
- * Why a <meta> and not a header: GitHub Pages serves static files and cannot
- * send custom headers. The tradeoff is that `frame-ancestors` is ignored in
- * meta form, so clickjacking is not covered here.
- *
- * Why hashes: Astro inlines the Navigation and BackToTop module scripts into
- * the HTML, so a bare `script-src 'self'` would silently break the language
- * switcher and the back-to-top button. Each page gets hashes for exactly the
- * inline scripts and styles it contains, which keeps 'unsafe-inline' out.
+ * Astro inlines some module scripts into the HTML, so the policy carries a
+ * hash for each inline script and style a page actually contains. That keeps
+ * 'unsafe-inline' out of the policy while leaving the site's own code working.
  *
  * Runs on build only, so `astro dev` and its HMR are unaffected.
  */
@@ -39,8 +32,8 @@ function inlineBodies(html, tag) {
 }
 
 function buildPolicy(html) {
-  // JSON-LD is matched too: it is a <script> element, and some browsers apply
-  // script-src to it regardless of its non-executable type.
+  // JSON-LD is included too: it is a <script> element, and some browsers
+  // apply script-src to it regardless of its non-executable type.
   const scripts = inlineBodies(html, "script").map(sha256);
   const styles = inlineBodies(html, "style").map(sha256);
 
@@ -51,8 +44,8 @@ function buildPolicy(html) {
     "img-src 'self' data:",
     "font-src 'self'",
     "connect-src 'self'",
-    // No <form> exists anywhere on the site; the contact CTA is a plain link
-    // to an external Google Form, which is navigation and unaffected by this.
+    // The site has no <form>; the contact CTA is a link, which is navigation
+    // and unaffected by this directive.
     "form-action 'none'",
     "base-uri 'none'",
     "object-src 'none'",

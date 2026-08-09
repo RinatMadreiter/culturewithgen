@@ -8,10 +8,8 @@ on:
     branches: [main]
   workflow_dispatch: # manual "deploy now" button as fallback
 
-# Permissions are granted per job, NOT here, deliberately. A workflow-level
-# block is inherited by every job, which meant `test` - the job that installs
-# Chromium and executes the whole transitive dependency tree - held
-# `id-token: write` and could mint an OIDC token. Only `deploy` needs that.
+# Empty by design. A block here is inherited by every job, so scopes are
+# declared per job instead and each one asks for only what it uses.
 permissions: {}
 
 # Rapid successive CMS edits: newest push wins, stale builds are cancelled.
@@ -65,7 +63,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
-      contents: read # runs third-party code; must not hold pages or id-token
+      contents: read # only reads the source and runs the suite
     steps:
       # SHA-pinned so a re-pointed tag can't inject code (immutable commits).
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -101,10 +99,9 @@ jobs:
     needs: [check, test]
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    # `contents: read` only. Traced at the pinned SHAs: withastro/action ->
-    # actions/upload-pages-artifact@fc324d35 -> actions/upload-artifact. That
-    # chain tars a directory and writes to the run's artifact storage; it makes
-    # no Pages API call and uses no token. Only `deploy` touches the Pages API.
+    # withastro/action ends in actions/upload-pages-artifact, which tars the
+    # output into the run's artifact storage. That needs no Pages scope; the
+    # Pages API is called only by the deploy job.
     permissions:
       contents: read
     steps:
