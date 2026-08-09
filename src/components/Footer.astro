@@ -3,27 +3,21 @@ import { type Locale, UI, LEGAL_ROUTES, LINKEDIN_URL } from "../lib/i18n";
 import { SITE_NAME } from "../lib/site";
 
 interface Props {
-  // Required, not defaulted to "en": a forgotten prop used to render English
-  // copy on the German page silently, which is worse than a build error.
+  // Required, not defaulted: a missing prop must not silently render English.
   locale: Locale;
 }
 
 const { locale } = Astro.props;
 
 const t = UI[locale].footer;
-// Hrefs come from the shared route table so the footer links and the hreflang
-// alternates in the legal pages can never drift apart.
+// Shared route table, so these cannot drift from the legal pages' hreflang.
 const privacyHref = LEGAL_ROUTES.privacy[locale];
 const imprintHref = LEGAL_ROUTES.imprint[locale];
 ---
 
-<!-- Deliberately a deeper green than the #1E3932 Contact section on the home
-     pages, so the footer reads as a separate, recessed "basement" rather than
-     continuing the same dark block. The colour carries the boundary. -->
 <footer class="site-footer">
   <div class="site-footer__inner">
-    <!-- Social sits above the legal links in the markup, not via CSS order, so
-         keyboard focus order matches the visual order. -->
+    {/* Order is markup order, not CSS order, so focus order matches. */}
     <a
       class="site-footer__social"
       href={LINKEDIN_URL}
@@ -43,9 +37,7 @@ const imprintHref = LEGAL_ROUTES.imprint[locale];
       <a href={imprintHref}>{t.imprintLabel}</a>
     </div>
 
-    <!-- Built as one expression, not adjacent {..} interpolations: Astro
-         collapses the newline a formatter may insert between them to nothing,
-         which silently produced "© 2026CultureWithGen". -->
+    {/* One expression: adjacent {..} lose the space between them. */}
     <p class="site-footer__copy">
       {`© ${new Date().getFullYear()} ${SITE_NAME} · ${t.tagline}`}
     </p>

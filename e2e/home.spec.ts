@@ -1,6 +1,5 @@
 import { test, expect } from "@playwright/test";
-// Assert against the same content source the page renders from, so these
-// stay correct when copy is edited via the CMS instead of drifting stale.
+// Assert against the same content source the page renders from.
 import en from "../src/content/landing/en.json" with { type: "json" };
 import de from "../src/content/landing/de.json" with { type: "json" };
 
@@ -14,9 +13,7 @@ test.describe("English home page", () => {
     const response = await page.goto("/");
     expect(response?.status()).toBe(200);
 
-    // Hero name (hardcoded, not CMS-driven) + eyebrow + title
-    // Anchored to .hero-name: testimonial copy also mentions her by name, so a
-    // loose text match resolves to several elements and trips strict mode.
+    // Anchored to .hero-name: her name also appears in testimonial copy.
     await expect(page.locator("main .hero-name")).toHaveText(
       "Genevieve Navisotschnig",
     );
@@ -27,7 +24,6 @@ test.describe("English home page", () => {
       page.getByRole("heading", { name: en.header.title, level: 1 }),
     ).toBeVisible();
 
-    // Every section heading renders
     for (const heading of [
       en.offer.title,
       en.about.title,
@@ -38,8 +34,6 @@ test.describe("English home page", () => {
       await expect(page.getByRole("heading", { name: heading })).toBeVisible();
     }
 
-    // Workshop format cards render both the title and the expanding
-    // description sentence for each format.
     for (const item of en.format.items) {
       await expect(
         page.getByRole("heading", { name: item.text, level: 3 }),
@@ -49,13 +43,10 @@ test.describe("English home page", () => {
       }
     }
 
-    // Inline SVG icons rendered for list items. Scoped to <main> so the
-    // responsive nav hamburger (svg.svg-icon, hidden at desktop widths) can't
-    // be picked up by .first().
+    // Scoped to <main> so the nav hamburger svg is not matched.
     await expect(page.locator("main svg.svg-icon").first()).toBeVisible();
 
-    // CMS rich-text renders as real HTML (a <p> inside the prose container),
-    // not as escaped text - guards the set:html rendering of hero/about.
+    // Guards set:html: a real <p>, not escaped text.
     await expect(page.locator("#about .rich-text p").first()).toBeVisible();
     await expect(page.locator("main .rich-text p").first()).toBeVisible();
 

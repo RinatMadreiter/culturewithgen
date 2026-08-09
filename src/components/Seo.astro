@@ -71,15 +71,11 @@ const hreflangs = alternates
   ))
 }
 
-<!-- Icons & theme. No SVG icon: the only vector source we had was a 1 MB PNG
-     wrapped in an <svg>, which browsers fetched at High priority right across
-     FCP. The .ico + 96px PNG cover every browser between them. -->
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <meta name="theme-color" content="#1E3932" />
 
-<!-- Open Graph -->
 <meta property="og:type" content={type} />
 <meta property="og:site_name" content={SITE_NAME} />
 <meta property="og:locale" content={OG_LOCALE[locale]} />
@@ -92,7 +88,6 @@ const hreflangs = alternates
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content={title} />
 
-<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />

@@ -8,9 +8,7 @@ const locales = [
 ];
 
 for (const { path, label, data } of locales) {
-  // The CMS `visible` toggle hides the whole section without deleting content.
-  // Branch at registration so the suite tracks the seed data: when the section
-  // is toggled off we assert its absence; otherwise we run the full contract.
+  // Branch at registration so the suite follows the CMS `visible` toggle.
   const hidden = data.visible === false;
 
   if (hidden) {
@@ -43,8 +41,7 @@ for (const { path, label, data } of locales) {
       page,
     }) => {
       await page.goto(path);
-      // The <p> only exists if set:html parsed the CMS markup; escaped text
-      // would leave the literal "<p>" as characters with no element.
+      // A real <p> exists only if set:html parsed; escaped text would not.
       await expect(
         page.locator("#testimonials blockquote.rich-text p").first(),
       ).toBeVisible();
@@ -65,14 +62,11 @@ for (const { path, label, data } of locales) {
       const radius = await imgs
         .first()
         .evaluate((el) => getComputedStyle(el).borderTopLeftRadius);
-      // Tailwind rounded-full resolves to a large px value or 50%; either way
-      // it must be at least half the 56px box.
+      // rounded-full is a large px value or 50%; either clears half of 56px.
       expect(parseFloat(radius)).toBeGreaterThanOrEqual(28);
     });
 
-    // The crop position comes from a CMS select and is mapped to a literal
-    // Tailwind class. Guards the interpolation trap: `object-${position}`
-    // would compile to no CSS, silently leaving avatars un-croppable.
+    // Guards the interpolation trap: `object-${x}` compiles to no CSS.
     test("avatar has a real object-position applied", async ({ page }) => {
       await page.goto(path);
       const imgs = page.locator("#testimonials figcaption img");
@@ -84,11 +78,8 @@ for (const { path, label, data } of locales) {
       const cls = (await first.getAttribute("class")) ?? "";
       expect(cls).toMatch(/\bobject-(center|top|bottom|left|right)/);
 
-      // Asserting the computed value is useless here: with no position set the
-      // avatar is object-center, whose 50% 50% is identical to the CSS default
-      // - it would pass even if no class resolved at all. What genuinely breaks
-      // is Tailwind not emitting the utilities, so assert the CSS exists for
-      // every position an editor can pick.
+      // Computed value is useless: object-center equals the CSS default, so it
+      // would pass with no class at all. Assert the utilities were emitted.
       const missing = await page.evaluate(() => {
         let css = "";
         for (const sheet of Array.from(document.styleSheets)) {
@@ -117,10 +108,7 @@ for (const { path, label, data } of locales) {
       page,
     }) => {
       await page.goto(path);
-      // A testimonial whose entry carries no image key. Not every seed set has
-      // one (all current entries have photos), so skip rather than fail when
-      // the contract cannot be exercised - the img-count check below still runs
-      // for every entry that does have an image.
+      // Not every seed set has an imageless entry; skip rather than fail.
       const withoutImage = data.items.find(
         (i) =>
           !("image" in i) || !(i as { image?: { src?: string } }).image?.src,
@@ -130,7 +118,6 @@ for (const { path, label, data } of locales) {
           page.locator("#testimonials").getByText(withoutImage.name),
         ).toBeVisible();
       }
-      // With no image on any seed entry, the section emits no avatar <img>.
       const imageCount = data.items.filter(
         (i) => "image" in i && (i as { image?: { src?: string } }).image?.src,
       ).length;
@@ -142,9 +129,7 @@ for (const { path, label, data } of locales) {
     test("card lifts on hover to draw attention", async ({ page }) => {
       await page.goto(path);
 
-      // The effect is intentionally hover-only: Tailwind wraps hover variants
-      // in @media (hover: hover), so it applies to a mouse and is correctly
-      // absent on touch. Skip where the test browser reports no hover.
+      // Hover-only by design (@media (hover:hover)); skip without hover.
       const canHover = await page.evaluate(
         () => matchMedia("(hover: hover)").matches,
       );
@@ -175,7 +160,6 @@ for (const { path, label, data } of locales) {
           const box = await cards.nth(i).boundingBox();
           xs.add(Math.round(box!.x));
         }
-        // All cards share one x => single column.
         expect(xs.size).toBe(1);
 
         const overflows = await page.evaluate(

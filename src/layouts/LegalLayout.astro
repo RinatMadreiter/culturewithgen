@@ -17,8 +17,6 @@ interface Props {
 
 const { lang, title, description, path, alternates } = Astro.props;
 
-// Derived from `lang` rather than passed in: these were three more props each
-// caller had to supply correctly, in the right language, every time.
 const homeHref = HOME_HREF[lang];
 const { backLabel, homeAriaLabel } = UI[lang].legal;
 ---
@@ -56,8 +54,7 @@ const { backLabel, homeAriaLabel } = UI[lang].legal;
         background-color: var(--page);
         margin: 0;
         padding: 0;
-        /* Sticky footer: the imprint page is short enough that without this the
-           footer would float mid-viewport with page background beneath it. */
+        /* Sticky footer: the imprint page is short enough to need it. */
         display: flex;
         flex-direction: column;
         min-height: 100vh;
@@ -70,10 +67,7 @@ const { backLabel, homeAriaLabel } = UI[lang].legal;
         backdrop-filter: blur(8px);
         border-bottom: 1px solid var(--line);
       }
-      /* Mirrors Navigation.astro's bar exactly (max-w-7xl, px-4 md:px-8, py-4)
-         so the logo lands on the same pixel on the home and legal pages and
-         does not jump when navigating between them. Deliberately wider than
-         the 880px content column below it. */
+      /* Must mirror Navigation.astro's bar or the logo jumps between pages. */
       .site-header__inner {
         max-width: 80rem;
         margin: 0 auto;
@@ -97,8 +91,7 @@ const { backLabel, homeAriaLabel } = UI[lang].legal;
       .logo-link:hover {
         transform: scale(1.05);
       }
-      /* Sized to match Navigation.astro's logo (h-20 md:h-36 rounded-3xl) so
-         the brand mark is identical across the home and legal pages. */
+      /* Must match Navigation.astro's logo sizing. */
       .logo-link img {
         height: 5rem;
         width: auto;
@@ -134,10 +127,7 @@ const { backLabel, homeAriaLabel } = UI[lang].legal;
         border-radius: 1rem;
         padding: 2.5rem;
         box-shadow: 0 12px 40px rgba(30, 57, 50, 0.06);
-        /* Long German compounds ("Datenschutzerklärung",
-           "Drittlandübermittlung") are wider than the content column on narrow
-           screens and would otherwise push the whole page into horizontal
-           scroll. Only affects words that cannot otherwise fit. */
+        /* Long German compounds overflow the column and force h-scroll. */
         overflow-wrap: break-word;
       }
       .legal-prose h1 {
@@ -156,8 +146,9 @@ const { backLabel, homeAriaLabel } = UI[lang].legal;
     <header class="site-header">
       <div class="site-header__inner">
         <a class="logo-link" href={homeHref} aria-label={homeAriaLabel}>
-          <!-- Matches Navigation.astro: the intrinsic height must cover the
-               largest rendered size (9rem) or the asset upscales and blurs. -->
+          {
+            /* height must cover the largest rendered size (9rem) or it blurs. */
+          }
           <Image
             src={logo}
             alt="CultureWithGen"

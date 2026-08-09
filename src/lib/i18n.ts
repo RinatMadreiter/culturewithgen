@@ -1,31 +1,16 @@
-/**
- * Every user-facing string that is NOT editable in the CMS, plus the route
- * table that pairs the two languages.
- *
- * Before this module the same job was done four different ways - literals in
- * the page files, a `COPY` map in Footer.astro, a ternary in BackToTop.astro,
- * and more ternaries in StructuredData.astro - and the /privacy <-> the German
- * /datenschutz pairing was restated in three files that all had to agree for
- * hreflang to be correct. One place now.
- *
- * CMS-authored copy does not belong here; it lives in src/content/landing/*.
- */
+// Non-CMS user-facing strings and the EN/DE route table.
+// CMS-authored copy belongs in src/content/landing/*.
 
 export type Locale = "en" | "de";
 
 export const LOCALES = ["en", "de"] as const satisfies readonly Locale[];
 
-/** Home page of each language. */
 export const HOME_HREF: Record<Locale, string> = {
   en: "/",
   de: "/de/",
 };
 
-/**
- * Legal documents and their path in each language. The slugs differ between
- * locales (/imprint vs /de/impressum), so the pairing cannot be derived by
- * prefixing - it has to be declared, and declared exactly once.
- */
+/** Slugs differ per locale, so the pairing is declared, not derived. */
 export const LEGAL_ROUTES = {
   privacy: { en: "/privacy", de: "/de/datenschutz" },
   imprint: { en: "/imprint", de: "/de/impressum" },
@@ -33,14 +18,12 @@ export const LEGAL_ROUTES = {
 
 export type LegalDoc = keyof typeof LEGAL_ROUTES;
 
-/** The other language - used for og:locale:alternate and the switcher. */
 export function otherLocale(locale: Locale): Locale {
   return locale === "en" ? "de" : "en";
 }
 
 export const UI = {
   en: {
-    /** Section links in the header. Overridable per-site via the CMS. */
     nav: {
       services: "Services",
       about: "About",
@@ -64,7 +47,6 @@ export const UI = {
           "Imprint and legal information for CultureWithGen intercultural communication training.",
       },
     },
-    /** Fallbacks when the CMS `seo` override is blank. */
     seo: {
       title: "Genevieve Navisotschnig | CultureWithGen",
       description:
@@ -113,5 +95,4 @@ export const UI = {
   },
 } as const satisfies Record<Locale, unknown>;
 
-/** External profile links. */
 export const LINKEDIN_URL = "https://www.linkedin.com/in/culture-with-gen/";

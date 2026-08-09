@@ -4,23 +4,15 @@ import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 /**
- * Injects a per-page Content-Security-Policy <meta> into the built HTML.
- *
- * A <meta> rather than a header because GitHub Pages serves static files and
- * cannot send custom headers. Note that `frame-ancestors` has no effect in
- * meta form.
- *
- * Astro inlines some module scripts into the HTML, so the policy carries a
- * hash for each inline script and style a page actually contains. That keeps
- * 'unsafe-inline' out of the policy while leaving the site's own code working.
- *
- * Runs on build only, so `astro dev` and its HMR are unaffected.
+ * Injects a per-page CSP <meta> into the built HTML. A meta rather than a
+ * header because static hosting cannot send headers; `frame-ancestors` is
+ * therefore inert. Inline scripts are hashed, not blanket-allowed, so the
+ * site's own inlined modules keep working. Build only, so dev/HMR is untouched.
  */
 
 const sha256 = (body) =>
   `'sha256-${createHash("sha256").update(body, "utf8").digest("base64")}'`;
 
-/** Inline <script>/<style> bodies, i.e. those without a `src` attribute. */
 function inlineBodies(html, tag) {
   const bodies = [];
   const re = new RegExp(`<${tag}([^>]*)>([\\s\\S]*?)</${tag}>`, "g");
@@ -32,8 +24,7 @@ function inlineBodies(html, tag) {
 }
 
 function buildPolicy(html) {
-  // JSON-LD is included too: it is a <script> element, and some browsers
-  // apply script-src to it regardless of its non-executable type.
+  // JSON-LD included: some browsers apply script-src to it despite its type.
   const scripts = inlineBodies(html, "script").map(sha256);
   const styles = inlineBodies(html, "style").map(sha256);
 
@@ -44,8 +35,7 @@ function buildPolicy(html) {
     "img-src 'self' data:",
     "font-src 'self'",
     "connect-src 'self'",
-    // The site has no <form>; the contact CTA is a link, which is navigation
-    // and unaffected by this directive.
+    // No <form> anywhere; the contact CTA is a link, which this does not affect.
     "form-action 'none'",
     "base-uri 'none'",
     "object-src 'none'",

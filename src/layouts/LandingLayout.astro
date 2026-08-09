@@ -1,17 +1,6 @@
 ---
-/**
- * The entire landing page, for both languages.
- *
- * src/pages/index.astro and src/pages/de/index.astro were ~90% identical (88 of
- * 98 lines), each carrying its own <html>/<head>/<body> plus the same section
- * list, so every chrome change had to be made twice and kept in sync by hand -
- * which had already drifted. They are now thin: load the locale's content, hand
- * it to this layout.
- *
- * This owns the sections rather than exposing a <slot> for them, because a slot
- * would have left that identical section list duplicated in both pages, which
- * is the duplication being removed.
- */
+// The whole landing page for both locales. Owns the sections rather than
+// exposing a <slot>, which would duplicate the section list in both pages.
 import type { z } from "astro/zod";
 import type { landingSchema } from "../lib/content-schema";
 
@@ -47,22 +36,16 @@ const t = UI[locale];
 const path = HOME_HREF[locale];
 const contactFormUrl = CONTACT_FORM_URLS[locale];
 
-// The CTA label comes from the CMS (header.ctaLabel), the same value the hero
-// and contact CTAs use. The nav used to hardcode its own copy, so editing the
-// label in the CMS changed two of the three buttons and left the nav behind.
+// Shared by all three CTAs (nav, hero, contact) so they cannot disagree.
 const ctaLabel = content.header.ctaLabel;
 
 const showTestimonials =
   !!content.testimonials && content.testimonials.visible !== false;
 
-// Menu wording is CMS-overridable so a renamed section heading can be matched
-// in the menu. A blank override falls back to the built-in label rather than
-// rendering an empty link.
+// Blank CMS override falls back to the built-in label, never an empty link.
 const navLabel = (key: keyof typeof t.nav) =>
   content.nav?.[key]?.trim() || t.nav[key];
 
-// Testimonials nav link is bound to the CMS `visible` toggle: it appears only
-// while the section is shown, so the anchor never points at a hidden section.
 const navLinks = [
   { label: navLabel("services"), href: "#services" },
   { label: navLabel("about"), href: "#about" },
@@ -72,8 +55,6 @@ const navLinks = [
     : []),
 ];
 
-// Both can be overridden via the CMS (content.seo); an empty or absent override
-// falls back to the locale default so nothing regresses when left blank.
 const seoTitle = content.seo?.title?.trim() || t.seo.title;
 const seoDescription = content.seo?.description?.trim() || t.seo.description;
 ---
