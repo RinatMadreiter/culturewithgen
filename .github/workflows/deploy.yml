@@ -101,9 +101,12 @@ jobs:
     needs: [check, test]
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    # `contents: read` only. Traced at the pinned SHAs: withastro/action ->
+    # actions/upload-pages-artifact@fc324d35 -> actions/upload-artifact. That
+    # chain tars a directory and writes to the run's artifact storage; it makes
+    # no Pages API call and uses no token. Only `deploy` touches the Pages API.
     permissions:
       contents: read
-      pages: write # withastro/action uploads the Pages artifact
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       # SHA-pinned so a compromised upstream tag can't inject code.

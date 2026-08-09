@@ -5,6 +5,8 @@ import sitemap from "@astrojs/sitemap";
 
 import tailwindcss from "@tailwindcss/vite";
 
+import csp from "./integrations/csp.mjs";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://culturewithgen.com",
@@ -20,6 +22,9 @@ export default defineConfig({
         },
       },
     }),
+    // Must stay last: it hashes the inline scripts/styles in the final HTML,
+    // so anything that rewrites markup has to run before it.
+    csp(),
   ],
 
   i18n: {
