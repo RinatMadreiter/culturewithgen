@@ -132,6 +132,15 @@
         }
       },
       {
+        "quote": "<p>Ich empfinde die Zusammenarbeit mit Genevieve als äußerst angenehm, individuell und praxisnah. Besonders schätze ich, dass der Unterricht gezielt auf unsere beruflichen Anforderungen zugeschnitten ist und wir mit konkreten Beispielen arbeiten, die sich direkt in der alltäglichen Kommunikation anwenden lassen.</p><p>Wir absolvieren den Kurs überwiegend in der Gruppe, was den Ideen- und Erfahrungsaustausch sowie praxisbezogene Diskussionen sehr wertvoll macht. Die Einzelstunden bilden dazu eine ideale Ergänzung, da sie die Möglichkeit bieten, persönliche Prioritäten zu setzen und gezielt auf individuelle Bedürfnisse einzugehen.</p><p>Diese Flexibilität hilft uns dabei, unsere Englischkenntnisse kontinuierlich zu verbessern und mehr Sicherheit zu gewinnen. Ich kann Genevieve aus voller Überzeugung weiterempfehlen, ganz besonders aufgrund ihrer professionellen, freundlichen und motivierenden Art.</p>",
+        "name": "Rudolf Mühlfellner, Team Leader Service Marketing",
+        "image": {
+          "src": "/images/Rudolf Mühlfellner.jpg",
+          "alt": "Bild von Rudolf Mühlfellner",
+          "position": "center"
+        }
+      },
+      {
         "quote": "<p>Während meiner Zeit als Verantwortliche für das Hochschuldidaktik-Programm an der Fachhochschule Salzburg habe ich die Zusammenarbeit mit Genevieve Navisotschnig sehr geschätzt. Sie sprüht vor Ideen, und gemeinsam haben wir gute Workshops entwickelt. Ich schätze Genevieves Professionalität und ihre profunde Kenntnis der Materie.</p><p>Sie beschäftigt sich nicht nur theoretisch mit interkultureller Kommunikation, sondern steht auch aufgrund ihrer Lebenserfahrung hinter diesen Themen. Dadurch schafft sie es, Lernende für diese Themen zu begeistern. Dabei wählt sie immer auch einen praktischen Ansatz, der das Interesse für die theoretische Auseinandersetzung weckt.</p><p>Für mich ist jede Form der Kooperation mit Genevieve Navisotschnig eine persönliche Bereicherung.</p>",
         "name": "Ulrike Szigeti, Ehemalige Vizerektorin und Internationale Koordinatorin, FH Salzburg",
         "image": {
@@ -145,15 +154,6 @@
         "name": "Gerhard Santner, Sales Manager, Verpackungsindustrie, Österreich",
         "image": {
           "src": "/images/Gerhard Santner.jpeg",
-          "position": "center"
-        }
-      },
-      {
-        "quote": "<p>Ich empfinde die Zusammenarbeit mit Genevieve als äußerst angenehm, individuell und praxisnah. Besonders schätze ich, dass der Unterricht gezielt auf unsere beruflichen Anforderungen zugeschnitten ist und wir mit konkreten Beispielen arbeiten, die sich direkt in der alltäglichen Kommunikation anwenden lassen.</p><p>Wir absolvieren den Kurs überwiegend in der Gruppe, was den Ideen- und Erfahrungsaustausch sowie praxisbezogene Diskussionen sehr wertvoll macht. Die Einzelstunden bilden dazu eine ideale Ergänzung, da sie die Möglichkeit bieten, persönliche Prioritäten zu setzen und gezielt auf individuelle Bedürfnisse einzugehen.</p><p>Diese Flexibilität hilft uns dabei, unsere Englischkenntnisse kontinuierlich zu verbessern und mehr Sicherheit zu gewinnen. Ich kann Genevieve aus voller Überzeugung weiterempfehlen, ganz besonders aufgrund ihrer professionellen, freundlichen und motivierenden Art.</p>",
-        "name": "Rudolf Mühlfellner, Team Leader Service Marketing",
-        "image": {
-          "src": "/images/Rudolf Mühlfellner.jpg",
-          "alt": "Bild von Rudolf Mühlfellner",
           "position": "center"
         }
       }
