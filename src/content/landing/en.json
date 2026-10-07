@@ -125,6 +125,13 @@
     "title": "What People Say",
     "items": [
       {
+        "quote": "<p>Genevieve delivered workshops as part of our internal professional development program at Salzburg University of Applied Sciences. The sessions were well structured, informative, and tailored to the needs of the participants. Through the use of a variety of teaching methods, she encouraged active participation and created an engaging learning experience.</p><p>Her strong subject-matter expertise and ability to communicate complex topics in a clear and practical way were particularly appreciated. She fostered a positive learning environment and was responsive to the questions and needs of the participants throughout the workshops.</p><p>Working with Genevieve was professional, reliable, and pleasant. The feedback from participants was consistently positive and highlighted both the quality of the content and the interactive nature of the sessions. With her practical approach and commitment to participant learning, she made a valuable contribution to our internal professional development program.</p>",
+        "name": "Didactics and Learning Technologies, FH Salzburg",
+        "image": {
+          "position": "center"
+        }
+      },
+      {
         "quote": "<p>During my time as Head of the Higher Education Teaching and Learning Programme at Salzburg University of Applied Sciences, I greatly valued my collaboration with Genevieve Navisotschnig. She is full of ideas, and together we developed successful workshops.</p><p>I appreciate Genevieve's professionalism and her profound knowledge of the subject. She not only approaches intercultural communication from a theoretical perspective but also draws on her own life experience, which gives her genuine authenticity in this field.</p><p>As a result, she is able to inspire participants to engage with these topics. At the same time, she always adopts a practical approach that stimulates interest in the underlying theory.</p><p>For me, every opportunity to work with Genevieve Navisotschnig has been personally enriching.</p>",
         "name": "Ulrike Szigeti, Former Vice Rector and International Coordinator, FH Salzburg",
         "image": {
@@ -146,13 +153,6 @@
         "name": "Rudolf Mühlfellner, Team Leader Service Marketing",
         "image": {
           "src": "/images/Rudolf Mühlfellner.jpg",
-          "position": "center"
-        }
-      },
-      {
-        "quote": "<p>Genevieve delivered workshops as part of our internal professional development program at Salzburg University of Applied Sciences. The sessions were well structured, informative, and tailored to the needs of the participants. Through the use of a variety of teaching methods, she encouraged active participation and created an engaging learning experience.</p><p>Her strong subject-matter expertise and ability to communicate complex topics in a clear and practical way were particularly appreciated. She fostered a positive learning environment and was responsive to the questions and needs of the participants throughout the workshops.</p><p>Working with Genevieve was professional, reliable, and pleasant. The feedback from participants was consistently positive and highlighted both the quality of the content and the interactive nature of the sessions. With her practical approach and commitment to participant learning, she made a valuable contribution to our internal professional development program.</p>",
-        "name": "Didactics and Learning Technologies, FH Salzburg",
-        "image": {
           "position": "center"
         }
       }
